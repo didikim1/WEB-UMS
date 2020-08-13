@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="myCamelMap" type="com.inbiznetcorp.acs.framework.mymap.MyCamelMap" />
+		<typeAlias alias="myMap" type="com.inbiznetcorp.acs.framework.mymap.MyMap" />
+	</typeAliases>
+	<plugins>
+    	<plugin interceptor="com.inbiznetcorp.acs.framework.config.mybatis.interceptor.MybatisLogInterceptor"/>
+	</plugins>
+	<mappers>
+		 <mapper resource="mybatis/CommonMapper.xml"/>
+	</mappers>
+</configuration>

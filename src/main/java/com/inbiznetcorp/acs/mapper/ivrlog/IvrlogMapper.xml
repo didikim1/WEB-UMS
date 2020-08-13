@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.acs.mapper.ivrlog.IvrlogMapper">
+
+	<sql id="addWhere">
+	</sql>
+
+	<insert id="RegisterMapperData" parameterType="myMap" useGeneratedKeys="true" keyProperty="ivrlogmapperseq">
+		INSERT INTO
+			IVRLOGMAPPER
+		(
+			 TITLE
+			,SEND_TIME
+			,RESERVATION_DATE
+			,CREATEDATE
+			,ISUSE
+			,DLKEY
+			,ROUND
+			,CALLER_ID
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)">
+				,ORIGIN_SEQ
+			</if>
+		)
+		VALUES
+		(
+			 #{ttsTitle}
+			,#{sendTime}
+			,#{reservationDate}
+			,now()
+			,'Y'
+			,#{dlkey}
+			,#{round}
+			,#{callerId}
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)">
+				,#{ivrlogmapperseq}
+			</if>
+		)
+	</insert>
+
+	<insert id="RegisterData" parameterType="myMap" useGeneratedKeys="true" keyProperty="ivrlogseq">
+		INSERT INTO
+			IVRLOG
+		(
+			 AUTH_REQ_NUMBER
+			,NAME
+			,PHONENUMBER
+			,TTS_MENT_TITLE
+			,TTS_MENT_INTRO_01
+			,SEND_TYPE
+			,SEND_TIME
+			,CALL_TYPE
+			,REPEAT_TYPE
+			,NEXTCALL_DATE
+			,VOICE_RECEIVE
+			,CREATEDATE
+			,ISUSE
+			,DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,USERSESSIONID
+			,GROUP_IDENTIFIER
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(forElection)">
+				,FOR_ELECTION
+			</if>
+			,ROUND
+		)
+		VALUES
+		(
+			 #{authReqNumber}
+			,#{name}
+			,#{phonenumber}
+			,#{ttsTitle}
+			,#{ttsMentIntro01}
+			,#{sendType}
+			,#{sendTime}
+			,#{callType}
+			,#{repeatType}
+			,#{nextcallDate}
+			,#{voiceReceive}
+			,now()
+			,'Y'
+			,#{dlkey}
+			,#{ivrlogmapperseq}
+			,#{statusCompletion}
+			,#{userSessionID}
+			<choose>
+				<when test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(sessionCompanyName)">
+					,#{sessionCompanyName}
+				</when>
+				<otherwise>
+					,#{SESSION_COMPANY_NAME}
+				</otherwise>
+			</choose>
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(forElection)">
+				,#{forElection}
+			</if>
+			,#{round}
+		)
+	</insert>
+
+	<select id="SelectRetryList" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IVRLOGSEQ
+			,NAME
+			,T1.PHONENUMBER
+			,TTS_MENT_TITLE
+			,TTS_MENT_INTRO_01
+			,SEND_TYPE
+			,CALL_TYPE
+			,T1.CREATEDATE
+			,ISUSE
+			,IFNULL(DLKEY, '') AS DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,REC_FILE_URL
+		FROM
+			IVRLOG T1
+			,(
+				SELECT
+					MAX(CREATEDATE) AS CREATEDATE
+					,PHONENUMBER
+				FROM
+					IVRLOG
+				WHERE 1=1
+					AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+				GROUP BY PHONENUMBER
+			) T2
+		WHERE 1=1
+			AND T1.PHONENUMBER = T2.PHONENUMBER
+			AND T1.CREATEDATE = T2.CREATEDATE
+			AND ISUSE = 'Y'
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</select>
+
+	<select id="SelectRetryTarget" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IVRLOGSEQ
+			,NAME
+			,PHONENUMBER
+			,TTS_MENT_TITLE
+			,TTS_MENT_INTRO_01
+			,SEND_TYPE
+			,CALL_TYPE
+			,CREATEDATE
+			,ISUSE
+			,IFNULL(DLKEY, '') AS DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,REC_FILE_URL
+		FROM
+			IVRLOG
+		WHERE 1=1
+			AND ISUSE 		= 'Y'
+			AND IVRLOGSEQ 	= #{ivrlogseq}
+	</select>
+
+	<insert id="InsertIVRHistory" parameterType="myMap">
+		INSERT INTO IVRHISTORY
+		(
+		     SESSIONNUMBER
+			,MSG
+			,CREATETIME
+		)
+		VALUES
+		(
+			 #{sessionnumber}
+			,#{msg}
+			,now()
+		)
+	</insert>
+
+	<select id="SelectARSReservation" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IVRLOGSEQ
+			,NAME
+			,PHONENUMBER
+			,TTS_MENT_TITLE
+			,TTS_MENT_INTRO_01
+			,CALL_TYPE
+			,AUTOCALLCNT
+			,AUTOCALLCYCLE
+			,NEXTCALL_DATE
+			,CALLRESPONSEDATE
+			,CALLSTARTDATE
+			,CALLENDDATE
+			,CALLDURATION
+			,RESULT
+			,RESULT_MESSAGE
+			,USER_INPUT
+			,VOICE_RECEIVE
+			,REC_VOICE_RECEIVE
+			,CREATEDATE
+			,UPDATEDATE
+			,DELETEDATE
+			,ISUSE
+			,IFNULL(DLKEY, '') AS DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,USERSESSIONID
+			,GROUP_IDENTIFIER
+			,PERSONAL_IDENTIFIER
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,REC_FILE_URL
+			,FOR_ELECTION
+		FROM
+			IVRLOG
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND SEND_TIME = 'B'
+			AND NEXTCALL_DATE = STR_TO_DATE(#{nextcallDate}, '%Y%m%d%H%i')
+	</select>
+
+	<update id="UpdateStatus" parameterType="myMap">
+		UPDATE
+			IVRLOG
+		SET
+			STATUS_COMPLETION = 'I'
+		WHERE 1=1
+			AND ISUSE 		= 'Y'
+			AND IVRLOGSEQ 	= #{ivrlogseq}
+	</update>
+
+	<update id="ReservationCancel" parameterType="myMap">
+		UPDATE
+			IVRLOG
+		SET
+			 ISUSE = 'N'
+			,DELETEDATE = NOW()
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogseqArr)">
+				AND IVRLOGSEQ IN (${ivrlogseqArr})
+			</if>
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)">
+				AND IVRLOGMAPPERSEQ IN (${ivrlogmapperseq})
+			</if>
+	</update>
+
+	<update id="RepeatCancel" parameterType="myMap">
+		UPDATE
+			IVRLOG
+		SET
+			 ISUSE = 'N'
+			,DELETEDATE = NOW()
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND NEXTCALL_DATE > NOW()
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogseqArr)">
+				AND IVRLOGSEQ IN (${ivrlogseqArr})
+			</if>
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)">
+				AND IVRLOGMAPPERSEQ IN (${ivrlogmapperseq})
+			</if>
+	</update>
+
+	<update id="DeleteIVRLogMapper" parameterType="myMap">
+		UPDATE
+			IVRLOGMAPPER
+		SET
+			 ISUSE = 'N'
+			,DELETEDATE = NOW()
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</update>
+
+	<insert id="RegistIVRListenlog" parameterType="myMap">
+		INSERT INTO
+			IVRLISTENLOG
+		(
+			 PHONENUMBER
+			,CALLRESPONSEDATE
+			,CALLSTARTDATE
+			,CALLENDDATE
+			,CALLDURATION
+			,RESULT
+			,RESULT_MESSAGE
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,CREATEDATE
+			,AUTH_REQ_NUMBER
+			,SEQTTSPUTHISTORY
+		)
+		VALUES
+		(
+			 #{phonenumber}
+			,#{requestTime}
+			,#{callStartTime}
+			,#{callEndTime}
+			,#{callduration}
+			,#{result}
+			,#{resultMessage}
+			,#{wavDirPath}
+			,#{wavFileName}
+			,now()
+			,#{authReqNumber}
+			,#{seqttsputhistory}
+		)
+	</insert>
+
+	<update id="UpdateIVRLog" parameterType="myMap">
+		UPDATE
+			IVRLOG
+		SET
+			 CALLRESPONSEDATE	= #{callresponsedate}
+			,CALLSTARTDATE		= #{callstartdate}
+			,CALLENDDATE		= #{callenddate}
+			,CALLDURATION		= #{callduration}
+			,RESULT				= #{result}
+			,RESULT_MESSAGE		= #{resultMessage}
+			,USER_INPUT			= #{userDTMF}
+			,REC_FILE_PREFIX	= #{recFilePrefix, jdbcType=VARCHAR}
+			,REC_FILE_NAME		= #{recFileName, jdbcType=VARCHAR}
+			,REC_FILE_URL		= #{recFileUrl, jdbcType=VARCHAR}
+			,UPDATEDATE			= now()
+			,STATUS_COMPLETION	= 'Y'
+			,AUTH_REQ_NUMBER	= #{authReqNumber}
+		WHERE 1=1
+			AND ISUSE 		= 'Y'
+			AND IVRLOGSEQ 	= #{ivrlogseq}
+	</update>
+
+	<select id="SelectARSRepeat" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IVRLOGSEQ
+			,NAME
+			,PHONENUMBER
+			,TTS_MENT_TITLE
+			,TTS_MENT_INTRO_01
+			,CALL_TYPE
+			,SEND_TYPE
+			,SEND_TIME
+			,REPEAT_TYPE
+			,AUTOCALLCNT
+			,AUTOCALLCYCLE
+			,NEXTCALL_DATE
+			,CALLRESPONSEDATE
+			,CALLSTARTDATE
+			,CALLENDDATE
+			,CALLDURATION
+			,RESULT
+			,RESULT_MESSAGE
+			,USER_INPUT
+			,VOICE_RECEIVE
+			,REC_VOICE_RECEIVE
+			,CREATEDATE
+			,UPDATEDATE
+			,DELETEDATE
+			,ISUSE
+			,IFNULL(DLKEY, '') AS DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,USERSESSIONID
+			,GROUP_IDENTIFIER
+			,PERSONAL_IDENTIFIER
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,REC_FILE_URL
+		FROM
+			IVRLOG
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND SEND_TIME = 'C'
+			AND NEXTCALL_DATE = STR_TO_DATE(#{nextcallDate}, '%Y%m%d%H%i')
+	</select>
+
+	<update id="UpdateSendTime" parameterType="myMap">
+		UPDATE
+			IVRLOG
+		SET
+			 SEND_TIME 			= #{sendTime}
+			,STATUS_COMPLETION 	= #{statusCompletion}
+			,USERSESSIONID 		= #{userSessionID}
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND IVRLOGSEQ = #{ivrlogseq}
+	</update>
+
+	<update id="UpdateMapperSendTime" parameterType="myMap">
+		UPDATE
+			IVRLOGMAPPER
+		SET
+			 SEND_TIME 	= 'A'
+			,UPDATEDATE = NOW()
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</update>
+
+	<update id="UpdateMapperReservationDate" parameterType="myMap">
+		UPDATE
+			IVRLOGMAPPER
+		SET
+			 RESERVATION_DATE = #{nextcallDate}
+			,UPDATEDATE = NOW()
+		WHERE 1=1
+			AND SEND_TIME = 'C'
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</update>
+
+	<select id="SelectSendRepeatCallList" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IVRLOGSEQ
+			,NAME
+			,T1.PHONENUMBER
+			,TTS_MENT_TITLE
+			,TTS_MENT_INTRO_01
+			,SEND_TYPE
+			,SEND_TIME
+			,CALL_TYPE
+			,T1.CREATEDATE
+			,ISUSE
+			,IFNULL(DLKEY, '') AS DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,REC_FILE_URL
+		FROM
+			IVRLOG T1
+			,(
+				SELECT
+					MAX(CREATEDATE) AS CREATEDATE
+					,PHONENUMBER
+				FROM
+					IVRLOG
+				WHERE 1=1
+					AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+					AND NEXTCALL_DATE IS NOT NULL
+				GROUP BY PHONENUMBER
+			) T2
+		WHERE 1=1
+			AND T1.PHONENUMBER = T2.PHONENUMBER
+			AND T1.CREATEDATE = T2.CREATEDATE
+			AND ISUSE = 'Y'
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+			AND NEXTCALL_DATE = #{nextcallDate}
+	</select>
+	
+	<select id="SelectIVRLog" parameterType="String" resultType="myCamelMap">
+		SELECT
+			*
+		FROM
+			IVRLOG
+		WHERE 1=1
+			AND IVRLOGSEQ = #{ivrlogseq}
+	</select>
+	
+	<update id="UpdateIvrlogmapperRound" parameterType="myMap">
+		UPDATE
+			IVRLOGMAPPER
+		SET
+			ROUND = ROUND + 1
+		WHERE 1=1
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</update>
+	
+	<select id="SelectIvrlogmapper" parameterType="myMap" resultType="myCamelmap">
+		SELECT
+			 IVRLOGMAPPERSEQ
+			,TITLE
+			,CALLER_ID
+			,SEND_TIME
+			,RESERVATION_DATE
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,ISUSE
+			,DLKEY
+			,ROUND
+			,IFNULL(ORIGIN_SEQ, IVRLOGMAPPERSEQ) AS ORIGIN_SEQ
+		FROM
+			IVRLOGMAPPER
+		WHERE 1=1
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</select>
+	
+</mapper>

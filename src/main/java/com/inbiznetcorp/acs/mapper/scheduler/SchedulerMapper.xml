@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.acs.mapper.scheduler.SchedulerMapper">
+
+	<sql id="addWhere">
+	</sql>
+
+	<insert id="RegisterData" parameterType="myMap">
+		INSERT INTO
+			CALL_SCHEDULER
+		(
+			 SEQIVRLOG
+			,SEQIVRLOGMAPPER
+			,NAME
+			,PHONENUMBER
+			,CALL_TYPE
+			,IMPORTANCE
+			,CALL_STATUS
+			,CREATEDATE
+			,SESSIONID
+		)
+		VALUES
+		(
+			 #{ivrlogseq}
+			,#{ivrlogmapperseq}
+			,#{name}
+			,#{phonenumber}
+			,#{callType}
+			,#{importance}
+			,#{status}
+			,NOW()
+			,#{userSessionID}
+		)
+	</insert>
+	
+	<select id="SelectNormalCallList" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQCALLSCHEDULER
+			,SEQIVRLOG
+			,SEQIVRLOGMAPPER
+			,NAME
+			,PHONENUMBER
+			,CALL_TYPE
+			,IMPORTANCE
+			,CALL_STATUS
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,SESSIONID
+		FROM
+			CALL_SCHEDULER
+		WHERE 1=1
+			AND CALL_STATUS = 'I'
+			AND IMPORTANCE = 0
+		GROUP BY
+			SEQIVRLOG
+		ORDER BY
+			CREATEDATE ASC
+		LIMIT
+		<choose>
+			<when test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(sessionNormalCps)">
+				#{sessionNormalCps}
+			</when>
+			<otherwise>
+				#{SESSION_NORMAL_CPS}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="SelectImportantCallList" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQCALLSCHEDULER
+			,SEQIVRLOG
+			,SEQIVRLOGMAPPER
+			,NAME
+			,PHONENUMBER
+			,CALL_TYPE
+			,IMPORTANCE
+			,CALL_STATUS
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,SESSIONID
+		FROM
+			CALL_SCHEDULER
+		WHERE 1=1
+			AND CALL_STATUS = 'I'
+			AND IMPORTANCE = 1
+		GROUP BY
+			SEQIVRLOG
+		ORDER BY
+			CREATEDATE ASC
+		LIMIT
+		<choose>
+			<when test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(sessionImportantCps)">
+				#{sessionImportantCps}
+			</when>
+			<otherwise>
+				#{SESSION_Important_CPS}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="SelectNormalCall" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQCALLSCHEDULER
+			,SEQIVRLOG
+			,SEQIVRLOGMAPPER
+			,NAME
+			,PHONENUMBER
+			,CALL_TYPE
+			,IMPORTANCE
+			,CALL_STATUS
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,SESSIONID
+		FROM
+			CALL_SCHEDULER
+		WHERE 1=1
+			AND CALL_STATUS = 'W'
+			AND IMPORTANCE = 0
+		GROUP BY
+			SEQIVRLOG
+		ORDER BY
+			CREATEDATE ASC
+		LIMIT 1
+	</select>
+	
+	<select id="SelectImportantCall" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQCALLSCHEDULER
+			,SEQIVRLOG
+			,SEQIVRLOGMAPPER
+			,NAME
+			,PHONENUMBER
+			,CALL_TYPE
+			,IMPORTANCE
+			,CALL_STATUS
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,SESSIONID
+		FROM
+			CALL_SCHEDULER
+		WHERE 1=1
+			AND CALL_STATUS = 'W'
+			AND IMPORTANCE = 1
+		GROUP BY
+			SEQIVRLOG
+		ORDER BY
+			CREATEDATE ASC
+		LIMIT 1
+	</select>
+	
+	<update id="UpdateCallStatusI" parameterType="myMap">
+		UPDATE
+			CALL_SCHEDULER
+		SET
+			 CALL_STATUS = 'I'
+			,UPDATEDATE = NOW()
+		WHERE 1=1
+			AND SEQIVRLOG = #{seqivrlog}
+	</update>
+	
+	<update id="UpdateCallStatusC" parameterType="myMap">
+		UPDATE
+			CALL_SCHEDULER
+		SET
+			 CALL_STATUS = 'C'
+			,UPDATEDATE = NOW()
+		WHERE 1=1
+			AND SEQIVRLOG = #{seqivrlog}
+	</update>
+	
+</mapper>

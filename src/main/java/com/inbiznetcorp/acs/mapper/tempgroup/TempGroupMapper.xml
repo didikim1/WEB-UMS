@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.acs.mapper.tempgroup.TempGroupMapper">
+
+	<insert id="InsertTempGroup" parameterType="myMap" useGeneratedKeys="true" keyProperty="seqgroup">
+		INSERT INTO
+			TEMP_GROUP
+		(
+			 GROUP_NAME
+			,CREATEDATE
+		)
+		VALUES
+		(
+			 #{groupName}
+			,now()
+		)
+	</insert>
+
+</mapper>

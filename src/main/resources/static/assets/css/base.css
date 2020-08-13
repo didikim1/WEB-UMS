@@ -1,0 +1,135 @@
+/*
+
+	Base
+	Publishers.
+
+	ShapeCaptionLocation(����,�ǹ�,��ġ)
+
+
+
+*/
+
+@charset "utf-8";
+
+/* ����� ����Ʈ �������� 180124 morenvy.com */
+/* Noto Sans KR (korean) http://www.google.com/fonts/earlyaccess
+/* �ӽ÷� ����Ҷ� �Ʒ��� ���ּ���*
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
+      url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
+      url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),
+      url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),
+      url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
+ }
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');
+ }
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
+ }
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 900;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
+ }
+
+
+/*
+	reset
+----------------------------------------------------------*/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite,
+code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header,
+hgroup, menu, nav, section, summary, time, mark, audio, video {margin:0; padding:0; border:0; outline:0; font-size:14px; vertical-align:baseline; background:transparent; -webkit-text-size-adjust:none;}
+* {-webkit-text-size-adjust:none;}
+body{line-height:1}
+h1, h2 ,h3, h4, h5, h6 {font-weight: normal;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
+ul, ol {list-style: none;}
+img { border:0 none;vertical-align:bottom}
+img, fieldset {padding: 0; border: none;}
+legend, caption {width:0; height:0; font-size:0; line-height:0; overflow:hidden; visibility:hidden; display: none;}
+input {background: none; border: 0;}
+table {table-layout: fixed; width: 100%; border-collapse: separate; border-spacing: 0; border: 0; word-break: break-all;}
+table th {font-weight: normal;}
+strong, em, address {font-style: normal;}
+hr {display:none;}
+q:before,q:after {content:"";}
+abbr,acronym {border:0;}
+#skip_nav {position: relative;}
+#skip_nav li a{width: 100%; height: 81px; line-height: 81px; text-align: center; font-size: 25px; background: #333; position: absolute; left: 0; top: -81px; color: #fff; z-index: 100;}
+#skip_nav li a:focus {top: 0;}
+.blind {overflow:hidden; visibility:hidden; position:absolute; width:0; height:0; font-size:0; line-height:0;}
+a {text-decoration: none;}
+select, input,textarea {vertical-align:middle; background: none; border: 0;}
+/* moz button  */
+button::-moz-focus-inner {border: 0; padding: 0;}
+/* ios input */
+input, button, textarea, select {border-radius:0; border: 0; background: none;}
+button,input[type="button"],input[type="reset"],input[type="submit"] {cursor: pointer;}
+[disabled=disabled] {cursor: default;}
+
+/*
+	common
+----------------------------------------------------------*/
+a {color: inherit;}
+img {max-width: 100%;}
+
+/* margin */
+#wrap .ml10 {margin-left:10px;}
+#wrap .mt10 {margin-top:10px;}
+#wrap .mt20 {margin-top:20px;}
+#wrap .mt25 {margin-top:25px;}
+#wrap .mt30 {margin-top:30px;}
+#wrap .mt45 {margin-top:45px;}
+#wrap .mt10 {margin-top:10px;}
+#wrap .mb10 {margin-bottom:10px;}
+
+/* width */
+#wrap .w100p {width:100%;}
+
+/* align */
+.taL {text-align:left !important;}
+.taC {text-align:center !important;}
+.taR {text-align:right !important;}
+.fL {float:left;}
+.fR {float:right;}
+.clear:after {display:block;content:"";clear:both;}
+
+
+/* form */
+::-webkit-input-placeholder {color:inherit;font:inherit;opacity:0.5;}
+::-moz-placeholder {color:inherit;font:inherit;opacity:0.5;}
+:-ms-input-placeholder {color:inherit;font:inherit;opacity:0.5;}
+:-moz-placeholder {color:inherit;font:inherit;opacity:0.5;}

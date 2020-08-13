@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.acs.mapper.address.AddressMapper">
+
+	<sql id="addWhere">
+		AND ISUSE = 'Y'
+
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(seq)">
+			AND SEQ IN (${seq})
+		</if>
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(searchWord)">
+			<if test='!searchType.equals("G")'>
+				AND ${searchType} LIKE CONCAT('%', #{searchWord}, '%')
+			</if>
+		</if>
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(seqgroupinfo)">
+			AND SEQ NOT IN (SELECT SEQADDRESSINFO FROM ADDRESSMAPPER WHERE SEQGROUPINFO = ${seqgroupinfo})
+		</if>
+
+	</sql>
+
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			*
+		FROM
+		(
+			SELECT
+				 CAST(@ROWNUM:=@ROWNUM+1 AS SIGNED) AS ROW_NUM
+				,SEQ
+				,NAME
+				,PHONENUMBER
+				,DEPARTMENT
+				,ADDRESS
+				,CREATEDATE
+				,UPDATEDATE
+				,DELETEDATE
+				,ISUSE
+			FROM
+				 ADDRESSINFO
+				,(SELECT @ROWNUM:=0) TMP
+			WHERE 1=1
+				<include refid="addWhere"/>
+
+			ORDER BY SEQ ASC
+		) T1
+		ORDER BY ROW_NUM DESC
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(start)">
+			LIMIT #{start}, #{end}
+		</if>
+	</select>
+
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			ADDRESSINFO
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+
+	<insert id="RegisterData" parameterType="myMap" useGeneratedKeys="true" keyProperty="seq">
+		INSERT INTO
+			ADDRESSINFO
+		(
+			 NAME
+			,PHONENUMBER
+			,DEPARTMENT
+			,ADDRESS
+			,CREATEDATE
+			,ISUSE
+			,DLKEY
+		)
+		VALUES
+		(
+			 #{name}
+			,TRIM(REPLACE(#{phonenumber}, '-', ''))
+			,#{department}
+			,#{address}
+			,now()
+			,'Y'
+			,#{dlkey}
+		)
+	</insert>
+
+	<delete id="DeletePData" parameterType="myMap">
+		DELETE FROM
+			ADDRESSINFO
+		WHERE 1=1
+			AND SEQ = #{seq}
+	</delete>
+
+	<update id="DeleteData" parameterType="myMap">
+		UPDATE
+			ADDRESSMAPPER
+		SET
+			 ISUSE 		= 'N'
+			,DELETEDATE = NOW()
+		WHERE 1=1
+			AND SEQADDRESSINFO = #{seqaddressinfo}
+			AND SEQGROUPINFO = #{seqgroupinfo}
+	</update>
+
+	<update id="DeleteAddressMapper" parameterType="myMap">
+		UPDATE
+			ADDRESSMAPPER
+		SET
+			 ISUSE 		= 'N'
+			,DELETEDATE = NOW()
+		WHERE
+			SEQGROUPINFO = #{groupseq}
+	</update>
+
+	<select id="SelectAddressSeq" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQ
+			,SEQADDRESSINFO
+			,SEQGROUPINFO
+		FROM
+			ADDRESSMAPPER
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND SEQGROUPINFO = #{groupseq}
+	</select>
+
+	<select id="SelectTarget" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 T1.SEQ
+			,T1.NAME
+			,T1.PHONENUMBER
+			,T1.DEPARTMENT
+			,T1.ADDRESS
+			,T1.CREATEDATE
+			,T1.ISUSE
+			,T1.DLKEY
+		FROM
+			 ADDRESSINFO T1
+			,ADDRESSMAPPER T2
+		WHERE 1=1
+			AND T1.SEQ = T2.SEQADDRESSINFO
+			AND T1.PHONENUMBER = #{phonenumber}
+			AND T2.SEQGROUPINFO = #{seqgroupinfo}
+	</select>
+
+	<select id="SelectPTarget" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 T1.SEQ
+			,T1.NAME
+			,T1.PHONENUMBER
+			,T1.DEPARTMENT
+			,T1.ADDRESS
+			,T1.CREATEDATE
+			,T1.ISUSE
+			,T1.DLKEY
+		FROM
+			 ADDRESSINFO T1
+		WHERE 1=1
+			AND T1.ISUSE = 'Y'
+			AND T1.PHONENUMBER = #{phonenumber}
+	</select>
+
+	<update id="DeleteMapperData" parameterType="myMap">
+		UPDATE
+			ADDRESSMAPPER
+		SET
+			 ISUSE = 'N'
+			,DELETEDATE = NOW()
+		WHERE 1=1
+			AND SEQADDRESSINFO = #{seq}
+	</update>
+
+	<select id="SearchDupl" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			ADDRESSINFO
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND PHONENUMBER = #{phonenumber}
+	</select>
+
+	<select id="AddressDetail" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQ
+			,NAME
+			,PHONENUMBER
+			,DEPARTMENT
+			,ADDRESS
+			,CREATEDATE
+			,ISUSE
+			,DLKEY
+		FROM
+			ADDRESSINFO
+		WHERE 1=1
+			AND SEQ = #{seq}
+	</select>
+
+	<update id="ModifyPData" parameterType="myMap">
+		UPDATE
+			ADDRESSINFO
+		SET
+			 NAME 			= #{name}
+			,PHONENUMBER 	= TRIM(REPLACE(#{phonenumber}, '-', ''))
+			,DEPARTMENT 	= #{department}
+			,ADDRESS 		= #{address}
+		WHERE 1=1
+			AND SEQ = #{seq}
+	</update>
+
+	<delete id="DeletePDatas" parameterType="myMap">
+		DELETE FROM
+			ADDRESSINFO
+		WHERE 1=1
+			AND SEQ IN (${seqArrStr})
+	</delete>
+
+	<delete id="DeleteMapperDatas" parameterType="myMap">
+		DELETE FROM
+			ADDRESSMAPPER
+		WHERE 1=1
+			AND SEQADDRESSINFO IN ( ${seqArrStr} )
+	</delete>
+	
+	<insert id="InsertTempGroup" parameterType="myMap" useGeneratedKeys="true" keyProperty="seqgroup">
+		INSERT INTO
+			TEMP_GROUP
+		(
+			 GROUP_NAME
+			,CREATEDATE
+		)
+		VALUES
+		(
+			 #{groupName}
+			,now()
+		)
+	</insert>
+	
+	<insert id="InsertTempTarget" parameterType="myMap">
+		INSERT INTO
+			TEMP_TARGET
+		(
+			 NAME
+			,SEQGROUP
+			,PHONENUMBER
+			,ADDRESS
+			,ETC1
+			,CREATEDATE
+		)
+		VALUES
+		(
+			 #{name}
+			,#{seqgroup}
+			,#{phonenumber}
+			,#{address}
+			,#{etc1}
+			,now()
+		)
+	</insert>
+	
+	<select id="SelectTempTarget" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQTARGET
+			,SEQGROUP
+			,NAME
+			,PHONENUMBER
+			,ADDRESS
+			,ETC1
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+		FROM
+			TEMP_TARGET
+		WHERE 1=1
+			AND SEQGROUP = #{seqgroup}
+			AND DELETEDATE IS NULL
+		ORDER BY CAST(NAME AS UNSIGNED) ASC
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(start)">
+			LIMIT #{start}, #{end}
+		</if>
+	</select>
+	
+	<select id="SelectTempTargetCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			TEMP_TARGET
+		WHERE 1=1
+			AND SEQGROUP = #{seqgroup}
+			AND DELETEDATE IS NULL
+	</select>
+	
+	<insert id="UploadFileTxt" parameterType="myMap">
+		INSERT INTO
+			TEMP_TARGET
+		(
+			 SEQGROUP
+			,PHONENUMBER
+			,CREATEDATE
+		)
+		VALUES
+		(
+			 #{seqgroup}
+			,#{phonenumber}
+			,now()
+		)
+	</insert>
+	
+	<update id="DeleteTempTarget" parameterType="myMap">
+		UPDATE
+			TEMP_TARGET
+		SET
+			DELETEDATE = NOW()
+		WHERE 1=1
+			AND SEQTARGET = #{seqtarget}
+	</update>
+
+</mapper>

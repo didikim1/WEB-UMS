@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.acs.mapper.ttsfileputhistory.TTSfileputhistoryMapper">
+
+	<insert id="RegistTTSFilePutHistory" parameterType="myMap" useGeneratedKeys="true" keyProperty="seqttsputhistory">
+		INSERT INTO
+			TTSFILEPUTHISTORY
+		(
+			 RESULT
+			,MESSAGE
+			,FILE_NAME
+			,FILE_PATH
+			,FILE_URL
+			,CREATEDATE
+			,IVRLOGSEQ
+			,IVRLOGMAPPERSEQ
+			,ORDER_NUM
+		)
+		VALUES
+		(
+			 #{result}
+			,#{message}
+			,#{fileName}
+			,#{filePath}
+			,#{fileUrl, jdbcType=VARCHAR}
+			,now()
+			,#{ivrlogseq}
+			,#{ivrlogmapperseq}
+			,#{orderNum}
+		)
+	</insert>
+	
+	<select id="SelectTTSfileputhistoryList" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQTTSPUTHISTORY
+			,RESULT
+			,MESSAGE
+			,FILE_NAME
+			,FILE_PATH
+			,FILE_URL
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,IVRLOGSEQ
+			,ORDER_NUM
+		FROM
+			TTSFILEPUTHISTORY
+		WHERE 1=1
+			<choose>
+				<when test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogseq)">
+					AND IVRLOGSEQ  = #{ivrlogseq}
+				</when>
+				<otherwise>
+					AND IVRLOGMAPPERSEQ  = #{ivrlogmapperseq}
+				</otherwise>
+			</choose>
+		ORDER BY
+			ORDER_NUM ASC
+	</select>
+	
+	<select id="SelectTTSFile" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			*
+		FROM
+			TTSFILEPUTHISTORY
+		WHERE 1=1
+			AND IVRLOGMAPPERSEQ  = #{ivrlogmapperseq}
+	</select>
+
+</mapper>

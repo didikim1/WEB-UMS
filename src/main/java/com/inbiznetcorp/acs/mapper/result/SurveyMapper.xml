@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.acs.mapper.result.SurveyMapper">
+
+	<select id="SelectSurveyList" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			*
+		FROM
+		(
+			SELECT
+				 CAST(@ROWNUM:=@ROWNUM+1 AS SIGNED) AS ROW_NUM
+				,IVRLOGSEQ
+				,( CASE
+						WHEN (NAME = "") OR (NAME IS NULL) THEN '-'
+						ELSE NAME
+					END ) AS NAME
+				,PHONENUMBER
+				,PHONENUMBER AS PHONENUMBER_SECURE
+				,TTS_MENT_TITLE
+				,TTS_MENT_INTRO_01
+				,CALL_TYPE
+				,AUTOCALLCNT
+				,AUTOCALLCYCLE
+				,( CASE
+						WHEN NEXTCALL_DATE IS NOT NULL THEN DATE_FORMAT(NEXTCALL_DATE, '%Y-%m-%d %H:%i:%s')
+						ELSE '-'
+					END ) AS NEXTCALL_DATE
+				,( CASE
+						WHEN CALLSTARTDATE IS NULL THEN '-'
+						ELSE DATE_FORMAT(CALLSTARTDATE, '%Y-%m-%d %H:%i:%s')
+					END ) AS CALLRESPONSEDATE
+				,CALLSTARTDATE
+				,CALLENDDATE
+				,CALLDURATION
+				,( CASE
+						WHEN STATUS_COMPLETION = 'I' 	THEN '진행중'
+						WHEN (STATUS_COMPLETION = 'R' OR STATUS_COMPLETION = 'W') 	THEN '대기'
+						WHEN RESULT = '00' THEN '성공'
+						WHEN RESULT = '10' THEN '없는번호'
+						WHEN RESULT = '11' THEN '수신 거부'
+						WHEN RESULT = '12' THEN '전화 안받음'
+						WHEN RESULT = '13' THEN '착신전환'
+						WHEN RESULT = '20' THEN '고객의 통화 종료'
+						WHEN RESULT = '23' THEN '입력시간 초과'
+						WHEN RESULT = '24' THEN '미입력'
+						WHEN RESULT = '41' THEN '통화중'
+						WHEN RESULT = '42' THEN '전원꺼짐'
+						ELSE '실패'
+					END ) AS RESULT
+				,RESULT_MESSAGE
+				,CASE
+					WHEN REC_VOICE_RECEIVE IS NOT NULL 					THEN 'voice'
+					WHEN USER_INPUT IS NOT NULL AND USER_INPUT != "" 	THEN USER_INPUT
+					ELSE '-'
+				END AS USER_INPUT
+				,REC_FILE_PREFIX
+				,REC_FILE_NAME
+				,REC_FILE_URL
+				,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+				,UPDATEDATE
+				,DELETEDATE
+				,ISUSE
+				,IFNULL(DLKEY, '') AS DLKEY
+				,IVRLOGMAPPERSEQ
+				,STATUS_COMPLETION
+				,USERSESSIONID
+				,GROUP_IDENTIFIER
+				,PERSONAL_IDENTIFIER
+			FROM
+				 IVRLOG
+				,(SELECT @ROWNUM:=0) TMP
+			WHERE 1=1
+				AND ISUSE = 'Y'
+				AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+			ORDER BY IVRLOGSEQ ASC
+		) T0
+		ORDER BY ${sidx} ${sord}, CALLRESPONSEDATE DESC
+		LIMIT #{start}, #{end}
+	</select>
+	
+	<select id="SelectSurveyListCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			 IVRLOG
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</select>
+	
+	<select id="SelectSurveyMapper" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			CREATEDATE ,
+			IVRLOGMAPPERSEQ ,
+			TITLE ,
+			CNT1 ,
+			CNT2 ,
+<!-- 			CNT3 , -->
+<!-- 			CNT4 , -->
+			(CASE 
+				WHEN CNT1 = CNT2 THEN '전송완료' 
+				WHEN STATE_I_CNT > 0 THEN '진행중' 
+				WHEN STATE_R_CNT > 0 THEN '대기' 
+				ELSE '진행중' 
+			END) AS STATUS_COMPLETION 
+		FROM
+			( SELECT
+				DATE_FORMAT(T2.CREATEDATE, '%Y-%m-%d %H:%i') AS CREATEDATE ,
+				T2.IVRLOGMAPPERSEQ ,
+				T2.TITLE ,
+				COUNT(*) AS CNT1 ,
+				( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND STATUS_COMPLETION = 'Y' ) AS CNT2 ,
+<!-- 				( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND CALLRESPONSEDATE IS NOT NULL ) AS CNT3 , -->
+<!-- 				( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND USER_INPUT IS NOT NULL ) AS CNT4 , -->
+				( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND STATUS_COMPLETION = 'I' ) AS STATE_I_CNT ,
+				( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND STATUS_COMPLETION = 'R' ) AS STATE_R_CNT 
+			FROM
+				IVRLOG T1 ,
+				IVRLOGMAPPER T2 
+			WHERE
+				1=1 
+				AND T1.IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ 
+				AND T1.ISUSE = 'Y' 
+				AND T2.ISUSE = 'Y' 
+				AND T2.IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+			GROUP BY
+				T2.IVRLOGMAPPERSEQ 
+			ORDER BY
+				T2.IVRLOGMAPPERSEQ ASC ) T0
+	</select>
+	
+	<select id="SelectSurvey" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IVRLOGSEQ
+			,NAME
+			,PHONENUMBER
+			,TTS_MENT_TITLE
+			,CALL_TYPE
+			,SEND_TYPE
+			,SEND_TIME
+			,REPEAT_TYPE
+			,AUTOCALLCNT
+			,AUTOCALLCYCLE
+			,DATE_FORMAT(NEXTCALL_DATE, '%Y-%m-%d %H:%i:%s') AS NEXTCALL_DATE
+			,DATE_FORMAT(CALLRESPONSEDATE, '%Y-%m-%d %H:%i:%s') AS CALLRESPONSEDATE
+			,DATE_FORMAT(CALLSTARTDATE, '%Y-%m-%d %H:%i:%s') AS CALLSTARTDATE
+			,DATE_FORMAT(CALLENDDATE, '%Y-%m-%d %H:%i:%s') AS CALLENDDATE
+			,CALLDURATION
+			,( CASE 
+				WHEN STATUS_COMPLETION = 'I' THEN '진행중' 
+				WHEN STATUS_COMPLETION = 'R' THEN '대기' 
+				WHEN RESULT = '99' THEN '실패' 
+				ELSE '성공' 
+			END ) AS RESULT
+			,RESULT_MESSAGE
+			,USER_INPUT
+			,VOICE_RECEIVE
+			,REC_VOICE_RECEIVE
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,REC_FILE_URL
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,ISUSE
+			,DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,USERSESSIONID
+			,GROUP_IDENTIFIER
+			,PERSONAL_IDENTIFIER
+			,AUTH_REQ_NUMBER
+		FROM
+			IVRLOG
+		WHERE 1=1
+			AND IVRLOGSEQ = #{ivrlogseq}
+	</select>
+	
+	<select id="SelectSurveyStatistic" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			1
+	</select>
+	
+	<select id="SelectSurveyIVRLog" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 IVRLOGSEQ
+			,NAME
+			,PHONENUMBER
+			,TTS_MENT_TITLE
+			,TTS_MENT_INTRO_01
+			,CALL_TYPE
+			,SEND_TYPE
+			,SEND_TIME
+			,REPEAT_TYPE
+			,AUTOCALLCNT
+			,AUTOCALLCYCLE
+			,NEXTCALL_DATE
+			,CALLRESPONSEDATE
+			,CALLSTARTDATE
+			,CALLENDDATE
+			,CALLDURATION
+			,RESULT
+			,RESULT_MESSAGE
+			,USER_INPUT
+			,VOICE_RECEIVE
+			,REC_VOICE_RECEIVE
+			,REC_FILE_PREFIX
+			,REC_FILE_NAME
+			,REC_FILE_URL
+			,CREATEDATE
+			,UPDATEDATE
+			,DELETEDATE
+			,ISUSE
+			,DLKEY
+			,IVRLOGMAPPERSEQ
+			,STATUS_COMPLETION
+			,USERSESSIONID
+			,GROUP_IDENTIFIER
+			,PERSONAL_IDENTIFIER
+			,AUTH_REQ_NUMBER
+			,FOR_ELECTION
+			,ROUND
+		FROM
+			IVRLOG
+		WHERE 1=1
+			AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
+	</select>
+	
+</mapper>

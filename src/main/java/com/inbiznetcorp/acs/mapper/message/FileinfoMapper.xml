@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inbiznetcorp.acs.mapper.message.FileinfoMapper">
+
+	<sql id="addWhere">
+		AND ISUSE = 'Y'
+	</sql>
+
+	<insert id="RegisterData" parameterType="myMap" useGeneratedKeys="true" keyProperty="seq">
+		INSERT INTO
+			FILEINFO
+		(
+			 UPLOAD_PATH
+			,ORIGNL_FILE_NM
+			,FILE_NAME
+			,FILE_EXTSN
+			,CREATEDATE
+			,ISUSE
+		)
+		VALUES
+		(
+			 #{uploadPath}
+			,#{orignlFileNm}
+			,#{fileName}
+			,#{fileExtsn}
+			,now()
+			,'Y'
+		)
+	</insert>
+	
+	<select id="SelectFile" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQ
+			,UPLOAD_PATH
+			,ORIGNL_FILE_NM
+			,FILE_NAME
+			,FILE_EXTSN
+			,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') AS CREATEDATE
+			,DATE_FORMAT(UPDATEDATE, '%Y-%m-%d %H:%i:%s') AS UPDATEDATE
+			,DATE_FORMAT(DELETEDATE, '%Y-%m-%d %H:%i:%s') AS DELETEDATE
+			,ISUSE
+		FROM
+			FILEINFO
+		WHERE 1=1
+			AND SEQ = #{seqfile}
+	</select>
+
+</mapper>
