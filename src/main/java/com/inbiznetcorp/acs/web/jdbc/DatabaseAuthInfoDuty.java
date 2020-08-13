@@ -48,7 +48,7 @@ public class DatabaseAuthInfoDuty
     	}
     	else
     	{
-    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/vms?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
+    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
     		mDBUser = "inbiznet";
     		mDBPass = "inbiz9020";
     		mDBServer = "dev";
