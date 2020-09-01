@@ -39,6 +39,7 @@
 
 	<style>
 		#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
+		#btnLogout { float:right;margin-right:-380px; }
 	</style>
 
  </head>
@@ -97,6 +98,7 @@
 						</ul>
 					</li>
 				</ul>
+				<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
 			</div>
 		</div>
 		<!-- //header -->
@@ -163,6 +165,10 @@
 			$(this).parent("li").addClass("on");
 			$(this).parent("li").parents("li").addClass("on");
 		}
+	});
+	
+	$("#btnLogout").click(function(){
+		location.href="/Logout";
 	});
 });
  </script>

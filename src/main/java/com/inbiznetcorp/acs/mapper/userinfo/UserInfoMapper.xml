@@ -22,5 +22,25 @@
 			CREATEDATE DESC
 		LIMIT 1
 	</select>
+	
+	<select id="FindAdminInfo" parameterType="myMap" resultType="myCamelMap">
+		SELECT
+			 SEQUSER
+			,USER_ID
+			,USER_PW
+			,ISUSE
+			,CREATEDATE
+			,UPDATEDATE
+			,DELETEDATE
+		FROM
+			ADMIN_INFO
+		WHERE 1=1
+			AND ISUSE = 'Y'
+			AND USER_ID = #{userId}
+			AND USER_PW = #{userPw}
+		ORDER BY
+			CREATEDATE DESC
+		LIMIT 1
+	</select>
 
 </mapper>

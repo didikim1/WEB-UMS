@@ -16,5 +16,10 @@ public class IndexService
 	{
 		return userInfoMapper.FindUserInfo(paramMap);
 	}
+
+	public MyCamelMap FindAdminInfo(MyMap paramMap)
+	{
+		return userInfoMapper.FindAdminInfo(paramMap);
+	}
 	
 }

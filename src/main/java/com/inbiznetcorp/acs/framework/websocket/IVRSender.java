@@ -50,10 +50,10 @@ public class IVRSender
 	final static String TTS_MENT_DTMFALLMISMATCH 	= "albert/L8/fixedment/TTS_MENT_DTMFALLMISMATCH";	// "입력 횟수가 초과되어 통화를 종료합니다."
 	
 	
-	// IVR_URL을 바꾸면 SendMessageScript.jsp에서 WebSocket의 port도 맞게 변경해야한다.
-	final static String IVR_URL = "http://211.61.220.42";
+	// IVR_URL을 바꾸면 SendMessageScript.jsp에서 WebSocket의 port도 맞게 변경해야한다.(배포시)
+//	final static String IVR_URL = "http://211.61.220.42";
 //	final static String IVR_URL = "http://211.61.220.54";
-//	final static String IVR_URL = "http://211.61.220.53";
+	final static String IVR_URL = "http://211.61.220.53";
 	
 	@Resource(name="com.inbiznetcorp.acs.web.ivr.service.IVRService")
 	IVRService mIVRService;

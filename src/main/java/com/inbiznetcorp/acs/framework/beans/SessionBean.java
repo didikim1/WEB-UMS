@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class SessionBean
 {
 	private String 	companyName	= "";
+	private String 	grade		= "";
 	private int 	cps 		= 160;	// INTERCEPTOR 확인용..
 
 	public int getCps() {
@@ -20,16 +21,24 @@ public class SessionBean
 	}
 
 	public String getCompanyName() {
-		return companyName;
+		return this.companyName;
 	}
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
+	
+	public String getGrade() {
+		return this.grade;
+	}
+	
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 
 	@Override
 	public String toString() {
-		return "SessionBean [companyName=" + companyName + ", cps=" + cps + "]";
+		return "SessionBean [companyName=" + this.companyName + ", grade=" + this.grade + ", cps=" + this.cps + "]";
 	}
 	
 	

@@ -37,14 +37,33 @@ public class IndexAct
 		
 		if(userInfo == null)
 		{
-			rttr.addFlashAttribute("message", "등록된 정보가 없습니다.");
-			return "redirect:/Login";
+			MyCamelMap adminInfo = indexService.FindAdminInfo(paramMap);
+			
+			if(adminInfo == null)
+			{
+				rttr.addFlashAttribute("message", "등록된 정보가 없습니다.");
+				return "redirect:/Login";
+			}
+			else
+			{
+				FrameworkBeans.findSessionBean().setCompanyName(adminInfo.getStr("userId"));
+				FrameworkBeans.findSessionBean().setGrade(adminInfo.getStr("userId"));
+				return "redirect:/msg/SendMessage";
+			}
 		}
 		else
 		{
 			FrameworkBeans.findSessionBean().setCompanyName(userInfo.getStr("userId"));
 			return "redirect:/msg/SendMessage";
 		}
+	}
+	
+	@RequestMapping("/Logout")
+	public String Logout()
+	{
+		FrameworkBeans.findSessionBean().setCompanyName("");
+		FrameworkBeans.findSessionBean().setGrade("");
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/ExecutorStop")

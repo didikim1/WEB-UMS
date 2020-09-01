@@ -302,8 +302,8 @@ function setSeqgroup(seqgroup)
 }
 
 $(document).ready(function(){
-// 	ws = new WebSocket('wss://' + window.location.hostname + ':48008/ws');
-	ws = new WebSocket('ws://' + window.location.hostname + ':48008/ws');
+	ws = new WebSocket('wss://' + window.location.hostname + ':48008/ws');
+// 	ws = new WebSocket('ws://' + window.location.hostname + ':48008/ws');
 
 	ws.onmessage = function(data) {
 		fn_UploadComplete();

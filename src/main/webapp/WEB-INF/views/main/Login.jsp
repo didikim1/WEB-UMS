@@ -96,6 +96,14 @@ $(document).ready(function(){
 		common.alert("로그인 실패", message);
 	}
 	
+	// 엔터키 입력 시 로그인 버큰 클릭
+	$("input").on("keyup", function(event){
+		if(event.keyCode == 13)
+		{
+			$("#btnSubmit").click();
+		}
+	});
+	
 	// 로그인 버튼
 	$("#btnSubmit").click(function(){
 		$("[name=formLogin]").submit();
