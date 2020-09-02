@@ -39,7 +39,8 @@ public class IVRSender
 	final static String TTS_DELAY_10 	=  "<VTML_PAUSE TIME=\"10\" />";
 	
 	// 파일 경로 : /var/lib/asterisk/sounds/albert/L8/fixedment/
-	final static String TTS_MENT_SUBINTRO 			= "albert/L8/fixedment/TTS_MENT_SUBINTRO";			// TTS_DELAY_500 + "다시 들으시려면 별표를, 종료는 #버튼을 눌러주세요."
+//	final static String TTS_MENT_SUBINTRO 			= "albert/L8/fixedment/TTS_MENT_SUBINTRO";			// TTS_DELAY_500 + "다시 들으시려면 별표를, 종료는 #버튼을 눌러주세요."
+	final static String TTS_MENT_SUBINTRO 			= "albert/L8/fixedment/TTS_MENT_AUTHOK";			// TTS_DELAY_500 + "다시 들으시려면 별표를, 종료는 #버튼을 눌러주세요."
 	final static String TTS_MENT_AUTHOK 			= "albert/L8/fixedment/TTS_MENT_AUTHOK";			// "감사합니다."
 	final static String TTS_MENT_EXCEEDLISTENAGAIN 	= "albert/L8/fixedment/TTS_MENT_EXCEEDLISTENAGAIN";	// "다시 듣기 횟수를 초과하여 통화를 종료합니다."
 	final static String TTS_MENT_AUTHCANCLE 		= "albert/L8/fixedment/TTS_MENT_AUTHCANCLE";		// "종료합니다."
@@ -51,9 +52,10 @@ public class IVRSender
 	
 	
 	// IVR_URL을 바꾸면 SendMessageScript.jsp에서 WebSocket의 port도 맞게 변경해야한다.(배포시)
-//	final static String IVR_URL = "http://211.61.220.42";
+	final static String IVR_URL = "https://albert-test.ring2pay.com";	// 211.61.220.42
+//	final static String IVR_URL = "https://211.61.220.42";
 //	final static String IVR_URL = "http://211.61.220.54";
-	final static String IVR_URL = "http://211.61.220.53";
+//	final static String IVR_URL = "http://211.61.220.53";
 	
 	@Resource(name="com.inbiznetcorp.acs.web.ivr.service.IVRService")
 	IVRService mIVRService;
@@ -66,10 +68,11 @@ public class IVRSender
 		LOGGER.info("RealTimeTTSMake..");
 		LOGGER.info("RealTimeTTSMake_tid : " + tid);
 		
-		String 					url 			= IVR_URL + ":8080/RealTimeTTSMake.do";
+//		String 					url 			= IVR_URL + ":8080/RealTimeTTSMake.do";
+		String 					url 			= IVR_URL + ":446/RealTimeTTSMake.do";
 		HashMap<String, String> reqMsg 			= new HashMap<>();
 		MyMap 					resultTTSMake 	= new MyMap();
-
+		LOGGER.info("URL : " + url);
 		reqMsg.put("tid", 			tid);				// 고유값
 		reqMsg.put("groupName", 	companyName);		// 고객사 명칭
 		reqMsg.put("msg", 			msg);				// TTS 생성할 문자열
@@ -104,7 +107,8 @@ public class IVRSender
 	{
 		MyMap resultWavUpload = new MyMap();
 		
-		String url = IVR_URL + ":8080/WavFileUploadServlet.do";
+//		String url = IVR_URL + ":8080/WavFileUploadServlet.do";
+		String url = IVR_URL + ":446/WavFileUploadServlet.do";
 		
 		HttpClient  	client	 		= new DefaultHttpClient();
 		HttpPost 		method 			= new HttpPost( url );
@@ -160,7 +164,8 @@ public class IVRSender
 		LOGGER.info("TTSFileIVRServerPut..");
 		LOGGER.info("TTSFileIVRServerPut_tid : " + resultTTSMake.getStr("tid"));
 		
-		String 					url 			= IVR_URL + ":8080/TTSFileIVRServerPut.do";
+//		String 					url 			= IVR_URL + ":8080/TTSFileIVRServerPut.do";
+		String 					url 			= IVR_URL + ":446/TTSFileIVRServerPut.do";
 		HashMap<String, String> reqMsg 			= new HashMap<>();
 		MyMap 					resultTTSPut 	= new MyMap();
 
@@ -203,15 +208,18 @@ public class IVRSender
 		LOGGER.info("wavPlay0001..");
 		LOGGER.info("wavPlay0001_tid : " + resultTTSPut.getStr("tid", ""));
 		
-		String port = ((phonenumber.charAt(phonenumber.length()-1) % 2) == 0) ? "42103" : "42102";
+//		String port = ((phonenumber.charAt(phonenumber.length()-1) % 2) == 0) ? "42103" : "42102";
+		String port = "42102";
 		
-		LOGGER.info("IVR_SERVER : " + IVR_URL);
-		LOGGER.info("IVR_PORT : " + port);
+//		LOGGER.info("IVR_SERVER : " + IVR_URL);
+//		LOGGER.info("IVR_PORT : " + port);
 		
 		MyMap 					resultTTSPlay 	= new MyMap();
-		String 					url 			= IVR_URL + ":" + port + "/arsauth/wavplay/Req0001.do";
-		HashMap<String, String> reqMsg 			= new HashMap<>();
+//		String 					url 			= IVR_URL + ":" + port + "/arsauth/wavplay/Req0001.do";
+		String 					url 			= "http://211.61.220.42" + ":" + port + "/arsauth/wavplay/Req0001.do";
+		LOGGER.info("IVR request URL : " + url);
 
+		HashMap<String, String> reqMsg 			= new HashMap<>();
 //		reqMsg.put("arsCommandNumber", 			"L8001");
 		reqMsg.put("arsCommandNumber", 			"L8003");
 		reqMsg.put("authReqNumber", 			"InbizTest;;"+requstNumber);
@@ -277,13 +285,17 @@ public class IVRSender
 		LOGGER.info("TTSPlay0002..");
 		LOGGER.info("TTSPlay0002_tid : " + resultTTSPutList.get(0).getStr("tid"));
 
-		String port = ((phonenumber.charAt(phonenumber.length()-1) % 2) == 0) ? "42103" : "42102";
+//		String port = ((phonenumber.charAt(phonenumber.length()-1) % 2) == 0) ? "42103" : "42102";
+		String port = "42102";
 		
-		LOGGER.info("IVR_SERVER : " + IVR_URL);
-		LOGGER.info("IVR_PORT : " + port);
+//		LOGGER.info("IVR_SERVER : " + IVR_URL);
+//		LOGGER.info("IVR_PORT : " + port);
 		
 		MyMap 					resultTTSPlay 	= new MyMap();
-		String 					url 			= IVR_URL + ":" + port + "/arsauth/wavplay/Req0002.do";
+//		String 					url 			= IVR_URL + ":" + port + "/arsauth/wavplay/Req0002.do";
+		String 					url 			= "http://211.61.220.42" + ":" + port + "/arsauth/wavplay/Req0002.do";
+		LOGGER.info("IVR request URL : " + url);
+		
 		HashMap<String, String> reqMsg 			= new HashMap<>();
 
 		reqMsg.put("arsCommandNumber",  		"L8002");

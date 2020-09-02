@@ -65,6 +65,8 @@ public class IVRAct
 		String 	msg 			= FrameworkUtils.unescapeHtml(paramMap.getStr("msg")).replaceAll("<br/>", ". ").trim();
 
 		resultTTSMake = ivrSender.RealTimeTTSMake(tid, companyName, msg);
+		
+		resultTTSMake.put("fileUrl", resultTTSMake.getStr("fileUrl").replace("/Upload/home/asterisk/Lab603/Lab603-TTSMake-Web/Project/", ""));
 
 		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", resultTTSMake);
 	}
@@ -81,8 +83,9 @@ public class IVRAct
 		String 	msg 		= FrameworkUtils.unescapeHtml(paramMap.getStr("msg") + "<VTML_PAUSE TIME=\"500\" />").replaceAll("<br/>", ". ").trim();
 		String 	phonenumber = paramMap.getStr("phonenumber").replaceAll("-", "").replaceAll(",", "").trim();
 		String 	type 		= "A"; 	// A:들어보기, B:발송
+		String 	callerid 	= paramMap.getStr("callerid");
 		
-		UMSExecutorService.addCallRunable(new IVRRunnable_0001(tid, companyName, msg, phonenumber, type));
+		UMSExecutorService.addCallRunable(new IVRRunnable_0001(tid, companyName, msg, phonenumber, type, callerid));
 
 		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!");
 	}

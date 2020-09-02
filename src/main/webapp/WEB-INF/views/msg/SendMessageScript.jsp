@@ -301,13 +301,22 @@ function setSeqgroup(seqgroup)
 	$("[name=seqgroup]").val(seqgroup);
 }
 
-$(document).ready(function(){
+// websocket 초기화
+function initWebSocket()
+{
 	ws = new WebSocket('wss://' + window.location.hostname + ':48008/ws');
-// 	ws = new WebSocket('ws://' + window.location.hostname + ':48008/ws');
-
 	ws.onmessage = function(data) {
 		fn_UploadComplete();
+		ws.close();
 	}
+}
+
+$(document).ready(function(){
+	var ws = null;
+// 	var ws = new WebSocket('wss://' + window.location.hostname + ':48008/ws');
+// 	var ws = new WebSocket('ws://' + window.location.hostname + ':48008/ws');
+
+	
 	
 	$(".loadingImg").hide();
 	$(".buttonB").hide();
@@ -443,6 +452,8 @@ $(document).ready(function(){
 
 	// 엑셀업로드 버튼
 	$("#btnExcel").click(function(){
+		initWebSocket();
+		
 		var url='/msg/ExcelUpload';
 		var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
 	 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-190);
@@ -809,6 +820,7 @@ $(document).ready(function(){
 			}
 	    }
 	});
+	
 
 });
 </script>

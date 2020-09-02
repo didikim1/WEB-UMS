@@ -44,7 +44,9 @@ public class CallRunnable implements Runnable
 //			paramMap.put("ivrlogseq", mCall.getStr("seqivrlog"));
 			paramMap.put("ivrlogmapperseq", mCall.getStr("seqivrlogmapper"));
 			List<MyMap> TTSPutList = ttsfileputhistoryMapper.SelectTTSfileputhistoryList(paramMap);
-			
+			System.out.println("[###]" + mCall.getStr("callerId"));
+			System.out.println("[###]" + mCall.getStr("callerId"));
+			System.out.println("[###]" + mCall.getStr("callerId"));
 			// 발송
 			TTSPutList.get(0).put("tid", mCall.getStr("sessionid"));
 			mResultTTSPlay = ivrSender.wavPlay0001(TTSPutList.get(0), mCall.getStr("phonenumber"), "A", mCall.getStr("callerId"), requestNumber);

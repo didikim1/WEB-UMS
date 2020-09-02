@@ -35,13 +35,14 @@ public class IVRRunnable_0001 implements Runnable
 	private String 		mCallerID 			= null;	// 발신번호
 
 	// 들어보기
-	public IVRRunnable_0001(String tid, String companyName, String msg, String phonenumber, String type)
+	public IVRRunnable_0001(String tid, String companyName, String msg, String phonenumber, String type, String callerID)
 	{
 		this.mTid   		= tid;
 		this.mCompanyName   = companyName;
 		this.mMsg   		= msg;
 		this.mPhonenumber   = phonenumber;
 		this.mType 			= type;
+		this.mCallerID 		= callerID;
 	}
 
 	public IVRRunnable_0001(MyMap paramMap, String tid, String companyName, String msg, String ivrlogseq, String type, String sendTime, MyMap resultTTSPut, String callerID)
@@ -112,6 +113,7 @@ public class IVRRunnable_0001 implements Runnable
 				mResultTTSPut.put("ivrlogmapperseq", 	mIvrlogmapperseq);
 				mResultTTSPut.put("name", 				mName);
 				mResultTTSPut.put("phonenumber", 		mPhonenumber);
+				mResultTTSPut.put("callerId", 			mCallerID);
 				mResultTTSPut.put("callType", 			mCallType);
 				mResultTTSPut.put("importance", 		mImportance);
 				mResultTTSPut.put("status", 			"W");	// W:대기중, I:진행중, C:완료
