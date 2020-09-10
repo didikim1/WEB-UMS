@@ -31,7 +31,7 @@
 		<div id="wrap">
 			<div id="wrap_pop_ser">
 	<!-- 			<div class="ser_text"> -->
-					<h1 class="pageTitle">음성 메시지 공지 전달</h1>
+					<h1 class="pageTitle">VMS 음성 메시지 발송 서비스</h1>
 	<!-- 			</div> -->
 
 				<!-- table -->
