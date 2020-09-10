@@ -51,9 +51,7 @@
 				<input type="text" class="date" name="sSDate" value="${sSDate}" autocomplete="off"/> ~
 				<input type="text" class="date" name="sEDate" value="${sEDate}" autocomplete="off"/>
 				<select id="searchType" name="searchType">
-					<option value="IVRSERVER_NAME" <c:if test="${searchType_ eq 'IVRSERVER_NAME'}">selected</c:if> >고객사</option>
-					<option value="IVRSERVER_IP" <c:if test="${searchType_ eq 'IVRSERVER_IP'}">selected</c:if> >고객사정보</option>
-					<option value="IVRSERVER_CPS" <c:if test="${searchType_ eq 'IVRSERVER_CPS'}">selected</c:if> >QoS</option>
+					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
 				<button type="button" class="btn_table" id="btnSearch">검색</button>
@@ -66,8 +64,8 @@
 			<table>
 				<colgroup>
 					<col width="5%" />
-					<col width="55%" />
-					<col width="20%" />
+					<col width="35%" />
+					<col width="25%" />
 					<col width="10%" />
 					<col width="10%" />
 				</colgroup>

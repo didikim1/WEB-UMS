@@ -40,6 +40,7 @@
 	<style>
 		#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
 		#btnLogout { float:right;margin-right:-380px; }
+		#btnLogout {  }
 	</style>
 
  </head>
@@ -97,8 +98,10 @@
 							<li><a href="/collection/SurveyList">설문모음함</a></li>
 						</ul>
 					</li>
+					<li style="margin-left:80px;">
+						<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
+					</li>
 				</ul>
-				<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
 			</div>
 		</div>
 		<!-- //header -->

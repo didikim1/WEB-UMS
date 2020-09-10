@@ -54,7 +54,7 @@
 				<input type="text" class="date" name="sEDate" value="${paramMap.sEDate}" autocomplete="off"/>
 				<select id="searchType" name="searchType">
 					<option value="SERVER_NAME" <c:if test="${paramMap.searchType eq 'SERVER_NAME'}">selected</c:if> >투입서버(IVR)</option>
-					<option value="SERVER_IP" <c:if test="${paramMap.searchType eq 'SERVER_IP'}">selected</c:if> >서버정보</option>
+					<option value="SERVER_IP" <c:if test="${paramMap.searchType eq 'SERVER_IP'}">selected</c:if> >서버IP</option>
 					<option value="CPS" <c:if test="${paramMap.searchType eq 'CPS'}">selected</c:if> >CPS</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${paramMap.searchWord}" autocomplete="off"/>

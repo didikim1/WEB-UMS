@@ -58,7 +58,7 @@
 				<input type="text" class="sendDate" name="sEDate_" value="${sEDate_}" autocomplete="off"/>
 				<select id="searchType" name="searchType_">
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
-<%-- 					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >전송내용</option> --%>
+					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >전송내용</option>
 					<option value="STATUS_COMPLETION" <c:if test="${searchType_ eq 'STATUS_COMPLETION'}">selected</c:if> >전송상태</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord_" value="${searchWord_}" autocomplete="off"/>

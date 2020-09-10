@@ -27,7 +27,7 @@ body.on {overflow:hidden;}
 #header .section {padding:60px 0 0;height:60px;position:relative;}
 #header .logo a {display:block;width:176px;height:29px;text-indent:-999em;background:url(../images/logo_top.png) no-repeat 0 0;}
 #header .gnb {height:30px;letter-spacing:-5px;position:absolute;right:-20px;top:23px;}
-#header .gnb li {display:inline-block;font-size:17px;color:#000;}
+#header .gnb li {display:inline-block;font-size:17px;color:#000; }
 #header .gnb > li {height:20px;position:relative;}
 #header .gnb li a {display:block;padding:0 20px;letter-spacing:0;height:39px;}
 #header .gnb > li > a:hover,
@@ -133,7 +133,8 @@ textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-bo
 .tbl_type01 td { border-left: 1px solid #d5d5d5; height:38px; text-align:left; font-size:14px;}
 .tbl_type01 td.first { border-left: 0; }
 .tbl_type01 th,
-.tbl_type01 td { padding: 5px; line-height: 150%;  border-bottom: 1px solid #d5d5d5; padding-left:10px; }
+/* .tbl_type01 td { padding: 5px; line-height: 150%;  border-bottom: 1px solid #d5d5d5; padding-left:10px; } */
+.tbl_type01 td { line-height: 150%;  border-bottom: 1px solid #d5d5d5; padding-left:10px; }
 .tbl_type01 * { vertical-align: middle; }
 .tbl_type01 .tal { padding-left: 21px; text-align: left; }
 .tbl_left th,
@@ -279,7 +280,7 @@ textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-bo
 
 
 
-.btn_table {float:right; background: #F7941D; padding: 10px 25px; font-size:15px; font-weight:600; color:#fff; margin-left:6px;}
+.btn_table {float:right; background: #F7941D; padding: 10px 25px; font-size:14px; font-weight:600; color:#fff; margin-left:6px;}
 
 
 

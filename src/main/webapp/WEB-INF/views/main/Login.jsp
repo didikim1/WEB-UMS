@@ -10,9 +10,9 @@
 	.ser_text { font-size:14px;line-height:20px;margin-bottom:3px; }
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.col_r {color:#cd2129;}
-
 	.tbl tr {line-height:0.5;}
-	.tbl th, .tbl td { font-size:86%; }
+	.tbl th {font-size:15px;font-weight:bold;}
+	.tbl td { font-size:90%; }
 	#btnSubmit { width:115px;height:30px;padding:1px 6px; }
 	#container { width:100% }
 	#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
