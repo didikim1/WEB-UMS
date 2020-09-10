@@ -47,8 +47,8 @@
 
 			<div class="searchBox">
 				<label>수신일</label>
-				<input type="text" class="sendDate" name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
-				<input type="text" class="sendDate" name="sEDate_" value="${sEDate_}" autocomplete="off"/>
+				<input type="text" class="date"  name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
+				<input type="text" class="date"  name="sEDate_" value="${sEDate_}" autocomplete="off"/>
 				<select id="searchType" name="searchType_">
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
 					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >보낸번호</option>
