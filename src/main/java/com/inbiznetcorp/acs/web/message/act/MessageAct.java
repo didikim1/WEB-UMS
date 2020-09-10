@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -74,7 +75,14 @@ public class MessageAct
 	@RequestMapping("/SendMessage")
 	public String SendMessage(Model model)
 	{
-		model.addAttribute("callerID", "1877-1875");
+		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		
+		paramMap.put("sequser", paramMap.getStr("SESSION_USER_SEQ"));
+		
+		String 		grade 		= paramMap.getStr("SESSION_GRADE"); 	// A:관리자, B:사용자
+		MyCamelMap 	userInfo 	= (grade.equals("A")) ? messageService.FindAdminInfo(paramMap) : messageService.FindUserInfo(paramMap);
+		
+		model.addAttribute("userInfo", userInfo);
 
 		return "/msg/SendMessage";
 	}
@@ -249,6 +257,9 @@ public class MessageAct
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
 		List<MyCamelMap> resultList 	= null;
+		
+		String userSeq 	= FrameworkBeans.findSessionBean().getUserSeq();
+		String grade 	= FrameworkBeans.findSessionBean().getGrade();
 
 		String originalFilename = file.getOriginalFilename(); // 파일이름
 		String tempPath 		= env.getProperty("common.file.path");
@@ -285,13 +296,28 @@ public class MessageAct
 			
 			int 				seqgroup 	= paramMap.getInt("seqgroup", 0);
 			List<MyCamelMap> 	targetList 	= resultList;
+
+			// 이미 등록된 번호는 List에서 제외
+			String[] notphonenumber = paramMap.getStr("notphonenumber").split(",");
+			if(notphonenumber != null)
+			{
+				Iterator<MyCamelMap> iterator = targetList.iterator();
+				while(iterator.hasNext())
+				{
+					String phonenumber = iterator.next().getStr("phonenumber");
+					if(Arrays.asList(notphonenumber).contains(phonenumber))
+					{
+						iterator.remove();
+					}
+				}
+			}
 			
 			new Thread()
         	{
         		@Override
         		public void run()
         		{
-        			DatabaseAuthInfoDuty databaseAuthInfoDuty = new DatabaseAuthInfoDuty(targetList, seqgroup);
+        			DatabaseAuthInfoDuty databaseAuthInfoDuty = new DatabaseAuthInfoDuty(targetList, seqgroup, userSeq, grade);
         			int failUpdateCount = databaseAuthInfoDuty.excute();
         			LOGGER.info("failUpdateCount : " + failUpdateCount);
         		}
@@ -307,31 +333,33 @@ public class MessageAct
 		else
 		{
 			String message = "";
+			
 			for(MyMap result : resultList)
 			{
 				// 개인주소록
 				if(paramMap.getStr("etc").equals("P"))
 				{
-					result.put("phonenumber", result.getStr("phonenumber").replaceAll("-", ""));
+					result.put("phonenumber", 		result.getStr("phonenumber").replaceAll("-", ""));
+					result.put("SESSION_USER_SEQ", 	paramMap.getStr("SESSION_USER_SEQ"));
+					result.put("SESSION_GRADE", 	paramMap.getStr("SESSION_GRADE"));
+					
 					List<MyCamelMap> resultPData = addressService.SelectPTarget(result);
-					if(resultPData.size() < 1)
+					if(resultPData.size() == 0)
 					{
-						try {
-							addressService.RegisterData(result);
-						}
-						catch (Exception e) {
-							FrameworkUtils.exceptionToString(e);
-							message = "이미있는 전화번호입니다. 확인 후 처리해 주시기바랍니다.";
-						}
+						addressService.RegisterData(result);
 					}
 				}
 				//그룹주소록
-				else {
+				else
+				{
 					if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
 					{
 						// 해당 그룹에 존재하는 전화번호인지 확인
-						result.put("seqgroupinfo", paramMap.getStr("seqgroupinfo"));
-						result.put("phonenumber", result.getStr("phonenumber").replaceAll("-", ""));
+						result.put("seqgroupinfo", 		paramMap.getStr("seqgroupinfo"));
+						result.put("phonenumber", 		result.getStr("phonenumber").replaceAll("-", ""));
+						result.put("SESSION_USER_SEQ", 	paramMap.getStr("SESSION_USER_SEQ"));
+						result.put("SESSION_GRADE", 	paramMap.getStr("SESSION_GRADE"));
+						
 						List<MyCamelMap> resultData = addressService.SelectTarget(result);
 
 						// 존재하지 않으면 등록 후 그룹에 추가
@@ -356,24 +384,9 @@ public class MessageAct
 									addressService.RegisterAddressMapper(resultPData.get(0));
 								}
 							}
-
 						}
+					}
 				}
-
-
-					// 존재하는 번호이면
-//					else
-//					{
-//						MyMap resultMap = resultData.get(0);
-////						message = "이미 등록된 전화번호입니다.";
-//						if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
-//						{
-//							resultMap.put("seqgroupinfo", paramMap.getStr("seqgroupinfo"));
-//							addressService.RegisterAddressMapper(resultMap);
-//						}
-//					}
-				}
-
 			}
 			return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", message);
 		}
@@ -456,6 +469,7 @@ public class MessageAct
 					str += ment0;
 				}
 				str += paramMap.getStrArray("ttsMent2")[i];
+				str += ", ";
 				str += paramMap.getStrArray("ttsMent3")[i];
 				
 				mentArr.add(str);
@@ -475,6 +489,11 @@ public class MessageAct
 			for(String str2 : paramMap.getStrArray("ttsMent2")) { jArray2.add(str2); }
 			for(String str3 : paramMap.getStrArray("ttsMent3")) { jArray3.add(str3); }
 		}
+		
+//		System.out.println("[1]" + paramMap.getStr("ttsMent1"));
+//		System.out.println("[2]" + paramMap.getStr("ttsMent2"));
+//		System.out.println("[3]" + paramMap.getStr("ttsMent3"));
+//		System.out.println("[4]" + mentArr.toJSONString());
 
 		model.addAttribute("mentArr", mentArr.toJSONString());
 		model.addAttribute("ttsMent", ttsMent);
@@ -530,7 +549,7 @@ public class MessageAct
 	@RequestMapping("/UploadTTSFile")
 	public @ResponseBody ResultMessage UploadTTSFile(@RequestParam(value="uploadFile", required = false) MultipartFile file)
 	{
-		ServiceCommon serviceCommon = (ServiceCommon) FrameworkBeans.findBean("com.inbiznetcorp.acs.framework.common.ServiceCommon");
+//		ServiceCommon serviceCommon = (ServiceCommon) FrameworkBeans.findBean("com.inbiznetcorp.acs.framework.common.ServiceCommon");
 
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
@@ -538,15 +557,15 @@ public class MessageAct
 		String tempPath 		= null;
 		String fileName 		= null;
 
-
-		if(serviceCommon.getProfilesActiveName().equals("local"))
-		{
-			tempPath = FrameworkBeans.findHttpServletBean().getHttpServletRequest().getSession().getServletContext().getRealPath("/")+File.separator+"uploadfile";
-		}
-		else
-		{
-			tempPath = env.getProperty("common.file.path");
-		}
+		tempPath = env.getProperty("common.file.path");
+//		if(serviceCommon.getProfilesActiveName().equals("local"))
+//		{
+//			tempPath = FrameworkBeans.findHttpServletBean().getHttpServletRequest().getSession().getServletContext().getRealPath("/")+File.separator+"uploadfile";
+//		}
+//		else
+//		{
+//			tempPath = env.getProperty("common.file.path");
+//		}
 
 		String uploadPath 		= tempPath + File.separator + FrameworkUtils.getCurrentDate("yyyyMMdd") + File.separator; // 파일을 저장하는 폴더
 		String fileExtsn 		= file.getContentType().split("\\/")[file.getContentType().split("\\/").length-1];

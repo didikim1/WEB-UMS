@@ -21,6 +21,8 @@
 			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)">
 				,ORIGIN_SEQ
 			</if>
+			,SEQUSER
+			,GRADE
 		)
 		VALUES
 		(
@@ -35,6 +37,8 @@
 			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)">
 				,#{ivrlogmapperseq}
 			</if>
+			,#{SESSION_USER_SEQ}
+			,#{SESSION_GRADE}
 		)
 	</insert>
 
@@ -89,7 +93,7 @@
 					,#{sessionCompanyName}
 				</when>
 				<otherwise>
-					,#{SESSION_COMPANY_NAME}
+					,#{SESSION_USER_NAME}
 				</otherwise>
 			</choose>
 			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(forElection)">
@@ -176,44 +180,47 @@
 
 	<select id="SelectARSReservation" parameterType="myMap" resultType="myCamelMap">
 		SELECT
-			 IVRLOGSEQ
-			,NAME
-			,PHONENUMBER
-			,TTS_MENT_TITLE
-			,TTS_MENT_INTRO_01
-			,CALL_TYPE
-			,AUTOCALLCNT
-			,AUTOCALLCYCLE
-			,NEXTCALL_DATE
-			,CALLRESPONSEDATE
-			,CALLSTARTDATE
-			,CALLENDDATE
-			,CALLDURATION
-			,RESULT
-			,RESULT_MESSAGE
-			,USER_INPUT
-			,VOICE_RECEIVE
-			,REC_VOICE_RECEIVE
-			,CREATEDATE
-			,UPDATEDATE
-			,DELETEDATE
-			,ISUSE
-			,IFNULL(DLKEY, '') AS DLKEY
-			,IVRLOGMAPPERSEQ
-			,STATUS_COMPLETION
-			,USERSESSIONID
-			,GROUP_IDENTIFIER
-			,PERSONAL_IDENTIFIER
-			,REC_FILE_PREFIX
-			,REC_FILE_NAME
-			,REC_FILE_URL
-			,FOR_ELECTION
+			 T1.IVRLOGSEQ
+			,T1.NAME
+			,T1.PHONENUMBER
+			,T1.TTS_MENT_TITLE
+			,T1.TTS_MENT_INTRO_01
+			,T1.CALL_TYPE
+			,T1.AUTOCALLCNT
+			,T1.AUTOCALLCYCLE
+			,T1.NEXTCALL_DATE
+			,T1.CALLRESPONSEDATE
+			,T1.CALLSTARTDATE
+			,T1.CALLENDDATE
+			,T1.CALLDURATION
+			,T1.RESULT
+			,T1.RESULT_MESSAGE
+			,T1.USER_INPUT
+			,T1.VOICE_RECEIVE
+			,T1.REC_VOICE_RECEIVE
+			,T1.CREATEDATE
+			,T1.UPDATEDATE
+			,T1.DELETEDATE
+			,T1.ISUSE
+			,IFNULL(T1.DLKEY, '') AS DLKEY
+			,T1.IVRLOGMAPPERSEQ
+			,T1.STATUS_COMPLETION
+			,T1.USERSESSIONID
+			,T1.GROUP_IDENTIFIER
+			,T1.PERSONAL_IDENTIFIER
+			,T1.REC_FILE_PREFIX
+			,T1.REC_FILE_NAME
+			,T1.REC_FILE_URL
+			,T1.FOR_ELECTION
+			,T2.CALLER_ID
 		FROM
-			IVRLOG
+			 IVRLOG T1
+			,IVRLOGMAPPER T2
 		WHERE 1=1
-			AND ISUSE = 'Y'
-			AND SEND_TIME = 'B'
-			AND NEXTCALL_DATE = STR_TO_DATE(#{nextcallDate}, '%Y%m%d%H%i')
+			AND T1.IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ
+			AND T1.ISUSE = 'Y'
+			AND T1.SEND_TIME = 'B'
+			AND T1.NEXTCALL_DATE = STR_TO_DATE(#{nextcallDate}, '%Y%m%d%H%i')
 	</select>
 
 	<update id="UpdateStatus" parameterType="myMap">

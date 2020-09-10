@@ -3,11 +3,28 @@
 
 <mapper namespace="com.inbiznetcorp.acs.mapper.userinfo.UserInfoMapper">
 
+	<sql id="addWhere">
+		AND ISUSE = 'Y'
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(userId)">
+			AND USER_ID = #{userId}
+			AND USER_PW = #{userPw}
+		</if>
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(sequser)">
+			AND SEQUSER = #{sequser}
+		</if>
+	</sql>
+
 	<select id="FindUserInfo" parameterType="myMap" resultType="myCamelMap">
 		SELECT
 			 SEQUSER
 			,USER_ID
 			,USER_PW
+			,USER_NAME
+			,TEL
+			,PHONENUMBER
+			,EMAIL
+			,EVENT_AGREE
+			,CALLER_ID
 			,ISUSE
 			,CREATEDATE
 			,UPDATEDATE
@@ -15,9 +32,7 @@
 		FROM
 			USER_INFO
 		WHERE 1=1
-			AND ISUSE = 'Y'
-			AND USER_ID = #{userId}
-			AND USER_PW = #{userPw}
+			<include refid="addWhere"/>
 		ORDER BY
 			CREATEDATE DESC
 		LIMIT 1
@@ -28,6 +43,12 @@
 			 SEQUSER
 			,USER_ID
 			,USER_PW
+			,USER_NAME
+			,TEL
+			,PHONENUMBER
+			,EMAIL
+			,EVENT_AGREE
+			,CALLER_ID
 			,ISUSE
 			,CREATEDATE
 			,UPDATEDATE
@@ -35,12 +56,44 @@
 		FROM
 			ADMIN_INFO
 		WHERE 1=1
-			AND ISUSE = 'Y'
-			AND USER_ID = #{userId}
-			AND USER_PW = #{userPw}
+			<include refid="addWhere"/>
 		ORDER BY
 			CREATEDATE DESC
 		LIMIT 1
 	</select>
+	
+	<update id="ModifyAdminInfo" parameterType="myMap">
+		UPDATE
+			ADMIN_INFO
+		SET
+			USER_NAME 		= #{userName}
+			,TEL 			= #{tel}
+			,PHONENUMBER 	= #{phonenumber}
+			,EMAIL 			= #{email}
+			,EVENT_AGREE 	= #{eventAgree}
+			,UPDATEDATE 	= now()
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(userPw)">
+			,USER_PW 		= #{userPw}
+			</if>
+		WHERE 1=1
+			AND SEQUSER = #{sequser}
+	</update>
+	
+	<update id="ModifyUserInfo" parameterType="myMap">
+		UPDATE
+			USER_INFO
+		SET
+			 USER_NAME 		= #{userName}
+			,TEL 			= #{tel}
+			,PHONENUMBER 	= #{phonenumber}
+			,EMAIL 			= #{email}
+			,EVENT_AGREE 	= #{eventAgree}
+			,UPDATEDATE 	= now()
+			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(userPw)">
+			,USER_PW 		= #{userPw}
+			</if>
+		WHERE 1=1
+			AND SEQUSER = #{sequser}
+	</update>
 
 </mapper>

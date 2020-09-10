@@ -49,7 +49,7 @@ function confirmCallback(type)
 }
 
 $(document).ready(function(){
-	$('#phonenumber').mask('000-0000-0000');
+// 	$('#phonenumber').mask('000-0000-0000');
 
 	// 검색 버튼
 	$("#btnSearch").click(function(){
@@ -93,69 +93,59 @@ $(document).ready(function(){
 			$("#phonenumber").focus();
 			return false;
 		}
-		else if(phonenumber.length < 11)
+		else if((phonenumber.length < 9) || (11 < phonenumber.length))
 		{
 			alert("전화번호를 다시 확인해주세요.");
 			$("#phonenumber").focus();
 			return false;
 		}
 
+		// 등록된 번호인지 체크
 		$.ajax({
 			 url : "/addr/SearchDupl"
 			,data : {phonenumber : phonenumber}
 			,success : function(data){
-				if(data.code == "200")
+				// 등록된 번호가 아닐 때
+				if(data.result < 1)
 				{
-					$.ajax({
-						 url : "/addr/SelectTarget"
-						,data : {
-//			 				 name : name
-							 phonenumber : phonenumber
-						}
-						,success : function(data){
-							if(data.result < 1)
-							{
-								openPopup(0, name, phonenumber, "주소록 등록", "※ 등록할 내용을 확인해주세요.");
-							}
-							else
-							{
-								alert("이미 등록된 전화번호입니다.");
-							}
-						}
-					});
+					openPopup(0, name, phonenumber, "주소록 등록", "※ 등록할 내용을 확인해주세요.");
 				}
+				// 등록된 번호일 때
 				else
 				{
 					alert("이미 등록된 전화번호입니다.");
 				}
 			}
 		});
-
-
-
 	});
-
-	// 삭제 버튼
-	$(".btnDel").click(function(){
-		var seq 		= $(this).attr("id");
-		var name 		= null;
-		var phonenumber = null;
-
-		for(var i=0; i<$(".name").length; i++)
+	
+	// 전체선택
+	$("thead input[type=checkbox]").click(function(){
+		var checkboxes = $("tbody input[type=checkbox]");
+		for(var i=0; i<checkboxes.length; i++)
 		{
-			if($(".name").eq(i).find("input[type=hidden]").val() == seq)
+			checkboxes.eq(i).prop("checked", $(this).prop("checked"));
+		}
+	});
+	
+	// 체크박스 클릭 시
+	$("tbody input[type=checkbox]").click(function(){
+		var checkboxes = $("tbody input[type=checkbox]");
+		for(var i=0; i<checkboxes.length; i++)
+		{
+			if(!checkboxes.eq(i).prop("checked"))
 			{
-				name 		= $(".name").eq(i).find("label").text();
-				phonenumber = $(".phonenumber").eq(i).attr("id");
+				$("thead input[type=checkbox]").prop("checked", false);
+				return;
 			}
 		}
-
-		openPopup(seq, name, phonenumber, "주소록 삭제", "※ 삭제할 내용을 확인해주세요.");
+		
+		$("thead input[type=checkbox]").prop("checked", true);
 	});
 
 	// 일괄 삭제 버튼
 	$("#btnDelete").click(function(){
-		var checkboxes 	= $("input[type=checkbox]");
+		var checkboxes 	= $("tbody input[type=checkbox]");
 
 		for(var i=0; i<checkboxes.length; i++)
 		{
@@ -164,9 +154,8 @@ $(document).ready(function(){
 				seqArr.push(checkboxes.eq(i).val());
 			}
 		}
-
+		
 		common.confirm('일괄 삭제', '선택하신 목록을 일괄삭제하시겠습니까?', 'DELETE');
-
 	});
 });
 </script>

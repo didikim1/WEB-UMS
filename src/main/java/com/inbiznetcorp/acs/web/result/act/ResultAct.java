@@ -56,6 +56,7 @@ public class ResultAct
 		model.addAttribute("searchWord_", 		paramMap.getStr("searchWord_", ""));
 		model.addAttribute("sidx", 				paramMap.getStr("sidx", "ROW_NUM"));
 		model.addAttribute("sord", 				paramMap.getStr("sord", "DESC"));
+		model.addAttribute("paramMap", 			paramMap);
 
 		return "/result/ResultList";
 	}

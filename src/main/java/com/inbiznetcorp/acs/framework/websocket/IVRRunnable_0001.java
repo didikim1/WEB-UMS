@@ -1,7 +1,6 @@
 package com.inbiznetcorp.acs.framework.websocket;
 
 import com.inbiznetcorp.acs.framework.beans.FrameworkBeans;
-import com.inbiznetcorp.acs.framework.common.ServiceCommon;
 import com.inbiznetcorp.acs.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.acs.framework.mymap.MyMap;
 import com.inbiznetcorp.acs.framework.websocket.bean.BasicInfo;
@@ -61,6 +60,8 @@ public class IVRRunnable_0001 implements Runnable
 	@Override
 	public void run()
 	{
+		LOGGER.info("callerID : " + mCallerID);
+		
 		// 들어보기
 		if(mType.equals("A"))
 		{
@@ -81,13 +82,6 @@ public class IVRRunnable_0001 implements Runnable
 		// 알림형 발송
 		else if(mType.equals("B"))
 		{
-//			// TTS wav 파일 생성
-//			MyMap resultTTSMake 	= ivrSender.RealTimeTTSMake(mTid, mCompanyName, mMsg);
-//			
-//			// TTS wav 파일 IVR 서버에 전송
-//			resultTTSMake.put("ivrlogseq", mIvrlogseq);
-//			MyMap resultTTSPut 		= ivrSender.TTSFileIVRServerPut(resultTTSMake);
-			
 			// IVRLOG 정보
 			MyCamelMap mIVRLog = ivrService.SelectIVRLog(mIvrlogseq);
 			mIvrlogmapperseq 	= mIVRLog.getStr("ivrlogmapperseq");
@@ -122,22 +116,8 @@ public class IVRRunnable_0001 implements Runnable
 				schedulerMapper.RegisterData(mResultTTSPut);
 				LOGGER.info("Insert CallSchduler Complete!!");
 				
-//				// INSERT CALL_SCHEDULER TABLE
-//				resultTTSPut.put("ivrlogseq", 		mIvrlogseq);
-//				resultTTSPut.put("ivrlogmapperseq", mIvrlogmapperseq);
-//				resultTTSPut.put("name", 			mName);
-//				resultTTSPut.put("phonenumber", 	mPhonenumber);
-//				resultTTSPut.put("callType", 		mCallType);
-//				resultTTSPut.put("importance", 		mImportance);
-//				resultTTSPut.put("status", 			"W");	// W:대기중, I:진행중, C:완료
-//				resultTTSPut.put("userSessionID", 	mTid);
-//				
-//				schedulerMapper.RegisterData(resultTTSPut);
-//				LOGGER.info("Insert CallSchduler Complete!!");
-				
 				if(mImportance == 0)
 				{
-					basicInfo.setSESSION_NORMAL_CPS(mParamMap.getInt("SESSION_NORMAL_CPS"));
 					basicInfo.setNormalCallExist(true);
 					LOGGER.info("Normal Call isRun..	" + basicInfo.isNormalCallExist());
 					LOGGER.info("Normal Call cps..		" + basicInfo.getSESSION_NORMAL_CPS());
@@ -145,7 +125,6 @@ public class IVRRunnable_0001 implements Runnable
 				}
 				else if(mImportance == 1)
 				{
-					basicInfo.setSESSION_IMPORTANT_CPS(mParamMap.getInt("SESSION_IMPORTANT_CPS"));
 					basicInfo.setImportantCallExist(true);
 					LOGGER.info("Important Call Run.. " + basicInfo.isImportantCallExist());
 					LOGGER.info("Important Call Run.. " + basicInfo.getSESSION_IMPORTANT_CPS());

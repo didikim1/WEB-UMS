@@ -63,13 +63,15 @@ public class HttpServletBean
 			mmClientRequestParameter.put(key,this.getStringParams(key).length>1||key.indexOf("[]")!=-1?this.getStringParams(key):this.getStringParam(key));
 		}
 		
-		String companyName = FrameworkBeans.findSessionBean().getCompanyName();
+		String companyName = FrameworkBeans.findSessionBean().getUserName();
 		if(companyName.equals("") || companyName.equals("test")) { companyName = "inbiznet"; }
 
-		mmClientRequestParameter.put("SESSION_ID",					mSession.getId());
-		mmClientRequestParameter.put("SESSION_COMPANY_NAME", 		FrameworkBeans.findSessionBean().getCompanyName());
-		mmClientRequestParameter.put("SESSION_NORMAL_CPS", 			(int)(FrameworkBeans.findSessionBean().getCps()*(0.7)));
-		mmClientRequestParameter.put("SESSION_IMPORTANT_CPS", 		(int)(FrameworkBeans.findSessionBean().getCps()*(0.3)));
+		mmClientRequestParameter.put("SESSION_ID",				mSession.getId());
+		mmClientRequestParameter.put("SESSION_USER_SEQ", 		FrameworkBeans.findSessionBean().getUserSeq());
+		mmClientRequestParameter.put("SESSION_USER_NAME", 		FrameworkBeans.findSessionBean().getUserName());
+		mmClientRequestParameter.put("SESSION_GRADE", 			FrameworkBeans.findSessionBean().getGrade());
+		mmClientRequestParameter.put("SESSION_NORMAL_CPS", 		(int)(FrameworkBeans.findSessionBean().getCps()*(0.7)));
+		mmClientRequestParameter.put("SESSION_IMPORTANT_CPS", 	(int)(FrameworkBeans.findSessionBean().getCps()*(0.3)));
 
 
 		return mmClientRequestParameter;

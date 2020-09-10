@@ -7,14 +7,14 @@ $(document).ready(function(){
 		var seq 		= "${seq}";
 		var name 		= "${name}";
 		var phonenumber = "${phonenumber}";
-
+		
 		if(title == "주소록 등록")
 		{
 			$.ajax({
 				 url : "/addr/RegisterData"
 				,data : {
 					 name 			: name
-					,phonenumber 	: phonenumber
+					,phonenumber 	: phonenumber.replace(/,/gi,"")
 				}
 				,success : function(){
 					window.opener.location.reload();

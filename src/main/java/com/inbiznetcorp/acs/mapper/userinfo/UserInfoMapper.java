@@ -15,4 +15,8 @@ public interface UserInfoMapper
 
 	MyCamelMap FindAdminInfo(MyMap paramMap);
 
+	int ModifyAdminInfo(MyMap paramMap);
+
+	int ModifyUserInfo(MyMap paramMap);
+
 }

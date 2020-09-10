@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/collection")
 public class CollectionAct
 {
-	@RequestMapping(value= {"", "/"})
+	@RequestMapping("/VoiceList")
 	public String MessageList()
 	{
 		return "/collection/MessageList";

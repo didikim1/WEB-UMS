@@ -15,9 +15,9 @@
 	.company_list tr { line-height:0.5 !important;font-size:100% !important; }
 	.company_list td { padding:0px 5px !important;font-size:14px !important; }
 	.name label { cursor:pointer; }
-/* 	.btnDel { height:30px;padding:5px 15px !important;float:none !important;margin-left:2px !important;font-size:13px !important; } */
 	#btnExcel { margin-left:0px;margin-right:10px; }
-	input[type=checkbox] {width:15px !important;margin-left:13px;}
+	thead input[type=checkbox] {width:15px !important;margin-left:8px;}
+	tbody input[type=checkbox] {width:15px !important;margin-left:13px;}
 	input[name=name], input[name=department] { width:145px !important; }
 	input[name=phonenumber] { width:195px !important; }
 	input[name=address] { width:350px !important; }
@@ -76,17 +76,15 @@
 					<col width="20%" />
 					<col width="15%" />
 					<col width="35%" />
-<%-- 					<col width="10%" /> --%>
 				</colgroup>
 				<thead>
 					<tr>
-						<th></th>
+						<th><input type="checkbox" name="" value=""></th>
 						<th>순번</th>
 						<th>이름</th>
 						<th>전화번호</th>
 						<th>소속</th>
 						<th>주소</th>
-<!-- 						<th>삭제</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -98,7 +96,6 @@
 									<td>${list.rowNum}</td>
 									<td class="name">
 										<input type="hidden" value="${list.seq}" />
-<%-- 										<label><input type="text" name="name" value="${list.name}" maxlength="40" autocomplete="off" /></label> --%>
 										<label onclick="javascript:fn_modify('${list.seq}');">${list.name}</label>
 									</td>
 									<td class="phonenumber" id="${list.phonenumber}">
@@ -108,26 +105,21 @@
 												<c:set var="phone" value="${fn:replace(phonenumber, ',', '-')}"/>
 												<c:set var="number" value="${fn:split(phone, '-')[0]}-****-${fn:split(phone, '-')[2]}" />
 												<c:out value="${number}"/>
-<%-- 												<input type="text" name="phonenumber" value="${number}" maxlength="12" autocomplete="off" /> --%>
 											</c:when>
 											<c:otherwise>
 												<fmt:formatNumber var="phonenumber" value="${list.phonenumber}" pattern="000,0000,0000"/>
 												<c:set var="phone" value="${fn:replace(phonenumber, ',', '-')}"/>
 												<c:set var="number" value="${fn:split(phone, '-')[0]}-****-${fn:split(phone, '-')[2]}" />
 												<c:out value="${number}"/>
-<%-- 												<input type="text" name="phonenumber" value="${number}" maxlength="12" autocomplete="off" /> --%>
 											</c:otherwise>
 										</c:choose>
 									</td>
 									<td>
 										${list.department}
-<%-- 										<input type="text" name="department" value="${list.department}" autocomplete="off" /> --%>
 									</td>
 									<td>
 										${list.address}
-<%-- 										<input type="text" name="address" value="${list.address}" autocomplete="off" /> --%>
 									</td>
-<%-- 									<td><button type="button" class="btn_table btnDel" id="${list.seq}">삭제</button></td> --%>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -145,7 +137,6 @@
 		<!-- button -->
 		<div class="btn_next2">
 			<button class="btn_table" id="btnDelete">일괄 삭제</button>
-<!-- 			<button class="btn_table" id="btnModify">일괄 수정</button> -->
 		</div>
 		<!-- //button -->
 

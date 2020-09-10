@@ -39,8 +39,7 @@ public class IVRSender
 	final static String TTS_DELAY_10 	=  "<VTML_PAUSE TIME=\"10\" />";
 	
 	// 파일 경로 : /var/lib/asterisk/sounds/albert/L8/fixedment/
-//	final static String TTS_MENT_SUBINTRO 			= "albert/L8/fixedment/TTS_MENT_SUBINTRO";			// TTS_DELAY_500 + "다시 들으시려면 별표를, 종료는 #버튼을 눌러주세요."
-	final static String TTS_MENT_SUBINTRO 			= "albert/L8/fixedment/TTS_MENT_AUTHOK";			// TTS_DELAY_500 + "다시 들으시려면 별표를, 종료는 #버튼을 눌러주세요."
+	final static String TTS_MENT_SUBINTRO 			= "albert/L8/fixedment/TTS_MENT_SUBINTRO";			// TTS_DELAY_500 + "다시 들으시려면 별표를, 종료는 #버튼을 눌러주세요."
 	final static String TTS_MENT_AUTHOK 			= "albert/L8/fixedment/TTS_MENT_AUTHOK";			// "감사합니다."
 	final static String TTS_MENT_EXCEEDLISTENAGAIN 	= "albert/L8/fixedment/TTS_MENT_EXCEEDLISTENAGAIN";	// "다시 듣기 횟수를 초과하여 통화를 종료합니다."
 	final static String TTS_MENT_AUTHCANCLE 		= "albert/L8/fixedment/TTS_MENT_AUTHCANCLE";		// "종료합니다."
@@ -416,7 +415,7 @@ public class IVRSender
         if(type.equals("A"))
         {
         	jsonStep01TTS.put("TTSMENTINTRO", 	 	 		 forTTS.get("TTSMENTINTRO"));	// 안내멘트
-            jsonStep01TTS.put("TTSMENTSUBINTRO", 	 		 TTS_MENT_SUBINTRO);			// 안내 후 서브 멘트
+            jsonStep01TTS.put("TTSMENTSUBINTRO", 	 		 TTS_MENT_AUTHOK);				// 안내 후 서브 멘트
             jsonStep01TTS.put("TTSMENTRETRY", 	 	 		 TTS_MENT_RETRY);				// 다시듣기
             jsonStep01TTS.put("TTSMENTDTMFLACK", 	 	 	 TTS_MENT_DTMFLACK);			// 입력값부족
             jsonStep01TTS.put("TTSMENTDTMFALLLACK", 	 	 TTS_MENT_DTMFALLLACK);			// 입력값부족(횟수초과)
@@ -430,7 +429,7 @@ public class IVRSender
         {
         	jsonStep01TTS.put("TTSMENTINTRO", 	 	 		 forTTS.get("TTSMENTINTRO"));	// 안내멘트
             jsonStep01TTS.put("TTSMENTSUBINTRO", 	 		 null);			// 안내 후 서브 멘트
-            jsonStep01TTS.put("TTSMENTRETRY", 	 	 		 null);					// 다시듣기
+            jsonStep01TTS.put("TTSMENTRETRY", 	 	 		 TTS_MENT_RETRY);				// 다시듣기
             jsonStep01TTS.put("TTSMENTDTMFLACK", 	 	 	 null);				// 입력값부족
             jsonStep01TTS.put("TTSMENTDTMFALLLACK", 	 	 null);			// 입력값부족(횟수초과)
             jsonStep01TTS.put("TTSMENTMISMATCH", 	 	 	 null);				// 입력값잘못입력시

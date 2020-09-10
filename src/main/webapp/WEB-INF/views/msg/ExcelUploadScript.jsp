@@ -14,8 +14,10 @@ $(document).ready(function(){
 
 	// 확인 버튼
 	$("#btnSubmit").click(function(){
-		var seqgroup = window.opener.seqgroup.value;
+		var seqgroup 		= window.opener.seqgroup.value;
+		var notphonenumber 	= window.opener.getNotphonenumber();
 		$("[name=seqgroup]").val(seqgroup);
+		$("[name=notphonenumber]").val(notphonenumber);
 		
 		
 		var myForm = document.getElementById('searchForm');
@@ -26,7 +28,7 @@ $(document).ready(function(){
 			alert("선택된 파일이 없습니다.");
 			return false;
 		}
-
+		
 	    $.ajax({
 			 url : "/msg/UploadFile"
 			,type : "POST"

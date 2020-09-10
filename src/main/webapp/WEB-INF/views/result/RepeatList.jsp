@@ -58,7 +58,7 @@
 					<option value="STATUS_COMPLETION" <c:if test="${searchType_ eq 'STATUS_COMPLETION'}">selected</c:if> >처리결과</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord_" value="${searchWord_}" autocomplete="off"/>
-<!-- 				<button type="button" class="btn_table" id="btnSearch">검색</button> -->
+				<!-- 				<button type="button" class="btn_table" id="btnSearch">검색</button> -->
 				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
@@ -103,7 +103,7 @@
 							<c:forEach var="list" items="${list}">
 								<tr>
 									<td><input type="checkbox" name="checkbox" value="${list.ivrlogmapperseq}"></td>
-									<td>${list.rowNum}</td>
+									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index + 1}</td>
 									<td>${list.createdate}</td>
 									<td>${list.repeatType}</td>
 									<td>

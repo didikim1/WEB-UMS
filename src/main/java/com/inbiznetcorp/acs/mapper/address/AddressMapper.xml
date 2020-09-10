@@ -15,7 +15,14 @@
 			</if>
 		</if>
 		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(seqgroupinfo)">
-			AND SEQ NOT IN (SELECT SEQADDRESSINFO FROM ADDRESSMAPPER WHERE SEQGROUPINFO = ${seqgroupinfo})
+			AND SEQ NOT IN (SELECT SEQADDRESSINFO FROM ADDRESSMAPPER WHERE SEQGROUPINFO = ${seqgroupinfo} AND ISUSE = 'Y')
+		</if>
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(notphonenumber)">
+			AND PHONENUMBER NOT IN (${notphonenumber})
+		</if>
+		
+		<if test='SESSION_GRADE.equals("B")'>
+			AND COMPANYSEQ = #{SESSION_USER_SEQ}
 		</if>
 
 	</sql>
@@ -41,7 +48,6 @@
 				,(SELECT @ROWNUM:=0) TMP
 			WHERE 1=1
 				<include refid="addWhere"/>
-
 			ORDER BY SEQ ASC
 		) T1
 		ORDER BY ROW_NUM DESC
@@ -70,6 +76,8 @@
 			,CREATEDATE
 			,ISUSE
 			,DLKEY
+			,COMPANYSEQ
+			,COMPANYGRADE
 		)
 		VALUES
 		(
@@ -80,15 +88,28 @@
 			,now()
 			,'Y'
 			,#{dlkey}
+			<choose>
+				<when test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(SESSION_USER_SEQ)">
+					,#{SESSION_USER_SEQ}
+					,#{SESSION_GRADE}
+				</when>
+				<otherwise>
+					,#{sessionUserSeq}
+					,#{sessionGrade}
+				</otherwise>
+			</choose>
 		)
 	</insert>
 
-	<delete id="DeletePData" parameterType="myMap">
-		DELETE FROM
+	<update id="DeletePData" parameterType="myMap">
+		UPDATE
 			ADDRESSINFO
+		SET
+			 ISUSE 		= 'N'
+			,DELETEDATE = NOW()
 		WHERE 1=1
 			AND SEQ = #{seq}
-	</delete>
+	</update>
 
 	<update id="DeleteData" parameterType="myMap">
 		UPDATE
@@ -207,19 +228,25 @@
 			AND SEQ = #{seq}
 	</update>
 
-	<delete id="DeletePDatas" parameterType="myMap">
-		DELETE FROM
+	<update id="DeletePDatas" parameterType="myMap">
+		UPDATE
 			ADDRESSINFO
+		SET
+			 ISUSE = 'N'
+			,DELETEDATE = NOW()
 		WHERE 1=1
 			AND SEQ IN (${seqArrStr})
-	</delete>
+	</update>
 
-	<delete id="DeleteMapperDatas" parameterType="myMap">
-		DELETE FROM
+	<update id="DeleteMapperDatas" parameterType="myMap">
+		UPDATE
 			ADDRESSMAPPER
+		SET
+			 ISUSE = 'N'
+			,DELETEDATE = NOW()
 		WHERE 1=1
 			AND SEQADDRESSINFO IN ( ${seqArrStr} )
-	</delete>
+	</update>
 	
 	<insert id="InsertTempGroup" parameterType="myMap" useGeneratedKeys="true" keyProperty="seqgroup">
 		INSERT INTO

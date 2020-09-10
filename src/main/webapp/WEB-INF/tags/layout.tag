@@ -1,5 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="ko">
  <head>
@@ -21,7 +22,7 @@
 	<script type="text/javascript" src="/assets/js/jqueryui/jquery-ui.js?20191109_001"></script>
 	<script type="text/javascript" src="/assets/js/jquery.function.js?20191109_001"></script>
 
-	<script type="text/javascript" src="/assets/js/common.js?20200428_001"></script>
+	<script type="text/javascript" src="/assets/js/common.js?20200910_001"></script>
 	<script type="text/javascript" src="/assets/js/slick.js?20191114_001"></script>
 	<script type="text/javascript" src="/assets/js/style.js?20191125_003"></script>
 
@@ -42,6 +43,8 @@
 /* 		#btnLogout { float:right;margin-right:-380px; } */
 		#btnLogout { height:35px; margin-left:80px; margin-top:-5px;}
 	</style>
+	
+	<jsp:useBean id="frameworkBeans" class="com.inbiznetcorp.acs.framework.beans.FrameworkBeans" />
 
  </head>
 <body>
@@ -74,6 +77,7 @@
 							<li><a href="/result/RepeatList">반복메세지 조회</a></li>
 						</ul>
 					</li>
+					<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}">
 					<li>
 						<a href="/cps">관리자 설정</a>
 						<ul>
@@ -81,6 +85,7 @@
 							<li><a href="/qos">QOS 설정</a></li>
 						</ul>
 					</li>
+					</c:if>
 					<li>
 						<a href="/info/user/UserInfo">사용자</a>
 						<ul>
@@ -91,10 +96,10 @@
 						</ul>
 					</li>
 					<li>
-						<a href="/received">메세지 보관함</a>
+						<a href="/received/">메세지 보관함</a>
 						<ul>
-							<li style="margin-left:-150px"><a href="/received">회신수신함</a></li>
-							<li><a href="/collection">음성모음함</a></li>
+							<li style="margin-left:-150px"><a href="/received/">회신수신함</a></li>
+							<li><a href="/collection/VoiceList">음성모음함</a></li>
 							<li><a href="/collection/SurveyList">설문모음함</a></li>
 						</ul>
 					</li>

@@ -41,7 +41,7 @@
 		<div class="top_table_box">
 			<div class="title">
 				<h1>※ 개인정보</h1>
-				<button type="button" class="btn_table">상세보기</button>
+				<button type="button" class="btn_table" id="btnUserInfoDetail">상세보기</button>
 			</div>
 			<div style="clear:both;"></div>
 			<div class="tbl_type01 company_list top_table" style="margin-top:10px;">
@@ -53,15 +53,15 @@
 					<tbody>
 						<tr>
 							<th>이름</th>
-							<td><label>홍길동</label></td>
+							<td><label>${userInfo.userName}</label></td>
 						</tr>
 						<tr>
 							<th>휴대전화번호</th>
-							<td><label>010-0000-0000</label></td>
+							<td><label id="phonenumber"></label></td>
 						</tr>
 						<tr>
-							<th>통신번호</th>
-							<td><label>1588-0559</label></td>
+							<th>발신번호</th>
+							<td><label id="callerId"></label></td>
 						</tr>
 					</tbody>
 				</table>
@@ -118,4 +118,7 @@
 	</div>
 </div>
 
+<input type="hidden" name="sequser" value="${userInfo.sequser}" />
+
+<%@ include file="UserInfoScript.jsp" %>
 </BaseTag:layout>

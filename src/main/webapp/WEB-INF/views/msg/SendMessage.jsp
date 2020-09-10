@@ -88,7 +88,7 @@
 						<tr>
 							<th scope="row">발신번호</th>
 							<td>
-								<input type="text" class="" name="callerID" value="${callerID}" autocomplete="off"/>
+								<input type="text" class="" name="callerID" autocomplete="off" readonly/>
 <!-- 								<button class="btn_service" id="btnNumber">자주쓰는 번호 설정</button> -->
 							</td>
 						</tr>
@@ -369,6 +369,12 @@
 
 <form name="formTTSListen">
 	<input type="hidden" name="fileUrl" />
+</form>
+
+<!-- 주소록 버튼 클릭 시 사용 -->
+<form name="formAddress">
+	<input type="hidden" name="isGroup" value="N" />
+	<input type="hidden" name="notphonenumber" />
 </form>
 
 <%@ include file="SendMessageScript.jsp" %>

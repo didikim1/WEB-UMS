@@ -33,13 +33,6 @@ public class IVRRunnable implements Runnable
 		this.mCallerID 		= callerID;
 		this.mAuthReqNumber = authReqNumber;
 	}
-//	public IVRRunnable(MyMap paramMap, MyMap resultTTSPut, int ivrlogseq, String phonenumber)
-//	{
-//		this.mParamMap   	= paramMap;
-//		this.mResultTTSPut 	= resultTTSPut;
-//		this.mIvrlogseq 	= ivrlogseq;
-//		this.mPhonenumber 	= phonenumber;
-//	}
 
 	@Override
 	public void run()
@@ -60,7 +53,6 @@ public class IVRRunnable implements Runnable
 		else if(mParamMap.getStr("callType").equals("B"))
 		{
 			LOGGER.info("CallType_B..");
-//			resultTTSPlay = ivrSender.wavPlay0002(mResultTTSPut, mPhonenumber, mRequstNumber);
 		}
 
 		LOGGER.info("TTSPlay_COMPLETE!!");
@@ -77,8 +69,6 @@ public class IVRRunnable implements Runnable
 			resultTTSPlay.put("ivrlogseq", mIvrlogseq);
 			ivrlogMapper.UpdateStatus(resultTTSPlay);
 		}
-
-//		LOGGER.info(mParamMap.getStr("userSessionID")+"_IVRLOG_UPDATE!!");
 
 	}
 

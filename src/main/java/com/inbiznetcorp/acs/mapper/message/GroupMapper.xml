@@ -43,6 +43,9 @@
 				) T2
 				ON T1.GROUPSEQ = T2.SEQGROUPINFO
 			WHERE 1=1
+				<if test='SESSION_GRADE.equals("B")'>
+					AND T1.COMPANYSEQ = #{SESSION_USER_SEQ}
+				</if>
 				<include refid="addWhere"/>
 			ORDER BY GROUPSEQ ASC
 		) T0
@@ -56,6 +59,9 @@
 		FROM
 			GROUPINFO
 		WHERE 1=1
+			<if test='SESSION_GRADE.equals("B")'>
+				AND COMPANYSEQ = #{SESSION_USER_SEQ}
+			</if>
 			<include refid="addWhere"/>
 	</select>
 
@@ -135,12 +141,14 @@
 		(
 			 GROUPNAME
 			,CREATEDATE
+			,COMPANYSEQ
 			,ISUSE
 		)
 		VALUES
 		(
 			 #{groupname}
 			,now()
+			,#{SESSION_USER_SEQ}
 			,'Y'
 		)
 	</insert>

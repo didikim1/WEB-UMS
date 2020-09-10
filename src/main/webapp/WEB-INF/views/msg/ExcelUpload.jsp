@@ -34,6 +34,7 @@
 				<form id="searchForm" action="" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="seqgroup" value="" />
 					<input type="hidden" name="group" value="N" />
+					<input type="hidden" name="notphonenumber" value="" />
 					<input type="file" id="uploadFile" name="uploadFile" accept=".xls, .xlsx"/>
 				</form>
 			</div>

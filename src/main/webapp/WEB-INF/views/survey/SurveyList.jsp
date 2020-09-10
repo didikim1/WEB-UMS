@@ -100,7 +100,7 @@
 							<c:forEach var="list" items="${list}">
 								<tr>
 <%-- 									<td><input type="checkbox" name="checkbox" value="${list.ivrlogmapperseq}"></td> --%>
-									<td>${list.rowNum}</td>
+									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index + 1}</td>
 									<td>${list.createdate}</td>
 									<td>
 										<label class="pointer title" id="${list.ivrlogmapperseq}">${list.title}</label>

@@ -10,9 +10,6 @@ public class BasicInfo
 	private boolean importantCallExist 		= false;
 	private boolean importantCallThreadFull = false;
 	
-//	private boolean runNormal 				= false;
-//	private boolean runImportant 			= false;
-	
 	private int 	SESSION_CPS 			= 160;
 	private int 	SESSION_NORMAL_CPS 		= 0;
 	private int 	SESSION_IMPORTANT_CPS 	= 0;
@@ -43,20 +40,6 @@ public class BasicInfo
 	public void setImportantCallThreadFull(boolean importantCallThreadFull) {
 		this.importantCallThreadFull = importantCallThreadFull;
 	}
-	
-	
-//	public boolean isRunNormal() {
-//		return runNormal;
-//	}
-//	public void setRunNormal(boolean runNormal) {
-//		this.runNormal = runNormal;
-//	}
-//	public boolean isRunImportant() {
-//		return runImportant;
-//	}
-//	public void setRunImportant(boolean runImportant) {
-//		this.runImportant = runImportant;
-//	}
 	
 	
 	public int getSESSION_CPS() {

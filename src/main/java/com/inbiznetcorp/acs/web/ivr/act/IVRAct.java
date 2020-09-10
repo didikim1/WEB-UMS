@@ -61,7 +61,7 @@ public class IVRAct
 		MyMap 	paramMap 		= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		MyMap 	resultTTSMake 	= new MyMap();
 		String 	tid 			= FrameworkUtils.generateSessionID();
-		String 	companyName   	= paramMap.getStr("SESSION_COMPANY_NAME");
+		String 	companyName   	= paramMap.getStr("SESSION_USER_NAME");
 		String 	msg 			= FrameworkUtils.unescapeHtml(paramMap.getStr("msg")).replaceAll("<br/>", ". ").trim();
 
 		resultTTSMake = ivrSender.RealTimeTTSMake(tid, companyName, msg);
@@ -79,7 +79,7 @@ public class IVRAct
 	{
 		MyMap 	paramMap 	= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		String 	tid 		= FrameworkUtils.generateSessionID();
-		String 	companyName = paramMap.getStr("SESSION_COMPANY_NAME");
+		String 	companyName = paramMap.getStr("SESSION_USER_NAME");
 		String 	msg 		= FrameworkUtils.unescapeHtml(paramMap.getStr("msg") + "<VTML_PAUSE TIME=\"500\" />").replaceAll("<br/>", ". ").trim();
 		String 	phonenumber = paramMap.getStr("phonenumber").replaceAll("-", "").replaceAll(",", "").trim();
 		String 	type 		= "A"; 	// A:들어보기, B:발송
@@ -161,7 +161,7 @@ public class IVRAct
 			// TTS 직접 입력한 경우
 			if(paramMap.getStr("sendType").equals("A"))
 			{
-				String 		companyName 	= paramMap.getStr("SESSION_COMPANY_NAME");
+				String 		companyName 	= paramMap.getStr("SESSION_USER_NAME");
 				String 		msg 			= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent") + "<VTML_PAUSE TIME=\"500\" />").replaceAll("<br/>", ". ").trim();
 				
 				// 알림형
@@ -235,7 +235,7 @@ public class IVRAct
 						
 						String ivrlogseq = paramMap.getStr("ivrlogseq");
 						
-						UMSExecutorService.addCallRunable(new IVRRunnable_0002(paramMap, sessionId, companyName, mentArr, ivrlogseq, sendTime, resultTTSPutList));
+						UMSExecutorService.addCallRunable(new IVRRunnable_0002(sessionId, ivrlogseq, sendTime, callerID));
 					}
 				}
 			}
@@ -264,7 +264,7 @@ public class IVRAct
 		
 		String filePath		= fileInfo.getStr("uploadPath");
 		String tid 			= FrameworkUtils.generateSessionID();
-		String groupName 	= paramMap.getStr("SESSION_COMPANY_NAME");
+		String groupName 	= paramMap.getStr("SESSION_USER_NAME");
 		
 		// INSERT IVRLOGMAPPER TABLE
 		paramMap.put("reservationDate", paramMap.getStr("nextcallDate", null));
@@ -486,7 +486,7 @@ public class IVRAct
 			result.put("tid", 					userSessionID);
 			result.put("userSessionID", 		userSessionID);
 			result.put("ivrlogmapperseq", 		ivrlogmapperseq);
-			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_COMPANY_NAME"));
+			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_USER_NAME"));
 			result.put("statusCompletion", 		"I");
 			result.put("importance", 			importance);
 			result.put("status", 				status);
@@ -531,7 +531,7 @@ public class IVRAct
 		result.put("statusCompletion", 		"I");
 		result.put("tid", 					userSessionID);
 		result.put("userSessionID", 		userSessionID);
-		result.put("sessionCompanyName", 	paramMap.getStr("SESSION_COMPANY_NAME"));
+		result.put("sessionCompanyName", 	paramMap.getStr("SESSION_USER_NAME"));
 		result.put("statusCompletion", 		"I");
 		result.put("importance", 			importance);
 		result.put("status", 				status);
@@ -608,7 +608,7 @@ public class IVRAct
 			// TTS 직접 입력한 경우
 			if(paramMap.getStr("sendType").equals("A"))
 			{
-				String 		companyName 	= paramMap.getStr("SESSION_COMPANY_NAME");
+				String 		companyName 	= paramMap.getStr("SESSION_USER_NAME");
 				String 		msg 			= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent") + "<VTML_PAUSE TIME=\"500\" />").replaceAll("<br/>", ". ").trim();
 				
 				// 알림형
@@ -683,7 +683,7 @@ public class IVRAct
 						
 						String ivrlogseq = paramMap.getStr("ivrlogseq");
 						
-						UMSExecutorService.addCallRunable(new IVRRunnable_0002(paramMap, sessionId, companyName, mentArr, ivrlogseq, sendTime, resultTTSPutList));
+						UMSExecutorService.addCallRunable(new IVRRunnable_0002(sessionId, ivrlogseq, sendTime, callerID));
 					}
 				}
 			}
@@ -722,7 +722,7 @@ public class IVRAct
 			// INSERT CALL_SCHEDULER
 			result.put("tid", 					userSessionID);
 			result.put("userSessionID", 		userSessionID);
-			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_COMPANY_NAME"));
+			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_USER_NAME"));
 			result.put("importance", 			importance);
 			result.put("status", 				status);
 			callSchedulerService.RegisterData(result);
@@ -791,7 +791,7 @@ public class IVRAct
 			// TTS 직접 입력한 경우
 			if(paramMap.getStr("sendType").equals("A"))
 			{
-				String 		companyName 	= paramMap.getStr("SESSION_COMPANY_NAME");
+				String 		companyName 	= paramMap.getStr("SESSION_USER_NAME");
 				String 		msg 			= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent") + "<VTML_PAUSE TIME=\"500\" />").replaceAll("<br/>", ". ").trim();
 				
 				// 알림형
@@ -869,7 +869,7 @@ public class IVRAct
 						
 						String ivrlogseq = paramMap.getStr("ivrlogseq");
 						
-						UMSExecutorService.addCallRunable(new IVRRunnable_0002(paramMap, sessionId, companyName, mentArr, ivrlogseq, sendTime, resultTTSPutList));
+						UMSExecutorService.addCallRunable(new IVRRunnable_0002(sessionId, ivrlogseq, sendTime, callerID));
 					}
 				}
 			}
@@ -908,7 +908,7 @@ public class IVRAct
 			// INSERT CALL_SCHEDULER
 			result.put("tid", 					userSessionID);
 			result.put("userSessionID", 		userSessionID);
-			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_COMPANY_NAME"));
+			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_USER_NAME"));
 			result.put("importance", 			importance);
 			result.put("status", 				status);
 			callSchedulerService.RegisterData(result);
@@ -922,7 +922,7 @@ public class IVRAct
 //			result.put("tid", 					userSessionID);
 //			result.put("userSessionID", 		userSessionID);
 //			result.put("ivrlogmapperseq", 		ivrlogmapperseq);
-//			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_COMPANY_NAME"));
+//			result.put("sessionCompanyName", 	paramMap.getStr("SESSION_USER_NAME"));
 //			result.put("statusCompletion", 		"I");
 //			
 //			ivrService.RegisterData(result);

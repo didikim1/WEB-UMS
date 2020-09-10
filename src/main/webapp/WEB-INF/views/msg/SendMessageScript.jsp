@@ -311,11 +311,44 @@ function initWebSocket()
 	}
 }
 
+function getNotphonenumber()
+{
+	var phonenumberArr 	= new Array();
+	var phonenumbers 	= $("#rList").find("[name=phonenumber]");
+	for(var i=0; i<phonenumbers.length; i++)
+	{
+		phonenumberArr.push(phonenumbers.eq(i).find("a").text());
+	}
+	
+	return phonenumberArr.toString();
+}
+
+// 모음함, 음성파일 첨부 선택 시 선택된 음성메세지 clear
+function clearWavFile()
+{
+	$("[name=seqarsalarmtts]").val("");
+	$("[name=recFileName]").val("");
+	$("[name=recFilePrefix]").val("");
+	$("[name=recFileUrl]").val("");
+	$("[name=detailPath]").val("");
+	$("[name=seqfile]").val("");
+	$("#recFileName").html("");
+}
+
+//전화번호에 하이픈 추가
+function formatPhonenumber(phonenumber)
+{
+    return phonenumber.toString().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-");
+}
+
 $(document).ready(function(){
 	var ws = null;
 // 	var ws = new WebSocket('wss://' + window.location.hostname + ':48008/ws');
 // 	var ws = new WebSocket('ws://' + window.location.hostname + ':48008/ws');
 
+	// 발신번호에 하이픈 추가
+	var callerId = "${userInfo.callerId}";
+	$("[name=callerID]").val(formatPhonenumber(callerId));
 	
 	
 	$(".loadingImg").hide();
@@ -443,11 +476,31 @@ $(document).ready(function(){
 
 	// 주소록 버튼
 	$("#btnAddress").click(function(){
-		var url='/msg/AddressList?isGroup=N';
+// 		var url='/msg/AddressList?isGroup=N';
+// 		var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-333);
+// 	 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-310);
+// 		var option = 'width=666, height=667, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+// 		window.open(url, 'AddressList', option);
+
+		var phonenumberArr 	= new Array();
+		var phonenumbers 	= $("#rList").find("[name=phonenumber]");
+		for(var i=0; i<phonenumbers.length; i++)
+		{
+			phonenumberArr.push(phonenumbers.eq(i).find("a").text());
+		}
+		
+		
+		var myForm 	= document.formAddress;
 		var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-333);
 	 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-310);
-		var option = 'width=666, height=667, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
-		window.open(url, 'AddressList', option);
+		var option 	= 'width=666, height=667, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+		window.open("", 'formAddress', option);
+
+		myForm.action 				= "/msg/AddressList";
+		myForm.method 				= "POST";
+		myForm.target 				= "formAddress";
+		myForm.notphonenumber.value = phonenumberArr.toString();
+		myForm.submit();
 	});
 
 	// 엑셀업로드 버튼
@@ -504,6 +557,7 @@ $(document).ready(function(){
 			$(".ttsMsgBox2").show();
 			$("textarea").val("");
 			$("input[name=fileSeq]").val("");
+			clearWavFile();
 		}
 		else if($(this).val() == "C")
 		{
@@ -515,6 +569,7 @@ $(document).ready(function(){
 			$(".ttsMsgBox2").show();
 			$("textarea").val("");
 			$("input[name=fileSeq]").val("");
+			clearWavFile();
 		}
 
 	});
@@ -616,6 +671,9 @@ $(document).ready(function(){
 
 	// 음성파일 첨부 듣기 버튼
 	$("#btnRecFileListenC").click(function(){
+		var recFileTitle = $("#recFileTitle").parent("li").find("[name=detailPath]").val();
+		recFileTitle = recFileTitle.replace("\\", "/");
+		
 		var myForm = document.formTTSListen;
 		var popupX 	= window.screenLeft+(((window.outerWidth)*0.5)-211);
 	 	var popupY 	= window.screenTop+(((window.outerHeight)*0.5)-50);
@@ -625,7 +683,8 @@ $(document).ready(function(){
 		myForm.action 				= "/IVR/recordPlay";
 		myForm.method 				= "POST";
 		myForm.target 				= "TTSListen";
-		myForm.fileUrl.value 		= $("#recFileTitle").parent("li").find("[name=detailPath]").val();
+		myForm.fileUrl.value 		= recFileTitle;
+// 		myForm.fileUrl.value 		= $("#recFileTitle").parent("li").find("[name=detailPath]").val();
 // 		myForm.fileUrl.value 		= $("#recFileTitle").parent("li").find("[name=recFilePrefix]").val();
 		myForm.submit();
 	});
@@ -668,12 +727,6 @@ $(document).ready(function(){
 
 	// 보내기 요청 버튼
 	$("#btnSubmit").click(function(){
-// 		if($("[name=exampleCnt]").val() > 1)
-// 		{
-// 			common.alert('', '지금은 전달 항목 갯수 1개까지만 가능합니다..');
-// 			return false;
-// 		}
-
 		var title = $("[name=ttsTitle]").val();
 
 		if(title.length < 1)
@@ -712,12 +765,6 @@ $(document).ready(function(){
 				common.alert('보내기 요청', '보내는 시간을 다시 확인해주세요.');
 				return false;
 			}
-
-// 			if(Date.parse(currentDate) > Date.parse(reservationDate))
-// 			{
-// 				common.alert('보내기 요청', '보내는 시간을 다시 확인해주세요.');
-// 				return false;
-// 			}
 		}
 		else if($("[name=sendTime]:checked").val() == "C")
 		{
@@ -774,14 +821,22 @@ $(document).ready(function(){
 
 	// 주소록 팝업창이 닫히면 실행된다.
 	$("#checkedListSeq").bind("click", function(){
+		var phonenumberArr 	= new Array();
+		var phonenumbers 	= $("#rList").find("[name=phonenumber]");
+		for(var i=0; i<phonenumbers.length; i++)
+		{
+			phonenumberArr.push(phonenumbers.eq(i).find("a").text());
+		}
+		
 		var seqgroup = ($("#seqgroup").val() == "") ? 0 : $("#seqgroup").val();
 		
 		$.ajax({
 			 url : "/msg/ListUpData"
 			,data : {
-				 seq 		: $("#checkedListSeq").val()
-				,listtype 	: $("#checkedListType").val()
-				,seqgroup 	: seqgroup
+				 seq 			: $("#checkedListSeq").val()
+				,listtype 		: $("#checkedListType").val()
+				,seqgroup 		: seqgroup
+				,notphonenumber : phonenumberArr.toString()
 			}
 			,success : function(data){
 // 				useTemplate(data.result);

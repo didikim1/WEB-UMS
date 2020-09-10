@@ -4,8 +4,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import com.inbiznetcorp.acs.framework.beans.FrameworkBeans;
+import com.inbiznetcorp.acs.framework.websocket.bean.BasicInfo;
+
 public class UMSExecutorService
 {
+	static BasicInfo basicInfo = (BasicInfo) FrameworkBeans.findBean("com.inbiznetcorp.acs.framework.websocket.bean.BasicInfo");
+	
 	static ExecutorService 		executorService 	= null;
 	static ThreadPoolExecutor 	threadPoolExecutor 	= null;
 
@@ -13,7 +18,7 @@ public class UMSExecutorService
 	{
 		if(executorService == null)
 		{
-			executorService 	= Executors.newFixedThreadPool(Integer.valueOf(100));
+			executorService 	= Executors.newFixedThreadPool(basicInfo.getSESSION_CPS());
 			threadPoolExecutor	= (ThreadPoolExecutor) executorService;
 
 		}

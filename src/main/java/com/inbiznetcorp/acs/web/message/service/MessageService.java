@@ -5,10 +5,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.inbiznetcorp.acs.framework.beans.BasicBean;
+import com.inbiznetcorp.acs.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.acs.framework.mymap.MyMap;
 import com.inbiznetcorp.acs.framework.utils.FrameworkPagingUtils;
 import com.inbiznetcorp.acs.mapper.tempgroup.TempGroupMapper;
 import com.inbiznetcorp.acs.mapper.temptarget.TempTargetMapper;
+import com.inbiznetcorp.acs.mapper.userinfo.UserInfoMapper;
 
 @Service("com.inbiznetcorp.acs.web.message.service.MessageService")
 public class MessageService
@@ -18,6 +20,9 @@ public class MessageService
 	
 	@Resource(name="com.inbiznetcorp.acs.mapper.temptarget.TempTargetMapper")
 	TempTargetMapper tempTargetMapper;
+	
+	@Resource(name="com.inbiznetcorp.acs.mapper.userinfo.UserInfoMapper")
+	UserInfoMapper mUserInfoMapper;
 
 	public BasicBean ListPagingData(MyMap paramMap)
 	{
@@ -38,6 +43,16 @@ public class MessageService
 	public int InsertTempGroup(MyMap paramMap)
 	{
 		return tempGroupMapper.InsertTempGroup(paramMap);
+	}
+
+	public MyCamelMap FindAdminInfo(MyMap paramMap)
+	{
+		return mUserInfoMapper.FindAdminInfo(paramMap);
+	}
+
+	public MyCamelMap FindUserInfo(MyMap paramMap)
+	{
+		return mUserInfoMapper.FindUserInfo(paramMap);
 	}
 
 }

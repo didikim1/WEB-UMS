@@ -33,7 +33,8 @@ $(document).ready(function(){
 
 				$(opener.document).find("[name=recFilePrefix]").val(data.result.uploadPath);
 				$(opener.document).find("[name=recFileName]").val(data.result.orignlFileNm);
-				$(opener.document).find("[name=detailPath]").val(data.result.uploadPath.split("uploadfile")[1]);
+// 				$(opener.document).find("[name=detailPath]").val(data.result.uploadPath.split("uploadfile")[1]);
+				$(opener.document).find("[name=detailPath]").val(data.result.uploadPath.split("C:\\Temp\\TempVMS\\")[1]);
 				$(opener.document).find("[name=seqfile]").val(data.result.seq);
 				$(opener.document).find("#recFileName").html(data.result.orignlFileNm);
 				window.close();

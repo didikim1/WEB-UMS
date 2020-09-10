@@ -14,6 +14,7 @@
 	#btnSubmit, #btnCancel { height:40px !important;margin-top:20px; }
 </style>
 
+<form name="formSubmit" action="/info/user/ModifyUserInfo" method="POST">
 <div id="contents">
 	<div class="section">
 
@@ -45,7 +46,7 @@
 				<tbody>
 					<tr>
 						<th>이름</th>
-						<td colspan="3"><input type="text" value="홍길동" maxlength="20" autocomplete="off" /></td>
+						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="20" autocomplete="off" /></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
@@ -53,49 +54,94 @@
 					</tr>
 					<tr class="newPW">
 						<th>새 비밀번호</th>
-						<td><input type="password" /></td>
+						<td><input type="password" name="password1" /></td>
 						<th>비밀번호 확인</th>
-						<td><input type="password" /></td>
+						<td><input type="password" name="password2" /></td>
 					</tr>
 					<tr>
 						<th>유선전화번호</th>
 						<td colspan="3">
-							<select>
+							<select name="tel1">
 								<option>02</option>
 								<option>031</option>
+								<option>032</option>
+								<option>033</option>
+								<option>041</option>
+								<option>042</option>
+								<option>043</option>
+								<option>051</option>
+								<option>052</option>
+								<option>053</option>
+								<option>054</option>
+								<option>055</option>
+								<option>061</option>
+								<option>062</option>
+								<option>063</option>
+								<option>064</option>
+								<option>070</option>
+								<option>010</option>
+								<option>011</option>
+								<option>016</option>
+								<option>017</option>
+								<option>018</option>
+								<option>019</option>
 							</select>
 							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
-							<input type="text" class="inputPhone" value="0000" />
+							<input type="text" class="inputPhone" name="tel2" />
 							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
-							<input type="text" class="inputPhone" value="0000" />
+							<input type="text" class="inputPhone" name="tel3" />
 						</td>
 					</tr>
 					<tr>
-						<th>무선전화번호</th>
+						<th>휴대전화번호</th>
 						<td colspan="3">
-							<select>
+							<select name="phone1">
 								<option>010</option>
 								<option>011</option>
+								<option>016</option>
+								<option>017</option>
+								<option>018</option>
+								<option>019</option>
 							</select>
 							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
-							<input type="text" class="inputPhone" value="0000" />
+							<input type="text" class="inputPhone" name="phone2" />
 							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
-							<input type="text" class="inputPhone" value="0000" />
+							<input type="text" class="inputPhone" name="phone3" />
 						</td>
 					</tr>
 					<tr>
 						<th>이메일 주소</th>
 						<td colspan="3">
-							<input type="text" class="inputMail" value="testmail" />
+							<input type="text" class="inputMail" name="email1" />
 							<input type="text" name="" value=" @ " disabled style="border:none;width:30px;"/>
-							<input type="text" class="inputMail" value="inbiznetcorp.com" />
-							<select>
+							<input type="text" class="inputMail" name="email2" />
+							<select name="email3">
 								<option>직접입력</option>
-								<option>inbiznetcorp.com</option>
+								<option>naver.com</option>
+								<option>nate.com</option>
+								<option>paran.com</option>
+								<option>hanmail.net</option>
+								<option>gmail.com</option>
+								<option>hitel.net</option>
+								<option>hanmir.com</option>
+								<option>netian.com</option>
+								<option>dreamwiz.com</option>
+								<option>lycos.co.kr</option>
+								<option>yahoo.co.kr</option>
+								<option>chollian.net</option>
+								<option>orgio.net</option>
+								<option>korea.com</option>
+								<option>freechal.com</option>
+								<option>hotmail.com</option>
+								<option>unitel.co.kr</option>
+								<option>empal.com</option>
+								<option>nownuri.net</option>
+								<option>hanafos.com</option>
+								<option>kornet.net</option>
 							</select>
 							<br/>
 							<br/>
-							<input type="checkbox" />
+							<input type="checkbox" name="eventAgree" <c:if test='${userInfo.eventAgree eq "Y"}'>checked</c:if> value="Y" />
 							<label>이벤트, 정기 뉴스레터 수신 동의</label>
 						</td>
 					</tr>
@@ -113,15 +159,9 @@
 	</div>
 </div>
 
-</BaseTag:layout>
+<input type="hidden" name="sequser" value="${paramMap.sequser}" />
 
-<script>
-$(document).ready(function(){
-	$(".newPW").hide();
-	
-	// 비밀번호 변경 버튼
-	$("#changePassword").click(function(){
-		$(".newPW").show();
-	});
-});
-</script>
+</form>
+
+<%@ include file="UserInfoDetailScript.jsp" %>
+</BaseTag:layout>

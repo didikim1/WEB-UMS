@@ -43,7 +43,7 @@
 		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(sSDate_)">
 			AND DATE_FORMAT(T2.CREATEDATE, '%Y-%m-%d') BETWEEN #{sSDate_} AND #{sEDate_}
 		</if>
-
+		
 	</sql>
 
 	<select id="SelectOnePagingMapperCount" parameterType="myMap" resultType="int">
@@ -104,6 +104,11 @@
 							]]>
 						</if>
 					</if>
+					<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(SESSION_GRADE)">
+						<if test='SESSION_GRADE.equals("B")'>
+							AND GROUP_IDENTIFIER = #{SESSION_USER_NAME}
+						</if>
+					</if>
 				GROUP BY
 					T2.IVRLOGMAPPERSEQ
 			) T0
@@ -124,15 +129,12 @@
 		SELECT
 			 T3.*
 			,(CASE
-<!-- 				WHEN CNT1 = CNT2 + CNT3 THEN '전송완료' -->
 				WHEN CNT1 = CNT2 THEN '전송완료'
 				WHEN STATE_I_CNT > 0 THEN '진행중'
 				WHEN STATE_W_CNT > 0 THEN '대기'
 				ELSE '진행중'
 			END) AS STATUS_COMPLETION
 			,TOT_CALLDURATION
-<!-- 			,FIRST_CALLRESPONSEDATE -->
-<!-- 			,LAST_CALLRESPONSEDATE			 -->
 			,ROUND
 			,ORIGIN_SEQ
 			,ROUND_NUM
@@ -165,8 +167,6 @@
 				,( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T0.IVRLOGMAPPERSEQ AND ISUSE = 'Y' AND STATUS_COMPLETION = 'I' ) AS STATE_I_CNT
 				,( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T0.IVRLOGMAPPERSEQ AND ISUSE = 'Y' AND STATUS_COMPLETION = 'W' ) AS STATE_W_CNT
 				,( SELECT SUM(CALLDURATION) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T0.IVRLOGMAPPERSEQ AND ISUSE = 'Y'  ) AS TOT_CALLDURATION
-<!-- 				,( SELECT MIN(CAST WHEN CALLRESPONSEDATE IS NULL THEN CALLSTARTDATE ELSE CALLRESPONSEDATE END) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T0.IVRLOGMAPPERSEQ AND ISUSE = 'Y') AS FIRST_CALLRESPONSEDATE -->
-<!-- 				,( SELECT MAX(CAST WHEN CALLRESPONSEDATE IS NULL THEN CALLSTARTDATE ELSE CALLRESPONSEDATE END) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T0.IVRLOGMAPPERSEQ AND ISUSE = 'Y') AS LAST_CALLRESPONSEDATE -->
 				,( SELECT DATE_FORMAT(MIN(CALLSTARTDATE), '%Y-%m-%d %H:%i:%s') FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T0.IVRLOGMAPPERSEQ AND ISUSE = 'Y') AS FIRST_CALLRESPONSEDATE
 				,( SELECT DATE_FORMAT(MAX(CALLSTARTDATE), '%Y-%m-%d %H:%i:%s') FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T0.IVRLOGMAPPERSEQ AND ISUSE = 'Y') AS LAST_CALLRESPONSEDATE
 				,ROUND
@@ -175,11 +175,6 @@
 			FROM
 			(
 				SELECT
-<!-- 					 T1.TTS_MENT_INTRO_01 -->
-<!-- 					,T1.CALL_TYPE -->
-<!-- 					,T1.REPEAT_TYPE -->
-<!-- 					,T1.NEXTCALL_DATE -->
-<!-- 					,T2.* -->
 					T1.*
 					,T2.TITLE
 					,T2.RESERVATION_DATE
@@ -218,6 +213,11 @@
 							]]>
 						</if>
 					</if>
+					<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(SESSION_GRADE)">
+						<if test='SESSION_GRADE.equals("B")'>
+							AND GROUP_IDENTIFIER = #{SESSION_USER_NAME}
+						</if>
+					</if>
 				GROUP BY T2.IVRLOGMAPPERSEQ
 				ORDER BY T2.IVRLOGMAPPERSEQ DESC
 				<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isEmpty(ivrlogmapperseq)">
@@ -238,124 +238,6 @@
 			ORDER BY CAST(IVRLOGMAPPERSEQ AS UNSIGNED) DESC
 		) T3
 	
-	
-	
-<!-- 		SELECT -->
-<!-- 			 ROW_NUM -->
-<!-- 			,CREATEDATE -->
-<!-- 			,TTS_MENT_INTRO_01 -->
-<!-- 			,IVRLOGMAPPERSEQ -->
-<!-- 			,TITLE -->
-<!-- 			,NEXTCALL_DATE -->
-<!-- 			,CALL_TYPE -->
-<!-- 			,SEND_TIME -->
-<!-- 			,REPEAT_TYPE -->
-<!-- 			,CNT1 -->
-<!-- 			,CNT2 -->
-<!-- 			,CNT3 -->
-<!-- 			,CNT4 -->
-<!-- 			,STATUS_COMPLETION -->
-<!-- 		FROM -->
-<!-- 		( -->
-<!-- 			SELECT -->
-<!-- 				 CAST(@ROWNUM:=@ROWNUM+1 AS SIGNED) AS ROW_NUM -->
-<!-- 				,CREATEDATE -->
-<!-- 				,TTS_MENT_INTRO_01 -->
-<!-- 				,IVRLOGMAPPERSEQ -->
-<!-- 				,TITLE -->
-<!-- 				,NEXTCALL_DATE -->
-<!-- 				,CALL_TYPE -->
-<!-- 				,SEND_TIME -->
-<!-- 				,REPEAT_TYPE -->
-<!-- 				,CNT1 -->
-<!-- 				,CNT2 -->
-<!-- 				,CNT3 -->
-<!-- 				,CNT4 -->
-<!-- 				,(CASE -->
-<!-- 					WHEN CNT1 = CNT2 THEN '전송완료' -->
-<!-- 					WHEN STATE_I_CNT > 0 THEN '진행중' -->
-<!-- 					WHEN STATE_W_CNT > 0 THEN '대기' -->
-<!-- 					ELSE '진행중' -->
-<!-- 				END) AS STATUS_COMPLETION -->
-<!-- 			FROM -->
-<!-- 			( -->
-<!-- 				SELECT -->
-<!-- 					 DATE_FORMAT(T2.CREATEDATE, '%Y-%m-%d %H:%i') AS CREATEDATE -->
-<!-- 					,T1.TTS_MENT_INTRO_01 -->
-<!-- 					,T2.IVRLOGMAPPERSEQ -->
-<!-- 					,T2.TITLE -->
-<!-- 					,DATE_FORMAT(T2.RESERVATION_DATE, '%Y-%m-%d %H:%i') AS NEXTCALL_DATE -->
-<!-- 					,T1.CALL_TYPE -->
-<!-- 					,T2.SEND_TIME -->
-<!-- 					,CASE -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'A' THEN CONCAT('매일 ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'B' AND DATE_FORMAT(NEXTCALL_DATE, '%w') = 1 THEN CONCAT('매주 월요일 ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'B' AND DATE_FORMAT(NEXTCALL_DATE, '%w') = 2 THEN CONCAT('매주 화요일 ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'B' AND DATE_FORMAT(NEXTCALL_DATE, '%w') = 3 THEN CONCAT('매주 수요일 ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'B' AND DATE_FORMAT(NEXTCALL_DATE, '%w') = 4 THEN CONCAT('매주 목요일 ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'B' AND DATE_FORMAT(NEXTCALL_DATE, '%w') = 5 THEN CONCAT('매주 금요일 ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'C' THEN CONCAT('매월 ', DATE_FORMAT(NEXTCALL_DATE, '%d'), '일', ' ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						WHEN T1.REPEAT_TYPE = 'D' THEN CONCAT('월~금 ', DATE_FORMAT(NEXTCALL_DATE, '%H:%i')) -->
-<!-- 						ELSE '-' -->
-<!-- 					END AS REPEAT_TYPE -->
-<!-- 					,COUNT(*) AS CNT1 -->
-<!-- 					,( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND STATUS_COMPLETION = 'Y' ) AS CNT2 -->
-<!-- 					,( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND CALLRESPONSEDATE IS NOT NULL ) AS CNT3 -->
-<!-- 					,( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND USER_INPUT IS NOT NULL ) AS CNT4 -->
-<!-- 					,( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND STATUS_COMPLETION = 'I' ) AS STATE_I_CNT -->
-<!-- 					,( SELECT COUNT(*) FROM IVRLOG WHERE IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ AND T1.ISUSE = 'Y' AND STATUS_COMPLETION = 'W' ) AS STATE_W_CNT -->
-<!-- 				FROM -->
-<!-- 					 IVRLOG T1 -->
-<!-- 					,IVRLOGMAPPER T2 -->
-<!-- 				WHERE 1=1 -->
-<!-- 					AND T1.IVRLOGMAPPERSEQ = T2.IVRLOGMAPPERSEQ -->
-<!-- 					AND T1.ISUSE = 'Y' -->
-<!-- 					AND T2.ISUSE = 'Y' -->
-<!-- 					<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(listType)"> -->
-<!-- 						<if test='listType.equals("A")'> -->
-<!-- 							<![CDATA[ -->
-<!-- 								AND (T2.SEND_TIME = 'A' OR (T2.SEND_TIME = 'B' && T2.RESERVATION_DATE < NOW()) OR (T2.SEND_TIME = 'C' && T2.RESERVATION_DATE < NOW())) -->
-<!-- 								AND T1.CALL_TYPE != 'B' -->
-<!-- 							]]>  -->
-<!-- 						</if> -->
-<!-- 						<if test='listType.equals("B")'> -->
-<!-- 							<![CDATA[ -->
-<!-- 								AND (T2.SEND_TIME = 'A' OR (T2.SEND_TIME = 'B' && T2.RESERVATION_DATE < NOW()) OR (T2.SEND_TIME = 'C' && T2.RESERVATION_DATE < NOW())) -->
-<!-- 								AND T1.CALL_TYPE = 'B' -->
-<!-- 							]]> -->
-<!-- 						</if> -->
-<!-- 						<if test='listType.equals("C")'> -->
-<!-- 							<![CDATA[ -->
-<!-- 								AND T2.SEND_TIME = 'B'  -->
-<!-- 								AND T2.RESERVATION_DATE > NOW() -->
-<!-- 							]]> -->
-<!-- 						</if> -->
-<!-- 						<if test='listType.equals("D")'> -->
-<!-- 							<![CDATA[ -->
-<!-- 								AND T2.SEND_TIME = 'C'  -->
-<!-- 								AND T2.RESERVATION_DATE > NOW() -->
-<!-- 							]]> -->
-<!-- 						</if> -->
-<!-- 					</if> -->
-<!-- 				GROUP BY T2.IVRLOGMAPPERSEQ -->
-<!-- 				ORDER BY T2.IVRLOGMAPPERSEQ ASC -->
-<!-- 			) T0 -->
-<!-- 			,(SELECT @ROWNUM:=0) TMP -->
-<!-- 		) T00 -->
-<!-- 		WHERE 1=1 -->
-<!-- 			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)"> -->
-<!-- 				AND IVRLOGMAPPERSEQ = #{ivrlogmapperseq} -->
-<!-- 			</if> -->
-<!-- 			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(sSDate_)"> -->
-<!-- 				AND DATE_FORMAT(${searchDType}, '%Y-%m-%d') BETWEEN #{sSDate_} AND #{sEDate_} -->
-<!-- 			</if> -->
-<!-- 			<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(searchType_)"> -->
-<!-- 				AND ${searchType_} LIKE CONCAT('%', #{searchWord_}, '%') -->
-<!-- 			</if> -->
-<!-- 		ORDER BY ${sidx} ${sord}, CREATEDATE DESC -->
-<!-- 		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isEmpty(ivrlogmapperseq)"> -->
-<!-- 			LIMIT #{start}, #{end} -->
-<!-- 		</if> -->
 	</select>
 
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
@@ -388,22 +270,6 @@
 				,T1.CALLSTARTDATE
 				,T1.CALLENDDATE
 				,T1.CALLDURATION
-<!-- 				,( CASE -->
-<!-- 						WHEN STATUS_COMPLETION = 'I' 	THEN '진행중' -->
-<!-- 						WHEN (STATUS_COMPLETION = 'R' OR STATUS_COMPLETION = 'W') 	THEN '대기' -->
-<!-- 						WHEN RESULT = '00' THEN '성공' -->
-<!-- 						WHEN RESULT = '10' THEN '없는번호' -->
-<!-- 						WHEN RESULT = '11' THEN '수신 거부' -->
-<!-- 						WHEN RESULT = '12' THEN '전화 안받음' -->
-<!-- 						WHEN RESULT = '13' THEN '착신전환' -->
-<!-- 						WHEN RESULT = '20' THEN '고객의 통화 종료' -->
-<!-- 						WHEN RESULT = '23' THEN '입력시간 초과' -->
-<!-- 						WHEN RESULT = '24' THEN '미입력' -->
-<!-- 						WHEN RESULT = '41' THEN '통화중' -->
-<!-- 						WHEN RESULT = '42' THEN '전원꺼짐' -->
-<!-- 						ELSE '기타실패' -->
-<!-- 					END ) AS RESULT -->
-<!-- 				,RESULT_MESSAGE -->
 				,( CASE
 						WHEN T1.STATUS_COMPLETION = 'I' 	THEN '진행중'
 						WHEN (T1.STATUS_COMPLETION = 'R' OR T1.STATUS_COMPLETION = 'W') 	THEN '대기'
@@ -457,7 +323,6 @@
 				<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(ivrlogmapperseq)">
 					AND T1.IVRLOGMAPPERSEQ = #{ivrlogmapperseq}
 				</if>
-<!-- 			ORDER BY IVRLOGSEQ ASC -->
 			ORDER BY T1.CALLRESPONSEDATE ASC
 		) T0
 		WHERE 1=1

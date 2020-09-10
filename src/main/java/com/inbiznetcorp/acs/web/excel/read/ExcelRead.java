@@ -32,20 +32,20 @@ public class ExcelRead
 
 		    Sheet sheet = workbook.getSheetAt(0);
 		    DataFormatter dataFormatter = new DataFormatter();
-
+		    
 		    EXIT:
 		    for (Row row: sheet)
 		    {
 		    	iRowCnt++;
+		    	if((iRowCnt == 1) || (iRowCnt == 2)) { continue; }
 		    	iCellCnt = row.getPhysicalNumberOfCells();
-
+		    	
 		    	if(iCellCnt > 0)
 		    	{
 		    		MyCamelMap dataRow = new MyCamelMap();
 		    		for(int i=0; i<4; i++)
 			    	{
 			    		String cellValue = dataFormatter.formatCellValue(row.getCell(i));
-			    		
 			    		if(i == 0)
 			    		{
 //			    			if((cellValue == null) || (cellValue.equals("")))
@@ -104,6 +104,7 @@ public class ExcelRead
 			    			dataRow.put("address", cellValue);
 			    		}
 			    	}
+		    		System.out.println("dataRow : " + dataRow);
 		    		datas.add(dataRow);
 		    	}
 	        }

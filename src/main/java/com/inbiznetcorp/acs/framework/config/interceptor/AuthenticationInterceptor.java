@@ -21,7 +21,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor
     @Override
     public boolean preHandle(HttpServletRequest _httpServletRequest, HttpServletResponse _httpServletResponse, Object _handler) throws Exception
     {
-    	String 		 companyName 		= null;
+    	String 		 userName 		= null;
 //    	String 		 userId				= null;
 //    	String 		 typeCharge			= null;
 
@@ -34,11 +34,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
         FrameworkBeans.setHttpServletBean(_httpServletRequest, _httpServletResponse);
 
-        String[] noSessionUrls = new String[] {"", "/", "/Login", "/LoginSubmit", "/ExecutorStop", "/ExecutorStopSubmit"};
+        String[] noSessionUrls = new String[] {"", "/", "/Login", "/LoginSubmit", "/ExecutorStop", "/ExecutorStopSubmit", "/Common/Alert"};
 
-        companyName = FrameworkBeans.findSessionBean().getCompanyName();
+        userName = FrameworkBeans.findSessionBean().getUserName();
 
-        if( (FrameworkUtils.inArray(noSessionUrls, url) == -1) && ( companyName.isEmpty() ) )
+        if( (FrameworkUtils.inArray(noSessionUrls, url) == -1) && ( userName.isEmpty() ) )
         {
     		_httpServletResponse.sendRedirect("/Login");
         	return false;

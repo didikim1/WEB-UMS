@@ -46,14 +46,17 @@ public class IndexAct
 			}
 			else
 			{
-				FrameworkBeans.findSessionBean().setCompanyName(adminInfo.getStr("userId"));
-				FrameworkBeans.findSessionBean().setGrade(adminInfo.getStr("userId"));
+				FrameworkBeans.findSessionBean().setUserSeq(adminInfo.getStr("sequser"));
+				FrameworkBeans.findSessionBean().setUserName(adminInfo.getStr("userId"));
+				FrameworkBeans.findSessionBean().setGrade("A");
 				return "redirect:/msg/SendMessage";
 			}
 		}
 		else
 		{
-			FrameworkBeans.findSessionBean().setCompanyName(userInfo.getStr("userId"));
+			FrameworkBeans.findSessionBean().setUserSeq(userInfo.getStr("sequser"));
+			FrameworkBeans.findSessionBean().setUserName(userInfo.getStr("userId"));
+			FrameworkBeans.findSessionBean().setGrade("B");
 			return "redirect:/msg/SendMessage";
 		}
 	}
@@ -61,7 +64,7 @@ public class IndexAct
 	@RequestMapping("/Logout")
 	public String Logout()
 	{
-		FrameworkBeans.findSessionBean().setCompanyName("");
+		FrameworkBeans.findSessionBean().setUserName("");
 		FrameworkBeans.findSessionBean().setGrade("");
 		return "redirect:/";
 	}

@@ -69,7 +69,7 @@ public class AddressService
 		}
 		else
 		{
-			paramMap.put("groupseq", paramMap.getInt("seq"));
+			paramMap.put("groupseq", paramMap.getInt("seq", 0));
 
 			List<MyCamelMap> sResultMap = groupMapper.ListPagingDataDetail(paramMap);
 			String seqMapperStr = "'";
@@ -95,7 +95,8 @@ public class AddressService
 			}
 
 			MyMap seqAddressMap = new MyMap();
-			seqAddressMap.put("seq", seqAddressStr);
+			seqAddressMap.put("seq", 			seqAddressStr);
+			seqAddressMap.put("notphonenumber", paramMap.getStr("notphonenumber", ""));
 
 			return addressMapper.ListPagingData(seqAddressMap);
 		}

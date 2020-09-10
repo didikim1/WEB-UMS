@@ -288,14 +288,7 @@ public class AddressAct
 
 		int result = addressService.SearchDupl(paramMap);
 
-		if(result < 1)
-		{
-			return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!");
-		}
-		else
-		{
-			return new ResultMessage(ResultCode.RESULT_BAD_REQUEST, "no!!!!!!");
-		}
+		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", result);
 	}
 
 	/**

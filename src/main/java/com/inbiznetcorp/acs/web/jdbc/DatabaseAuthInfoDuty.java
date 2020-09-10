@@ -21,7 +21,7 @@ public class DatabaseAuthInfoDuty
 {
 	public static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(DatabaseAuthInfoDuty.class);
 	
-    public DatabaseAuthInfoDuty(List<MyCamelMap>  parseResult, int seqgroup)
+    public DatabaseAuthInfoDuty(List<MyCamelMap>  parseResult, int seqgroup, String userSeq, String grade)
     {
     	ServiceCommon serviceCommon = (ServiceCommon) FrameworkBeans.findBean("com.inbiznetcorp.acs.framework.common.ServiceCommon");
     	
@@ -41,14 +41,14 @@ public class DatabaseAuthInfoDuty
     	}
     	else if(serviceCommon.getProfilesActiveName().equals("test"))
     	{
-    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/vms_test?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
+    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
     		mDBUser = "inbiznet";
     		mDBPass = "inbiz9020";
     		mDBServer = "dev";
     	}
     	else
     	{
-    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
+    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms_dev?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
     		mDBUser = "inbiznet";
     		mDBPass = "inbiz9020";
     		mDBServer = "dev";
@@ -56,6 +56,9 @@ public class DatabaseAuthInfoDuty
     	
         mParseResult 	= parseResult;
         mSeqgroup 		= seqgroup;
+        mUserSeq 		= userSeq;
+        mGrade 			= grade;
+        
     }
     
 
@@ -80,7 +83,9 @@ public class DatabaseAuthInfoDuty
 
                 ps.setString(1, bean.getStr("name", null));
                 ps.setString(2, bean.getStr("phonenumber", null));
-                ps.setInt(3, mSeqgroup);
+                ps.setInt(3, 	mSeqgroup);
+                ps.setString(4, mUserSeq);
+                ps.setString(5, mGrade);
                 
                 ps.addBatch();
                 ps.clearParameters();
@@ -128,6 +133,8 @@ public class DatabaseAuthInfoDuty
     
     private List<MyCamelMap> 	mParseResult 	= null;
     private int 				mSeqgroup 		= 0;
+    private String 				mUserSeq 		= null;
+    private String 				mGrade 			= null;
 
     private String              mDBDriver		= "com.mysql.jdbc.Driver";
     private String              mDBURL 			= null;
@@ -142,10 +149,14 @@ public class DatabaseAuthInfoDuty
             + ",PHONENUMBER"
             + ",SEQGROUP"
             + ",CREATEDATE"
+            + ",COMPANYSEQ"
+            + ",COMPANYGRADE"
             + ")"
             + "VALUES"
             + "("
             + " ?"
+            + ",?"
+            + ",?"
             + ",?"
             + ",?"
             + ",now()"

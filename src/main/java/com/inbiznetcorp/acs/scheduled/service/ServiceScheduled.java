@@ -18,6 +18,7 @@ import com.inbiznetcorp.acs.framework.mymap.MyCamelMap;
 import com.inbiznetcorp.acs.framework.mymap.MyMap;
 import com.inbiznetcorp.acs.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.acs.framework.websocket.IVRRunnable;
+import com.inbiznetcorp.acs.framework.websocket.IVRRunnable_0002;
 import com.inbiznetcorp.acs.framework.websocket.IVRSender;
 import com.inbiznetcorp.acs.framework.websocket.UMSExecutorService;
 import com.inbiznetcorp.acs.framework.websocket.bean.BasicInfo;
@@ -140,7 +141,7 @@ public class ServiceScheduled
 				// 응답형
 				else
 				{
-
+					UMSExecutorService.addCallRunable(new IVRRunnable_0002(userSessionID, String.valueOf(ivrlogseq), "A", target.getStr("callerId")));
 				}
 				
 			}
