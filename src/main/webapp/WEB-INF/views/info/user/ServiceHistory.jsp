@@ -13,6 +13,7 @@
 	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
 	#searchWord { height:40px; }
 	#btnSearch { margin-left:0px; }
+	.btnResend {width: 75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important;}
 	.main_table td { text-align:center; }
 	.main_table button { padding:3px 5px;float:none;margin-left:0; }
 </style>
@@ -48,9 +49,9 @@
 				<input type="text" class="date" name="sSDate" value="${sSDate}" autocomplete="off"/> ~
 				<input type="text" class="date" name="sEDate" value="${sEDate}" autocomplete="off"/>
 				<select id="searchType" name="searchType">
-					<option value="IVRSERVER_NAME" <c:if test="${searchType_ eq 'IVRSERVER_NAME'}">selected</c:if> >서비스종류</option>
-					<option value="IVRSERVER_IP" <c:if test="${searchType_ eq 'IVRSERVER_IP'}">selected</c:if> >제목</option>
-					<option value="IVRSERVER_CPS" <c:if test="${searchType_ eq 'IVRSERVER_CPS'}">selected</c:if> >처리여부</option>
+					<option value="SERVICE_TYPE" <c:if test="${searchType_ eq 'SERVICE_TYPE'}">selected</c:if> >메세지유형</option>
+					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
+					<option value="STATUS_COMPLETION" <c:if test="${searchType_ eq 'STATUS_COMPLETION'}">selected</c:if> >처리여부</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
 				<button type="button" class="btn_table" id="btnSearch">검색</button>
@@ -69,13 +70,13 @@
 					<col width="10%" />
 					<col width="10%" />
 					<col width="10%" />
-					<col width="8%" />
+					<col width="12%" />
 				</colgroup>
 				<thead>
 					<tr>
 						<th>순번</th>
 						<th>날짜</th>
-						<th>서비스종류</th>
+						<th>메세지유형</th>
 						<th>제목</th>
 						<th>발신</th>
 						<th>처리여부</th>

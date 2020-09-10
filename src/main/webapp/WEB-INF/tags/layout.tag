@@ -39,8 +39,8 @@
 
 	<style>
 		#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
-		#btnLogout { float:right;margin-right:-380px; }
-		#btnLogout {  }
+/* 		#btnLogout { float:right;margin-right:-380px; } */
+		#btnLogout { height:35px; margin-left:80px; margin-top:-5px;}
 	</style>
 
  </head>
@@ -93,12 +93,12 @@
 					<li>
 						<a href="/received">메세지 보관함</a>
 						<ul>
-							<li style="margin-left:-150px"><a href="/received">수신함</a></li>
+							<li style="margin-left:-150px"><a href="/received">회신수신함</a></li>
 							<li><a href="/collection">음성모음함</a></li>
 							<li><a href="/collection/SurveyList">설문모음함</a></li>
 						</ul>
 					</li>
-					<li style="margin-left:80px;">
+					<li>
 						<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
 					</li>
 				</ul>

@@ -46,13 +46,13 @@
 			<input type="hidden" name="sord" value="${sord}" />
 
 			<div class="searchBox">
-				<label>요청일</label>
+				<label>수신일</label>
 				<input type="text" class="sendDate" name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
 				<input type="text" class="sendDate" name="sEDate_" value="${sEDate_}" autocomplete="off"/>
 				<select id="searchType" name="searchType_">
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
 					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >보낸번호</option>
-					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >메세지유형</option>
+					<option value="SERVICE_TYPE" <c:if test="${searchType_ eq 'SERVICE_TYPE'}">selected</c:if> >메세지유형</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord_" value="${searchWord_}" autocomplete="off"/>
 				<button type="button" class="btn_table" id="btnSearch">검색</button>
@@ -75,7 +75,7 @@
 						<th><input type="checkbox" name="" /></th>
 						<th>보낸번호</th>
 						<th>제목</th>
-						<th>수신일시</th>
+						<th>수신일</th>
 						<th>메세지유형</th>
 						<th>내용</th>
 					</tr>
