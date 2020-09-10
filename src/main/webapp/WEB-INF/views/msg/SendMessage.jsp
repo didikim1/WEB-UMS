@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
+	.tbl_type01 th, .tbl_type01 td {padding:5px;}
 	.info_com ul li a { margin-right:10px;margin-top:8px;font-size:13px;font-weight:400; }
 	.info_com ul li input[type=text] { margin-right:20px;width:200px; }
 	.ttsTitle { width:550px !important; }

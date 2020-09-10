@@ -9,14 +9,14 @@
 	.searchBox { float:right; }
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.searchBox label { font-size:14px;margin-right:5px; }
-	.sendDate { width:115px;height:40px;font-size:14px; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	#searchWord { height:40px; }
+	.searchBox .date { width:115px;height:30px;font-size:14px; }
+	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	.pointer { cursor:pointer; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
-	.btnSend { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnSend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
 	.tbl_type01 th, .tbl_type01 td { padding:5px 0 !important; }
 </style>
 
@@ -49,8 +49,8 @@
 
 			<div class="searchBox">
 				<label>요청일</label>
-				<input type="text" class="sendDate" name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
-				<input type="text" class="sendDate" name="sEDate_" value="${sEDate_}" autocomplete="off"/>
+				<input type="text" class="date" name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
+				<input type="text" class="date" name="sEDate_" value="${sEDate_}" autocomplete="off"/>
 				<select id="searchType" name="searchType_">
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
 					<option value="ORIGIN_SEQ" <c:if test="${searchType_ eq 'ORIGIN_SEQ'}">selected</c:if> >고유번호</option>
@@ -59,7 +59,7 @@
 					<option value="ROUND_NUM" <c:if test="${searchType_ eq 'ROUND_NUM'}">selected</c:if> >발송횟수</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord_" value="${searchWord_}" autocomplete="off"/>
-				<button type="button" class="btn_table" id="btnSearch">검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->

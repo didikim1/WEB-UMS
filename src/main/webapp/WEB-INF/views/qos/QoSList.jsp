@@ -9,9 +9,9 @@
 	.searchBox { float:right; }
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.searchBox label { font-size:14px;margin-right:5px; }
-	.date { width:115px;height:40px;font-size:14px; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	#searchWord { height:40px; }
+	.searchBox .date { width:115px;height:30px;font-size:14px; }
+	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	.pointer { cursor:pointer; }
 	table tbody tr td { text-align:center !important; }
@@ -52,10 +52,10 @@
 				<select id="searchType" name="searchType">
 					<option value="IVRSERVER_NAME" <c:if test="${searchType_ eq 'IVRSERVER_NAME'}">selected</c:if> >고객사</option>
 					<option value="IVRSERVER_IP" <c:if test="${searchType_ eq 'IVRSERVER_IP'}">selected</c:if> >고객사정보</option>
-					<option value="IVRSERVER_CPS" <c:if test="${searchType_ eq 'IVRSERVER_CPS'}">selected</c:if> >QoS</option>
+					<option value="IVRSERVER_CPS" <c:if test="${searchType_ eq 'IVRSERVER_CPS'}">selected</c:if> >QoS등급</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
-				<button type="button" class="btn_table" id="btnSearch">검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->

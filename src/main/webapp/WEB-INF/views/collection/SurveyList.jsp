@@ -10,9 +10,9 @@
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.searchBox { float:right; }
 	.searchBox label { font-size:14px;margin-right:5px; }
-	.searchBox .date { width:115px;height:40px;font-size:14px; }
-	.searchBox #searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	.searchBox #searchWord { height:40px; }
+	.searchBox .date { width:115px;height:30px;font-size:14px; }
+	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	.searchBox #searchWord { height:30px; }
 	.searchBox #btnSearch { margin-left:0px; }
 	.company_list input[type=checkbox] { width:16px; }
 	.company_list td { text-align:center; }
@@ -54,7 +54,7 @@
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
-				<button type="button" class="btn_table" id="btnSearch">검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->

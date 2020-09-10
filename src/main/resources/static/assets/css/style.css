@@ -61,7 +61,7 @@ body.on {overflow:hidden;}
 /*
 	form
 ----------------------------------------------------------*/
-input {padding:0 5px;height:30px;font-family:inherit;font-size:inherit;box-sizing:border-box;border:1px solid #ccc;}
+input {padding:0 5px;height:36px;font-family:inherit;font-size:inherit;box-sizing:border-box;border:1px solid #ccc;}
 textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-box;border:1px solid #ccc;resize:none;}
 
 

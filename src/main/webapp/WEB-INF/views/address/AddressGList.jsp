@@ -7,8 +7,8 @@
 <style>
 	.buttonBox 	{ float:right; }
 	.searchBox 	{ float:right;margin-bottom:15px; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	#searchWord { height:40px; }
+	#searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	#searchWord { height:30px; }
 	#btnSearch 	{ margin-left:0px; }
 	input[type=checkbox] { width:15px !important; }
 	table tbody tr td { text-align:center !important; }
@@ -46,8 +46,9 @@
 			<input type="hidden" name="page" value="${paginationInfo.currentPageNo}"/>
 
 			<div class="searchBox">
+				<a style="margin-right:10px;">그룹명</a>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
-				<button type="button" class="btn_table" id="btnSearch">그룹명 검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->

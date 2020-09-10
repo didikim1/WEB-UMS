@@ -8,8 +8,8 @@
 	.info_com ul li a { margin-right:10px;margin-top:8px;line-height:38px; }
 	.info_com ul li input[type=text] { margin-right:20px;width:200px;height:38px; }
 	.searchBox 	{ float:right;margin-bottom:15px; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	#searchWord { height:40px; }
+	#searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	#searchWord { height:30px; }
 	#btnSearch 	{ margin-left:0px; }
 	table tbody tr td { text-align:center !important; }
 	.company_list tr { line-height:0.5 !important;font-size:100% !important; }
@@ -47,7 +47,7 @@
 					<option value="ADDRESS" <c:if test="${searchType eq 'ADDRESS'}">selected</c:if> >주소</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
-				<button type="button" class="btn_table" id="btnSearch">검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->

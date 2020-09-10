@@ -105,7 +105,7 @@
 							</tr>
 							<tr>
 								<td><input type="radio" name="" value="">직접입력</td>
-								<td colspan="4"><input type="text" name="" value="" autocomplete="off" maxlength="20"></td>
+								<td colspan="4"><input type="text" name="" value="" style="height:30px;" autocomplete="off" maxlength="20"></td>
 							</tr>
 						</tbody>
 					</table>

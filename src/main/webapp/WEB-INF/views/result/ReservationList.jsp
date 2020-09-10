@@ -9,14 +9,14 @@
 	.searchBox { float:right; }
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.searchBox label { font-size:14px;margin-right:5px; }
-	.sendDate { width:115px;height:40px;font-size:14px; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	#searchDType { border:1px solid #ccc;height:40px;margin-right:-4px;margin-left:10px; }
-	#searchWord { height:40px; }
+	.searchBox .date { width:115px;height:30px;font-size:14px; }
+	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	.searchBox #searchWord { height:30px; }
+	#searchDType { border:1px solid #ccc;height:30px;margin-right:-4px;margin-left:10px; }
 	#btnSearch { margin-left:0px; }
 	.pointer { cursor:pointer; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend, .btnSend, .btnComplete { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResend, .btnSend, .btnComplete { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
 	.tbl_type01 th, .tbl_type01 td { padding:5px 0 !important; }
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:7px;}
 </style>
@@ -54,15 +54,15 @@
 					<option value="CREATEDATE" <c:if test="${searchDType eq 'CREATEDATE'}">selected</c:if> >등록일</option>
 					<option value="NEXTCALL_DATE" <c:if test="${searchDType eq 'NEXTCALL_DATE'}">selected</c:if> >예약일</option>
 				</select>
-				<input type="text" class="sendDate" name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
-				<input type="text" class="sendDate" name="sEDate_" value="${sEDate_}" autocomplete="off"/>
+				<input type="text" class="date" name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
+				<input type="text" class="date" name="sEDate_" value="${sEDate_}" autocomplete="off"/>
 				<select id="searchType" name="searchType_">
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
 					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >전송내용</option>
 					<option value="STATUS_COMPLETION" <c:if test="${searchType_ eq 'STATUS_COMPLETION'}">selected</c:if> >전송상태</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord_" value="${searchWord_}" autocomplete="off"/>
-				<button type="button" class="btn_table" id="btnSearch">검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->
