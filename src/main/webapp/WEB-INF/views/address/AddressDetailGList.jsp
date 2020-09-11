@@ -16,7 +16,7 @@
 	.btnDel {  width:75px;height:25px;padding:5px 15px !important;float:none !important;margin-left:2px !important;font-size:13px !important; }
 /* 	.btnDel { height:30px;padding:5px 15px !important;float:none !important;margin-left:2px !important; } */
 	.btn_service {float:left !important;}
-	#btnAdd { width:100px;height:36px;padding:3px;margin-left:885px;font-size:13px;background:#b1b1b1;font-weight:500; }
+	#btnAdd { width:100px;height:36px;padding:3px;margin-left:679px;font-size:13px;background:#b1b1b1;font-weight:500; }
 	#btnExcel { margin-left:0px;margin-right:10px; }
 /* 	#btnExcel { width:100px;height:36px;padding:3px;margin-right:10px; } */
 </style>
@@ -38,12 +38,12 @@
 
 		<!-- button -->
         <div class="buttonBox">
-        	<ul>
+<!--         	<ul> -->
 <!--         	<button type="button" class="btn_table" id="btnMod">수정</button> -->
-        		<li><button type="button" class="btn_adress2" id="btnExcel">엑셀 업로드</button></li>
-				<li><button type="button" class="btn_service" id="btnExcelForm">엑셀양식받기</button></li>
-				<li><button type="button" class="btn_table" id="btnAdd">그룹원 추가</button><li>
- 			</ul>
+         		<button type="button" class="btn_adress2" id="btnExcel">엑셀 업로드</button>
+				<button type="button" class="btn_service" id="btnExcelForm">엑셀양식받기</button>
+				<button type="button" class="btn_table" id="btnAdd">그룹원 추가</button>
+<!--  			</ul> -->
         </div>
         <!-- //button -->
 
