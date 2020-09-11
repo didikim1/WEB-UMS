@@ -16,8 +16,8 @@
 	#btnAddressList { padding:5px 10px; }
 	.searchBox { text-align:end;margin-bottom:5px; }
 	input[name=searchType] { margin-top:-2px; }
-	#searchWord { width:150px;margin-bottom:3px;margin-left:256px;font-size:medium; }
-	#btnSearch { padding:5px 10px;margin-left:0px; }
+	#searchWord { width:150px;margin-bottom:3px;margin-left:256px;font-size:medium;height:30px; }
+	#btnSearch { margin-left:0px; }
 	.tbl th { padding:0 5px; }
 	.tbl tr { line-height:2.5;font-size:100%; }
 	.tbl td { padding:0px 5px;font-size:14px; }
@@ -31,12 +31,12 @@
 	<div id="wrap_pop_ser">
 
 		<div class="ser_text">
-			<a>주소록</a>
+			<a>주소록 관리</a>
 		</div>
 
 		<!-- button -->
 		<div class="btnAddressList">
-			<button type="button" class="btn_table" id="btnAddressList">주소록 관리</button>
+			<button type="button" class="btn_table" id="btnAddressList">주소록 목록가기</button>
 		</div>
 		<!-- //button -->
 

@@ -7,9 +7,10 @@
 <BaseTag:layout>
 
 <style>
+	.tbl_type01 th, .tbl_type01 td {padding:5px;}
 	.main_table button { padding:3px 5px;float:left; }
-	.main_table .inputPhone { width:125px; }
-	.main_table .inputMail { width:200px; }
+	.main_table .inputPhone { width:125px; height:30px;}
+	.main_table .inputMail { width:200px;height:30px; }
 	.main_table input[type="checkbox"] { width:15px;height:20px; }
 	#btnSubmit, #btnCancel { height:40px !important;margin-top:20px; }
 </style>
@@ -46,11 +47,11 @@
 				<tbody>
 					<tr>
 						<th>이름</th>
-						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="20" autocomplete="off" /></td>
+						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="3"><button type="button" class="btn_table" id="changePassword">비밀번호 변경</button></td>
+						<td colspan="3"><button type="button" class="btn_table" style="font-size:13px;" id="changePassword">비밀번호 변경</button></td>
 					</tr>
 					<tr class="newPW">
 						<th>새 비밀번호</th>
@@ -115,7 +116,7 @@
 							<input type="text" class="inputMail" name="email1" />
 							<input type="text" name="" value=" @ " disabled style="border:none;width:30px;"/>
 							<input type="text" class="inputMail" name="email2" />
-							<select name="email3">
+							<select name="email3" style="height:30px;">
 								<option>직접입력</option>
 								<option>naver.com</option>
 								<option>nate.com</option>
