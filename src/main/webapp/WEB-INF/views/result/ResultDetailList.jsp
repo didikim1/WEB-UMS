@@ -14,7 +14,7 @@
 	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend, .btnSelectedResend, .btnDownload { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResend, .btnSelectedResend, .btnDownload { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
 	.btnVoice { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
 	.pointer { cursor:pointer; }
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:13px;}
@@ -85,7 +85,7 @@
 					<col width="12%" />
 					<col width="12%" />
 					<col width="8%" />
-					<col width="8%" />
+					<col width="12%" />
 				</colgroup>
 				<thead>
 					<tr>
