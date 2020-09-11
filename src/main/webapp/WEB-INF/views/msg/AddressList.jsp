@@ -48,7 +48,7 @@
 			<!-- search -->
 			<div class="searchBox">
 				<label><input type="radio" class="inputRadio" name="searchType" value="P" <c:if test="${searchType eq 'P'}">checked</c:if> /><span>개인</span></label>
-				<label><input type="radio" class="inputRadio" name="searchType" value="G" <c:if test="${searchType eq 'G'}">checked</c:if> /><span>그룹</span></label>
+				<label style="margin-right:-6px;"><input type="radio" class="inputRadio" name="searchType" value="G" <c:if test="${searchType eq 'G'}">checked</c:if> /><span>그룹</span></label>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
 				<button type="button" class="btn1" id="btnSearch">이름 검색</button>
 			</div>

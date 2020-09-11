@@ -28,7 +28,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">그룹 관리</h2>
+			<h2 class="pageTitle">그룹 상세 관리</h2>
 		</div>
         <!--//서브타이틀-->
 
