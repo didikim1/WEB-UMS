@@ -13,7 +13,7 @@
 	.tbl tr {line-height:0.5;}
 	.tbl th {font-size:15px;font-weight:bold;}
 	.tbl td { font-size:90%; }
-	#btnSubmit { width:115px;height:30px;padding:1px 6px; }
+	#btnSubmit { width:115px;height:40px;padding:1px 6px; }
 	#container { width:100% }
 	#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
 	.pageTitle { color:#F7941D;text-align:center;padding:10px 0 40px; }
