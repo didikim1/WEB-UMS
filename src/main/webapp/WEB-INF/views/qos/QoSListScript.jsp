@@ -53,16 +53,20 @@ $(document).ready(function(){
 		// 추가등록
 		if(checkedSeqArr.length < 1)
 		{
-			var url='/setting/server/RegistAndModify?isRegist=Y';
+			var url='/qos/RegistAndModify?isRegist=Y';
 			var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
 		 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-160);
 			var option = 'width=546, height=317, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 			window.open(url, 'RegistServer', option);
 		}
 		// 변경
-		else if(checkedSeqArr.length < 1)
+		else if(checkedSeqArr.length == 1)
 		{
-
+			var url='/qos/RegistAndModify?isRegist=N&seqivrserver='+checkedSeqArr[0];
+			var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
+		 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-160);
+			var option = 'width=546, height=317, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+			window.open(url, 'RegistServer', option);
 		}
 		// 일괄변경 알림
 		else
