@@ -9,9 +9,9 @@
 <style>
 	.searchBox { float:right; }
 	.searchBox label { font-size:14px;margin-right:5px; }
-	.date { width:115px;height:40px;font-size:14px; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	#searchWord { height:40px; }
+	.date { width:115px;height:30px;font-size:14px; }
+	#searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	#searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	.main_table td { text-align:center; }
 </style>
@@ -46,7 +46,7 @@
 				<label>날짜</label>
 				<input type="text" class="date" name="sSDate" value="${sSDate}" autocomplete="off"/> ~
 				<input type="text" class="date" name="sEDate" value="${sEDate}" autocomplete="off"/>
-				<button type="button" class="btn_table" id="btnSearch">검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->
