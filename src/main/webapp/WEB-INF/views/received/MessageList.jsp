@@ -14,6 +14,7 @@
 	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
 	.searchBox #searchWord { height:30px; }
 	.searchBox #btnSearch { margin-left:0px; }
+	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:20px;}
 	.company_list input[type=checkbox] { width:16px; }
 	.company_list td { text-align:center; }
 	.company_list td .btn_listen { height:25px;width:75px;padding:3px 5px;float:none;margin-left:0px;font-size:13px;text-align:center;line-height:18px; }
@@ -63,7 +64,7 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="5%" />
+					<col width="8%" />
 					<col width="20%" />
 					<col width="25%" />
 					<col width="20%" />

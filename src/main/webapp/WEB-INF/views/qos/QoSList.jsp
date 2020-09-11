@@ -64,7 +64,7 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="8%" />
+					<col width="6%" />
 					<col width="10%" />
 					<col width="18%" />
 					<col width="18%" />

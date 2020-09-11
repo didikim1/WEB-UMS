@@ -68,7 +68,7 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="8%" />
+					<col width="6%" />
 					<col width="10%" />
 					<col width="18%" />
 					<col width="18%" />
@@ -78,9 +78,10 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th><label>선택</label></th>
+<!-- 						<th><label>선택</label></th> -->
+						<th><input type="checkbox" /></th>
 						<th><label class="pointer" onclick="javascript:fn_Sorting('ROW_NUM')">순번</label></th>
-						<th><label class="pointer" onclick="javascript:fn_Sorting('SERVER_NAME')">투입서버(IVR)</label></th>
+						<th><label class="pointer" onclick="javascript:fn_Sorting('SERVER_NAME')">투입서버명(IVR)</label></th>
 						<th><label class="pointer" onclick="javascript:fn_Sorting('SERVER_IP')">서버IP</label></th>
 						<th><label class="pointer" onclick="javascript:fn_Sorting('CREATEDATE')">등록일자</label></th>
 						<th><label class="pointer" onclick="javascript:fn_Sorting('CPS')">CPS</label></th>

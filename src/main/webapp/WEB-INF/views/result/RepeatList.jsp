@@ -18,7 +18,7 @@
 	.btnResend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
 	.btnSend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
 	.tbl_type01 th, .tbl_type01 td { padding:5px 0 !important; }
-	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:9px;}
+	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:20px;}
 </style>
 
 <BaseTag:layout>
@@ -68,8 +68,8 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="5%" />
-					<col width="9%" />
+					<col width="6%" />
+					<col width="6%" />
 					<col width="20%" />
 					<col width="18%" />
 					<col width="20%" />
