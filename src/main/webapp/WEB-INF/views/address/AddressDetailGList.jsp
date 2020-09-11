@@ -7,8 +7,8 @@
 <style>
 	.buttonBox 	{ float:left; }
 	.searchBox 	{ float:right; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-4px;margin-left:10px; }
-	#searchWord { height:40px; }
+	#searchType { border:1px solid #ccc;height:30px;margin-right:-4px;margin-left:10px; }
+	#searchWord { height:30px; }
 	#btnSearch 	{ margin-left:0px; }
 	input[type=checkbox] { width:15px !important; }
 	table tbody tr td { text-align:center !important; }
@@ -52,7 +52,7 @@
 
 <!-- 			<div class="searchBox"> -->
 <%-- 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/> --%>
-<!-- 				<button class="btn_table" id="btnSearch">그룹명 검색</button> -->
+<!-- 				<button class="btn1" id="btnSearch">그룹명 검색</button> -->
 <!-- 			</div> -->
 		</form>
 		<!-- //search -->

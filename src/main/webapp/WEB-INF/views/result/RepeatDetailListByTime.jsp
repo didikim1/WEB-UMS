@@ -9,9 +9,9 @@
 	.searchBox { float:right; }
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.searchBox label { font-size:14px;margin-right:5px; }
-	.sendDate { width:115px;height:40px;font-size:14px; }
-	#searchType { border:1px solid #ccc;height:40px;margin-right:-5px;margin-left:10px; }
-	#searchWord { height:40px; }
+	.searchBox .date { width:115px;height:30px;font-size:14px; }
+	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
+	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	table tbody tr td { text-align:center !important; }
 	.btnResend { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
@@ -57,8 +57,8 @@
 			<div class="searchBox">
 				<label>수신시간</label>
 				<input type="hidden" name="searchDType" value="CALLRESPONSEDATE" />
-				<input type="text" class="sendDate" name="sSDate" value="${sSDate}" autocomplete="off"/> ~
-				<input type="text" class="sendDate" name="sEDate" value="${sEDate}" autocomplete="off"/>
+				<input type="text" class="date" name="sSDate" value="${sSDate}" autocomplete="off"/> ~
+				<input type="text" class="date" name="sEDate" value="${sEDate}" autocomplete="off"/>
 				<select id="searchType" name="searchType">
 					<option value="NAME" <c:if test="${searchType eq 'NAME'}">selected</c:if> >이름</option>
 					<option value="PHONENUMBER" <c:if test="${searchType eq 'PHONENUMBER'}">selected</c:if> >전화번호</option>
@@ -66,7 +66,7 @@
 					<option value="USER_INPUT" <c:if test="${searchType eq 'USER_INPUT'}">selected</c:if> >회신결과</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
-				<button class="btn_table" id="btnSearch">검색</button>
+				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->
