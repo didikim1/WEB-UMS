@@ -51,7 +51,7 @@
 				<input type="text" class="date"  name="sEDate_" value="${sEDate_}" autocomplete="off"/>
 				<select id="searchType" name="searchType_">
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
-					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >보낸번호</option>
+					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >회신전화번호</option>
 					<option value="SERVICE_TYPE" <c:if test="${searchType_ eq 'SERVICE_TYPE'}">selected</c:if> >메세지유형</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord_" value="${searchWord_}" autocomplete="off"/>
@@ -73,7 +73,7 @@
 				<thead>
 					<tr>
 						<th><input type="checkbox" name="" /></th>
-						<th>보낸번호</th>
+						<th>회신전화번호</th>
 						<th>제목</th>
 						<th>수신일</th>
 						<th>메세지유형</th>
