@@ -27,7 +27,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">반복메세지 조회</h2>
+			<h2 class="pageTitle">주기(반복)메세지 조회</h2>
 		</div>
         <!--//서브타이틀-->
 

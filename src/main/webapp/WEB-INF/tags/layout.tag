@@ -67,7 +67,7 @@
 							<li style="margin-left:-175px;"><a href="/result/ResultList">발송내역 조회</a></li>
 							<li><a href="/survey/SurveyResultList">설문지 조회</a></li>
 							<li><a href="/result/ReservationList">예약메세지 조회</a></li>
-							<li><a href="/result/RepeatList">반복메세지 조회</a></li>
+							<li><a href="/result/RepeatList">주기(반복)메세지 조회</a></li>
 						</ul>
 					</li>
 					<li>
@@ -78,7 +78,7 @@
 						</ul>
 					</li>
 					<li>
-						<a href="/info/user/UserInfo">사용자</a>
+						<a href="/info/user/UserInfo">사용관리</a>
 						<ul>
 							<li style="margin-left:-200px"><a href="/info/user/UserInfo">회원정보</a></li>
 <%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
