@@ -68,10 +68,10 @@
 			<table>
 				<colgroup>
 <%-- 					<col width="5%" /> --%>
-					<col width="9%" />
+					<col width="7%" />
 					<col width="20%" />
-					<col width="20%" />
-					<col width="20%" />
+					<col width="23%" />
+					<col width="28%" />
 <%-- 					<col width="10%" /> --%>
 <%-- 					<col width="10%" /> --%>
 <%-- 					<col width="10%" /> --%>

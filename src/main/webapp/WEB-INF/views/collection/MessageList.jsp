@@ -67,8 +67,8 @@
 					<col width="6%" />
 					<col width="35%" />
 					<col width="25%" />
-					<col width="10%" />
-					<col width="10%" />
+					<col width="17%" />
+					<col width="17%" />
 				</colgroup>
 				<thead>
 					<tr>

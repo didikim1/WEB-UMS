@@ -68,18 +68,18 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="8%" />
-					<col width="22%" />
-					<col width="8%" />
-					<col width="24%" />
-					<col width="24%" />
+					<col width="7%" />
+					<col width="13%" />
+					<col width="15%" />
+					<col width="16%" />
+					<col width="20%" />
 <%-- 					<col width="10%" /> --%>
 <%-- 					<col width="10%" /> --%>
 <%-- 					<col width="10%" /> --%>
 <%-- 					<col width="10%" /> --%>
+					<col width="10%" />
 					<col width="12%" />
-					<col width="12%" />
-					<col width="8%" />
+					<col width="7%" />
 				</colgroup>
 				<thead>
 					<tr>

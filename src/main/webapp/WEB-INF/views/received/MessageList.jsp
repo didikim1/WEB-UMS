@@ -64,12 +64,12 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="8%" />
-					<col width="20%" />
+					<col width="7%" />
+					<col width="15%" />
 					<col width="25%" />
 					<col width="20%" />
+					<col width="13%" />
 					<col width="20%" />
-					<col width="15%" />
 				</colgroup>
 				<thead>
 					<tr>

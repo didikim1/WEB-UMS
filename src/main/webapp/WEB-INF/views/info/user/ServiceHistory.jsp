@@ -70,7 +70,7 @@
 					<col width="10%" />
 					<col width="10%" />
 					<col width="10%" />
-					<col width="12%" />
+					<col width="13%" />
 				</colgroup>
 				<thead>
 					<tr>

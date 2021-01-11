@@ -72,9 +72,9 @@
 					<col width="10%" />
 					<col width="18%" />
 					<col width="18%" />
-					<col width="18%" />
+					<col width="19%" />
 					<col width="10%" />
-					<col width="18%" />
+					<col width="19%" />
 				</colgroup>
 				<thead>
 					<tr>

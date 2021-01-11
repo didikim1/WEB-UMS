@@ -62,6 +62,15 @@
 						</ul>
 					</li>
 					<li>
+						<a href="/result/ResultList">발송내역 관리</a>
+						<ul>
+							<li style="margin-left:-175px;"><a href="/result/ResultList">발송내역 조회</a></li>
+							<li><a href="/survey/SurveyResultList">설문지 조회</a></li>
+							<li><a href="/result/ReservationList">예약메세지 조회</a></li>
+							<li><a href="/result/RepeatList">반복메세지 조회</a></li>
+						</ul>
+					</li>
+					<li>
 						<a href="/addr/AddressPList">주소록</a>
 						<ul>
 							<li style="margin-left:-80px;"><a href="/addr/AddressPList">개인 주소록</a></li>
@@ -69,12 +78,32 @@
 						</ul>
 					</li>
 					<li>
-						<a href="/result/ResultList">발송내역 관리</a>
+						<a href="/info/user/UserInfo">사용자</a>
 						<ul>
-							<li style="margin-left:-195px;"><a href="/result/ResultList">발송내역 조회</a></li>
-							<li><a href="/survey/SurveyResultList">설문지 조회</a></li>
-							<li><a href="/result/ReservationList">예약메세지 조회</a></li>
-							<li><a href="/result/RepeatList">반복메세지 조회</a></li>
+							<li style="margin-left:-200px"><a href="/info/user/UserInfo">회원정보</a></li>
+<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
+<!-- 							<li style="margin-left:-300px"><a href="/info/user/UserInfo">회원정보</a></li> -->
+<%-- 						</c:if> --%>
+<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() ne 'A'}"> --%>
+<!-- 							<li style="margin-left:-300px"><a href="/info/user/UserInfo">회원정보</a></li> -->
+<%-- 						</c:if> --%>
+							<li><a href="/charge">충전하기</a></li>
+							<li><a href="/info/user/ServiceHistory">서비스 사용내역</a></li>
+							<li><a href="/tax">서비스 정산확인</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/received/">메세지 보관함</a>
+						<ul>
+							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li>
+<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
+<!-- 							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li> -->
+<%-- 						</c:if> --%>
+<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() ne 'A'}"> --%>
+<!-- 							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li> -->
+<%-- 						</c:if> --%>
+							<li><a href="/collection/VoiceList">음성모음함</a></li>
+							<li><a href="/collection/SurveyList">설문모음함</a></li>
 						</ul>
 					</li>
 					<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}">
@@ -86,33 +115,6 @@
 						</ul>
 					</li>
 					</c:if>
-					<li>
-						<a href="/info/user/UserInfo">사용자</a>
-						<ul>
-						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}">
-							<li style="margin-left:-100px"><a href="/info/user/UserInfo">회원정보</a></li>
-						</c:if>
-						<c:if test="${frameworkBeans.findSessionBean().getGrade() ne 'A'}">
-							<li style="margin-left:-220px"><a href="/info/user/UserInfo">회원정보</a></li>
-						</c:if>
-							<li><a href="/charge">충전하기</a></li>
-							<li><a href="/info/user/ServiceHistory">서비스 사용내역</a></li>
-							<li><a href="/tax">서비스 정산확인</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="/received/">메세지 보관함</a>
-						<ul>
-						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}">
-							<li style="margin-left:-125px"><a href="/received/">회신수신함</a></li>
-						</c:if>
-						<c:if test="${frameworkBeans.findSessionBean().getGrade() ne 'A'}">
-							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li>
-						</c:if>
-							<li><a href="/collection/VoiceList">음성모음함</a></li>
-							<li><a href="/collection/SurveyList">설문모음함</a></li>
-						</ul>
-					</li>
 					<li>
 						<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
 					</li>

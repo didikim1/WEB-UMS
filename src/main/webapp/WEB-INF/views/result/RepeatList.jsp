@@ -69,9 +69,9 @@
 			<table>
 				<colgroup>
 					<col width="6%" />
-					<col width="6%" />
-					<col width="14%" />
-					<col width="17%" />
+					<col width="7%" />
+					<col width="13%" />
+					<col width="15%" />
 					<col width="17%" />
 					<col width="20%" />
 <%-- 					<col width="10%" /> --%>

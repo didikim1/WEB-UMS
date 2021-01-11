@@ -12,7 +12,7 @@
 	.col_r {color:#cd2129;}
 
 	.tbl tr {line-height:0.5;}
-	.tbl th, .tbl td { font-size:86%; }
+	.tbl th, .tbl td { font-size:100%; }
 	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px; }
 </style>
 

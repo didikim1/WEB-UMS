@@ -6,7 +6,8 @@ $(document).ready(function(){
 		var title 		= "${title}";
 		var seq 		= "${seq}";
 		var name 		= "${name}";
-		var phonenumber = "${phonenumber}";
+// 		var phonenumber = "${phonenumber}";
+		var phonenumber	= "${phonenumber}".replace(/,/gi,"");
 		
 		if(title == "주소록 등록")
 		{

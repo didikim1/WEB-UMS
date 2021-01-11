@@ -12,7 +12,7 @@
 	.col_r {color:#cd2129;}
 
 	.tbl tr {line-height:0.5;}
-	.tbl th, .tbl td { font-size:86%;padding:5px; }
+	.tbl th, .tbl td { font-size:100%;padding:5px; }
 	#playBtnBox { width:220px;height:30px;margin:auto; }
 	#checkTTSMent { vertical-align:text-top; }
 	#notice { text-align:center; }
