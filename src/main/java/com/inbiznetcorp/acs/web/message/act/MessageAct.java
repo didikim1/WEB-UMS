@@ -88,6 +88,24 @@ public class MessageAct
 	}
 
 	/**
+	 * 문자메세지 작성 페이지
+	 */
+	@RequestMapping("/SMSSendMessage")
+	public String SMSSendMessage(Model model)
+	{
+		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		
+		paramMap.put("sequser", paramMap.getStr("SESSION_USER_SEQ"));
+		
+		String 		grade 		= paramMap.getStr("SESSION_GRADE"); 	// A:관리자, B:사용자
+		MyCamelMap 	userInfo 	= (grade.equals("A")) ? messageService.FindAdminInfo(paramMap) : messageService.FindUserInfo(paramMap);
+		
+		model.addAttribute("userInfo", userInfo);
+
+		return "/msg/SMSSendMessage";
+	}
+
+	/**
 	 * 서비스소개 팝업 페이지
 	 */
 	@RequestMapping("/ServiceIntro")

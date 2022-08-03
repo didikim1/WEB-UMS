@@ -30,7 +30,7 @@
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.btnDelete { width:70px !important;height:25px !important;margin-top:3px;margin-left:70px !important;background:#757788 !important; }
 	table ul li span { color:black !important; }
-	#btnTTS { margin-left:-1px !important;width:100px !important; }
+	#btnTTS {text-align:center !important;  width:100px !important; }
 	#btnAdd { font-weight:bold; }
 	#btnSubmit, #btnCancel { height:40px !important; }
 	.ttsOption > li { height:26px;line-height:26px; }
@@ -53,7 +53,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">음성메세지 발송</h2>
+			<h2 class="pageTitle">문자메세지 발송</h2>
 		</div>
         <!--//서브타이틀-->
 
@@ -81,8 +81,8 @@
 						<tr>
 							<th scope="row">제목</th>
 							<td>
-								<input type="text" class="ttsTitle" name="ttsTitle" maxlength="80" autocomplete="off"/>
-								<span id="tip" style="margin-top:8px;">전화발신 제목이 제공됩니다. (40자 이내)</span>
+								<input type="text" class="ttsTitle" name="ttsTitle" maxlength="40" autocomplete="off" value="[Web발송]OO홍보팀 안내발송" />
+								<span id="tip" style="margin-top:8px;">장문문자 제목이 제공됩니다. (20자 이내)</span>
 							</td>
 						</tr>
 						<tr>
@@ -138,22 +138,16 @@
 												<div>
 													<ul class="ttsOption">
 														<li>
-															<label><input type="radio" class="inputRadio" name="sendType" value="A" checked /><span>TTS 입력</span></label>
+															<label><input type="radio" class="inputRadio" name="sendType" value="A" checked /><span>직접입력</span></label>
 														</li>
 														<li>
 															<label><input type="radio" class="inputRadio" name="sendType" value="B" /><span>모음함</span></label>
 														</li>
 														<li>
-															<label><input type="radio" class="inputRadio" name="sendType" value="C" /><span>음성파일 첨부</span></label>
+															<label><input type="radio" class="inputRadio" name="sendType" value="C" /><span>파일 첨부</span></label>
 															<input type="hidden" name="fileSeq" />
 														</li>
-														<li>
-															<label><input type="radio" class="inputRadio" name="sendType" value="D" disabled /><span>음성녹음</span></label>
-														</li>
 													</ul>
-												</div>
-												<div>
-													<span id="tip" style="font-size:12px !important;">&nbsp;&nbsp;* TTS : 문자를 음성으로 변환</span>
 												</div>
 											</div>
 										</div>
@@ -165,16 +159,10 @@
 <!-- 													<input type="hidden" name="ttsPath" /> -->
 <!-- 												</li> -->
 												<li>
-													<button type="button" class="btn_adress" id="btnListen">이어폰 듣기</button>
-												</li>
-												<li>
-													<button type="button" class="btn_adress" id="btnListenARS">ARS로 듣기</button>
-												</li>
-												<li>
 													<button type="button" class="btn_adress" id="btnClear">다시작성</button>
 												</li>
 												<li class="btn_wrap">
-													<button type="button" class="btn_service" id="btnTTS">TTS 작성예시</button>
+													<button type="button" class="btn_service" id="btnTTS">작성예시</button>
 												</li>
 											</ul>
 										</div>
@@ -182,7 +170,7 @@
 
 									<div class="ttsMsgBox">
 										<div class="ttsWriteBox">
-											<textarea rows="1" cols="155" name="ttsMent1" maxlength="100">안녕하십니까? OO에서 전달드리는 안내사항입니다.  (수정가능)</textarea>
+											<textarea rows="1" cols="155" name="ttsMent1" maxlength="100">OO에서보내는 안내문자입니다.  (수정가능)</textarea>
 										</div>
 										<div>
 											<ul class="exampleSelect">
@@ -245,12 +233,12 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="row">음성회신받기</th>
+							<th scope="row">회신받기</th>
 							<td>
 								<div class="info_com">
 									<ul>
 										<li><label><input type="radio" class="inputRadio" name="voiceReceive" value="N" checked /><span>받지않음</span></label></li>
-										<li><label><input type="radio" class="inputRadio" name="voiceReceive" value="Y" disabled /><span>음성회신</span></label></li>
+										<li><label><input type="radio" class="inputRadio" name="voiceReceive" value="Y" disabled /><span>회신요망</span></label></li>
 									</ul>
 								</div>
 							</td>

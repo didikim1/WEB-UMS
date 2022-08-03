@@ -13,6 +13,12 @@ public class CollectionAct
 		return "/collection/MessageList";
 	}
 	
+	@RequestMapping("/SMSList")
+	public String MessageList2()
+	{
+		return "/collection/MessageList2";
+	}
+
 	@RequestMapping("/SurveyList")
 	public String SurveyList()
 	{

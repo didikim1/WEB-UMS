@@ -56,15 +56,17 @@
 <!-- 				<h1 class="logo"><a href="#">INBIZNET</a></h1> -->
 				<ul class="gnb">
 					<li>
-						<a href="/msg/SendMessage">음성메세지 발송</a>
+						<a href="/msg/SendMessage">UMS 메세지 발송</a>
 						<ul>
-							<li style="margin-left:75px;"><a href="/msg/SendMessage">음성메세지 발송</a></li>
+							<li style="margin-left:15px;"><a href="/msg/SendMessage">음성메세지 발송</a></li>
+							<li><a href="/msg/SMSSendMessage">문자메세지 발송</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="/result/ResultList">발송내역 관리</a>
 						<ul>
-							<li style="margin-left:-175px;"><a href="/result/ResultList">발송내역 조회</a></li>
+							<li style="margin-left:-275px;"><a href="/result/ResultList">음성발송내역 조회</a></li>
+							<li><a href="/result/SMSResultList">문자발송내역 조회</a></li>
 							<li><a href="/survey/SurveyResultList">설문지 조회</a></li>
 							<li><a href="/result/ReservationList">예약메세지 조회</a></li>
 							<li><a href="/result/RepeatList">주기(반복)메세지 조회</a></li>
@@ -95,7 +97,7 @@
 					<li>
 						<a href="/received/">메세지 보관함</a>
 						<ul>
-							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li>
+							<li style="margin-left:-70px"><a href="/received/">회신수신함</a></li>
 <%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
 <!-- 							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li> -->
 <%-- 						</c:if> --%>
@@ -103,6 +105,7 @@
 <!-- 							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li> -->
 <%-- 						</c:if> --%>
 							<li><a href="/collection/VoiceList">음성모음함</a></li>
+							<li><a href="/collection/SMSList">문자모음함</a></li>
 							<li><a href="/collection/SurveyList">설문모음함</a></li>
 						</ul>
 					</li>

@@ -26,7 +26,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">음성 발송내역 조회</h2>
+			<h2 class="pageTitle">문자 발송내역 조회</h2>
 		</div>
         <!--//서브타이틀-->
 

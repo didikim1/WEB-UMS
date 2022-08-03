@@ -34,7 +34,7 @@ public class ResultAct
 	ExcelView mExcelView;
 
 	/**
-	 * 발송내역 관리 페이지
+	 * 음성 발송내역 관리 페이지
 	 */
 	@RequestMapping("/ResultList")
 	public String ResultList(Model model)
@@ -59,6 +59,34 @@ public class ResultAct
 		model.addAttribute("paramMap", 			paramMap);
 
 		return "/result/ResultList";
+	}
+
+	/**
+	 * 문자발송내역 관리 페이지
+	 */
+	@RequestMapping("/SMSResultList")
+	public String SMSResultList(Model model)
+	{
+		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+
+//		paramMap.put("sendTime", "A");
+		
+		// A:알림형, B:응답형, C:예약, D:주기
+		paramMap.put("listType", "A");
+		
+		BasicBean result = ivrlogService.ListPagingMapperData(paramMap);
+
+		model.addAttribute("list", 				result.getList());
+		model.addAttribute("paginationInfo", 	result.getPaginationInfo());
+		model.addAttribute("sSDate_", 			paramMap.getStr("sSDate_", ""));
+		model.addAttribute("sEDate_", 			paramMap.getStr("sEDate_", ""));
+		model.addAttribute("searchType_", 		paramMap.getStr("searchType_", "TITLE"));
+		model.addAttribute("searchWord_", 		paramMap.getStr("searchWord_", ""));
+		model.addAttribute("sidx", 				paramMap.getStr("sidx", "ROW_NUM"));
+		model.addAttribute("sord", 				paramMap.getStr("sord", "DESC"));
+		model.addAttribute("paramMap", 			paramMap);
+
+		return "/result/SMSResultList";
 	}
 
 	/**

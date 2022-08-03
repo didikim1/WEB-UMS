@@ -31,7 +31,7 @@
 		<div id="wrap">
 			<div id="wrap_pop_ser">
 	<!-- 			<div class="ser_text"> -->
-					<h1 class="pageTitle">VMS 음성 메시지 발송 서비스</h1>
+					<h1 class="pageTitle">통합 UMS 메시지 발송 서비스</h1>
 	<!-- 			</div> -->
 
 				<!-- table -->
@@ -45,11 +45,11 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th>ID</th>
+									<th>아이디</th>
 									<td><input type="text" name="userId" autocomplete="off" maxlength="40" /></td>
 								</tr>
 								<tr>
-									<th>Passwd</th>
+									<th>비밀번호</th>
 									<td><input type="password" name="userPw" autocomplete="off" maxlength="40" /></td>
 								</tr>
 							</tbody>

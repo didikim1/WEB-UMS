@@ -18,7 +18,6 @@
 	.company_list input[type=checkbox] { width:16px; }
 	.company_list td { text-align:center; }
 	.company_list td .btn_listen { height:25px;width:75px;padding:3px 5px;float:none;margin-left:0px;font-size:13px;text-align:center;line-height:18px; }
-	.company_list td .btn_send { height:25px;width:75px;padding:3px 5px;float:none;margin-left:0px;font-size:13px;text-align:center;line-height:18px; }
 </style>
 
 <div id="contents">
@@ -26,7 +25,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">음성 모음함</h2>
+			<h2 class="pageTitle">문자 회신수신함</h2>
 		</div>
     	<!--//서브타이틀-->
 
@@ -48,61 +47,63 @@
 			<input type="hidden" name="sord" value="${sord}" />
 
 			<div class="searchBox">
-				<label>등록일</label>
-				<input type="text" class="date" name="sSDate" value="${sSDate}" autocomplete="off"/> ~
-				<input type="text" class="date" name="sEDate" value="${sEDate}" autocomplete="off"/>
-				<select id="searchType" name="searchType">
+				<label>수신일</label>
+				<input type="text" class="date"  name="sSDate_" value="${sSDate_}" autocomplete="off"/> ~
+				<input type="text" class="date"  name="sEDate_" value="${sEDate_}" autocomplete="off"/>
+				<select id="searchType" name="searchType_">
 					<option value="TITLE" <c:if test="${searchType_ eq 'TITLE'}">selected</c:if> >제목</option>
+					<option value="TTS_MENT_INTRO_01" <c:if test="${searchType_ eq 'TTS_MENT_INTRO_01'}">selected</c:if> >회신전화번호</option>
+					<option value="SERVICE_TYPE" <c:if test="${searchType_ eq 'SERVICE_TYPE'}">selected</c:if> >메세지유형</option>
 				</select>
-				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
+				<input type="text" id="searchWord" name="searchWord_" value="${searchWord_}" autocomplete="off"/>
 				<button type="button" class="btn1" id="btnSearch">검색</button>
 			</div>
 		</form>
 		<!-- //search -->
 		
-		<!-- table -->
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="6%" />
-					<col width="35%" />
+					<col width="7%" />
+					<col width="15%" />
 					<col width="25%" />
-					<col width="17%" />
-					<col width="17%" />
+					<col width="20%" />
+					<col width="13%" />
+					<col width="20%" />
 				</colgroup>
 				<thead>
 					<tr>
 						<th><input type="checkbox" name="" /></th>
+						<th>회신전화번호</th>
 						<th>제목</th>
-						<th>등록일</th>
-						<th>듣기</th>
-						<th>발송</th>
+						<th>수신일</th>
+						<th>메세지유형</th>
+						<th>내용</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach begin="0" end="9" var="i">
 						<tr>
 							<td><input type="checkbox" name="" /></td>
-							<td>제목입니다..</td>
+							<td>010-0000-000${i}</td>
+							<td>참석 동의</td>
 							<td>2019.12.12</td>
+							<td>음성메세지</td>
 							<td><input type="button" class="btn_table btn_listen" value="들어보기" /></td>
-							<td><input type="button" class="btn_table btn_send" value="발송하기" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		<!-- table -->
 		
 		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
 		
 		<!-- button -->
 		<div class="btn_next">
-			<button type="button" class="btn_table" id="btnSubmit">새로등록</button>
+			<button type="button" class="btn_table" id="btnSubmit">모음함에 저장</button>
 			<button type="button" class="btn_table" id="btnDelete">삭제</button>
 		</div>
 		<!-- //button -->
-		
 	</div>
 </div>
 

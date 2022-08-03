@@ -26,7 +26,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">음성 모음함</h2>
+			<h2 class="pageTitle">문자 모음함</h2>
 		</div>
     	<!--//서브타이틀-->
 
@@ -75,7 +75,7 @@
 						<th><input type="checkbox" name="" /></th>
 						<th>제목</th>
 						<th>등록일</th>
-						<th>듣기</th>
+						<th>내용보기</th>
 						<th>발송</th>
 					</tr>
 				</thead>
@@ -85,7 +85,7 @@
 							<td><input type="checkbox" name="" /></td>
 							<td>제목입니다..</td>
 							<td>2019.12.12</td>
-							<td><input type="button" class="btn_table btn_listen" value="들어보기" /></td>
+							<td><input type="button" class="btn_table btn_listen" value="내용보기" /></td>
 							<td><input type="button" class="btn_table btn_send" value="발송하기" /></td>
 						</tr>
 					</c:forEach>
