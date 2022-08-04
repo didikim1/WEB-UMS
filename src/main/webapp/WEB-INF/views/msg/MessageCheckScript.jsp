@@ -4,7 +4,8 @@ $(document).ready(function(){
 	var originTTSMent1 = '${originTTSMent1}';
 	var originTTSMent2 = '${originTTSMent2}';
 	var originTTSMent3 = '${originTTSMent3}';
-// 	console.log(originTTSMent1);
+	
+	console.log(originTTSMent1);
 // 	console.log(originTTSMent2);
 // 	console.log(originTTSMent3);
 

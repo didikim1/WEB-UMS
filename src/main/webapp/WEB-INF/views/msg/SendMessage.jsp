@@ -19,7 +19,8 @@
 	.ttsButtonWrap { width:470px;text-align:right; }
 	.rName { width:200px;text-align:center; }
 	.phonenumber { width:300px;text-align:center; }
-	textarea { width:1700px; }
+	.text_title { width:600px; }
+	.text_content { width:1700px; }
 	.receiverBox { width:680px;height:200px;border:1px solid #ccc;margin-top:10px;overflow-y:scroll; }
 	.receiverBtnBox { margin-left:15px; }
 	.receiverBtnBox button { margin-bottom:3px; }
@@ -36,7 +37,7 @@
 	.ttsOption > li { height:26px;line-height:26px; }
 	.exampleSelect { margin-top:10px; }
 	.exampleSelect > li { display:inline-block;height:26px;line-height:26px; }
-	.exampleSelect .examplCntText { font-size:12px !important;color:red !important;margin-left:20px; }
+	.examplCntText { font-size:12px !important;color:red !important;margin-left:20px; }
 	.ttsMsgBox2 { display:inline-block; }
 	.ttsMsgBox2 ul { border:1px solid #ccc; }
 	#recFileTitle { height:36px;line-height:36px;margin-left:10px; }
@@ -182,7 +183,8 @@
 
 									<div class="ttsMsgBox">
 										<div class="ttsWriteBox">
-											<textarea rows="1" cols="155" name="ttsMent1" maxlength="100">안녕하십니까? OO에서 전달드리는 안내사항입니다.  (수정가능)</textarea>
+											<textarea class="text_title" rows="1" cols="155" name="ttsMent1" maxlength="100" style="color:#999;">안녕하십니까? OO에서 전달드리는 안내사항입니다. </textarea>
+											<span class="examplCntText">* 원하시는 시작 인사말로 수정하십시오.</span>
 										</div>
 										<div>
 											<ul class="exampleSelect">
@@ -209,7 +211,7 @@
 										<div class="surveyOuter">
 											<div class="surveyInner">
 												<div class="ttsWriteBox">
-													<textarea rows="5" cols="155" name="ttsMent2" maxlength="1000">[전달 내용 입력]</textarea>
+													<textarea class="text_contente" rows="5" cols="155" name="ttsMent2" maxlength="1000" style="color:#999;">[전달 내용 입력]</textarea>
 												</div>
 											</div>
 										</div>

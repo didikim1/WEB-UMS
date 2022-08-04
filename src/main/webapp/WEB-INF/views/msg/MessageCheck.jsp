@@ -6,15 +6,15 @@
 <BaseTag:layoutPopup>
 
 <style>
-	#wrap_pop_ser {overflow-y:scroll; width:480px; height:490px; border: 3px solid #2a347f; background:#f8f9ff; padding:30px;}
+	#wrap_pop_ser {overflow-y:scroll; width:484px; height:494px; border: 1px solid #2a347f; background:#f8f9ff; padding:30px;}
 	.ser_text { font-size:14px;line-height:20px;margin-bottom:3px; }
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.col_r {color:#cd2129;}
 
 	.tbl tr {line-height:0.5;}
-	.tbl th, .tbl td { font-size:86%; }
+	.tbl th, .tbl td { font-size:95%; }
 	#playBtnBox { width:220px;height:30px;margin:auto; }
-	#checkTTSMent { vertical-align:text-top;line-height:1.5; }
+	#checkTTSMent { vertical-align:text-top; line-height:1.5; }
 	#notice { text-align:center; }
 	#btnListen, #btnStop, #btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px; }
 	#btnListen { margin-left:75px; }
@@ -25,7 +25,7 @@
 	<div id="wrap_pop_ser">
 
 		<div class="ser_text">
-			<a>전송 내역 확인</a>
+			<a>전송요청 확인</a>
 		</div>
 
 		<div class="ser_text">

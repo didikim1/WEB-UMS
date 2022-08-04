@@ -6,7 +6,7 @@
 
 <style>
 	.tbl_type01 th, .tbl_type01 td {padding:5px;}
-	.ars_content { height:36px !important; }
+/* 	.ars_content { height:36px !important; } */
 	.searchBox { float:right; }
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.searchBox label { font-size:14px;margin-right:5px; }

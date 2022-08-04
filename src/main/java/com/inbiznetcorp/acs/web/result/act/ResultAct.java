@@ -334,7 +334,7 @@ public class ResultAct
 	{
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-		model.addAttribute("ttsMentIntro01", FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMentIntro01").replace("\r\n", "<br/>")));
+		model.addAttribute("ttsMentIntro01", FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMentIntro01").replace("\r\n", "")));
 
 		return "/result/TTSMentPopup";
 	}

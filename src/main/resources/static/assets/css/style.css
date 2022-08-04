@@ -61,7 +61,7 @@ body.on {overflow:hidden;}
 /*
 	form
 ----------------------------------------------------------*/
-input {padding:0 5px;height:36px;font-family:inherit;font-size:inherit;box-sizing:border-box;border:1px solid #ccc;}
+input {padding:0 5px;height:36px;font-family:inherit;font-size:16px;box-sizing:border-box;border:1px solid #ccc;}
 textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-box;border:1px solid #ccc;resize:none;}
 
 
@@ -76,7 +76,7 @@ textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-bo
 /*
 	paging
 ----------------------------------------------------------*/
-.pagingArea {margin:50px 0 0;height:33px;position:relative;}
+.pagingArea {margin:10px 0 0;height:33px;position:relative;}
 .paging {width:100%;text-align:center;color:#b3b3b3;position:absolute;left:0;top:0;}
 .paging * {vertical-align:middle;margin-left:18px;height:33px;font-size:13px;line-height:33px;font-weight:500;vertical-align:middle;}
 .paging a {display:inline-block; overflow:hidden;cursor:pointer;}
@@ -191,7 +191,7 @@ textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-bo
 .section {margin:0 auto;width:984px;box-sizing:border-box;}
 #contents {padding:50px 0 50px;position:relative;box-sizing:border-box;}
 /* #contents:before {display:block;border-bottom:1px solid #e8e8e8;content:"";position:absolute;left:53px;right:53px;top:260px;} */
-.pageTop {margin:0 0 40px;height:50px;position:relative;}
+.pageTop {margin:0 0 40px;height:30px;position:relative;}
 .pageTop:after {display:block;width:187px;height:172px;background:url(../images/bg_pageTop.jpg) no-repeat 0 0;content:"";position:absolute;right:90px;bottom:0;z-index:-1;}
 .navigator {margin:-2px 0 -4px;text-align:right;}
 .navigator li {display:inline-block;font-size:12px;color:#8c8c8c;}
@@ -280,7 +280,7 @@ textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-bo
 
 
 
-.btn_table {float:right; background: #2a347f; padding: 10px 25px; font-size:15px; font-weight:600; color:#fff; margin-left:6px;}
+.btn_table {float:right; background: #2a347f; padding: 10px 25px; font-size:14px; font-weight:600; color:#fff; margin-left:6px;}
 
 
 

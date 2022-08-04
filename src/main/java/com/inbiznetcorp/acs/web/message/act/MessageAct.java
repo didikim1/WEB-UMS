@@ -442,7 +442,8 @@ public class MessageAct
 	{
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-		String ment0 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", "<br/>"));
+//		String ment0 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", "<br/>"));
+		String ment0 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", ""));
 		String ment1 	= "";
 		String ment2 	= "";
 		String ttsMent 	= "";
@@ -455,8 +456,10 @@ public class MessageAct
 		// 멘트 팝업창에서 미리보기
 		if(paramMap.getStrArray("ttsMent2").length == 0)
 		{
-			ment1 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent2").replaceAll("\r\n", "<br/>"));
-			ment2 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent3").replaceAll("\r\n", "<br/>"));
+//			ment1 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent2").replaceAll("\r\n", "<br/>"));
+//			ment2 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent3").replaceAll("\r\n", "<br/>"));
+			ment1 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent2").replaceAll("\r\n", ""));
+			ment2 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent3").replaceAll("\r\n", ""));
 
 			if(ment2.equals("null") || ment2.equals(null) || ment2.equals(""))
 			{
@@ -466,8 +469,8 @@ public class MessageAct
 			{
 				ttsMent = FrameworkUtils.unescapeHtml(ment0+"<br/>"+ment1+"<br/>"+ment2);
 			}
-			
-			mentArr.add(ttsMent.replaceAll("<br/>", ""));
+						
+			mentArr.add(ttsMent.replaceAll("<br/>", ".  "));
 		}
 		else
 		{

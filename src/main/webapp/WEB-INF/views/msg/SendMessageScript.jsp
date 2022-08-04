@@ -169,7 +169,7 @@ function makeTTSMent()
 	// 알림형
 	if(ttsMent3.length == 0)
 	{
-		ttsMent = ttsMent1.val() + "<br/>" + ttsMent2.val();
+		ttsMent = ttsMent1.val() +"<br/>" + ttsMent2.val();
 	}
 	// 응답형 (질문 1개)
 	else if(ttsMent3.length == 1)

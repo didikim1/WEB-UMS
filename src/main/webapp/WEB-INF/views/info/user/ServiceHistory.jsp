@@ -13,7 +13,7 @@
 	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
 	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
-	.btnResend {width: 75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important;}
+	.btnResend {width: 75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;}
 	.main_table td { text-align:center; }
 	.main_table button { padding:3px 5px;float:none;margin-left:0; }
 </style>

@@ -17,7 +17,7 @@
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:20px;}
 	.company_list input[type=checkbox] { width:16px; }
 	.company_list td { text-align:center; }
-	.company_list td .btn_listen { height:25px;width:75px;padding:3px 5px;float:none;margin-left:0px;font-size:13px;text-align:center;line-height:18px; }
+	.company_list td .btn_listen { height:25px;width:75px;padding:3px 5px;float:none;margin-left:0px;font-size:12px;text-align:center;line-height:18px; }
 </style>
 
 <div id="contents">

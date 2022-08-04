@@ -6,7 +6,7 @@
 <BaseTag:layoutPopup>
 
 <style>
-	#wrap_pop_ser {overflow:hidden; width:525px; height:265px; border: 3px solid #2a347f; padding:30px;margin:0 auto;margin-top:150px; }
+	#wrap_pop_ser {overflow:hidden; width:529px; height:269px; border: 1px solid #2a347f; padding:30px;margin:0 auto;margin-top:150px; }
 	.ser_text { font-size:14px;line-height:20px;margin-bottom:3px; }
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.col_r {color:#cd2129;}

@@ -7,7 +7,7 @@
 <BaseTag:layout>
 
 <style>
-	.ars_content { height:36px !important; }
+	.C { height:36px !important; }
 	.topContent td { text-align:center; }
 	.bottomContent { width:100%; }
 	.question { width:100%;min-height:300px; }

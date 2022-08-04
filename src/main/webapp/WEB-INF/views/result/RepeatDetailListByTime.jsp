@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
-	.ars_content { height:36px !important; }
+/* 	.ars_content { height:36px !important; } */
 	.searchBox { float:right; }
 	#ui-datepicker-div { font-size:13px;width:200px; }
 	.searchBox label { font-size:14px;margin-right:5px; }
@@ -14,7 +14,7 @@
 	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend {  width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResend {  width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
 	.btnVoice {  width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
 	.pointer { cursor:pointer; }
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:13px;}
