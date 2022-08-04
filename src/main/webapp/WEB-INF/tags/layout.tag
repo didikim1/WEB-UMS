@@ -134,9 +134,9 @@
 		<div id="footer">
 			<div class="section">
 				<ul class="company">
-					<li>드림라인(주) @ 2019 DREAMLINE Co.,Ltd. All Rights Reserved.</li>
-					<li>대표이사 : 김창호&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;소재지 : 서울시 구로구 디지털로 31길 61 드림마크원 데이터센터 7,8층</li>
-					<li>고객센터 : 1877-1817 (평일 09:00 ~ 18:00 주말,공휴일 휴무) </li>
+					<li>Copyrightⓒ2012 INBIZNET CO.LTD All Right Reserved.</li>
+					<li>인비즈넷(주)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사업자등록번호 : 129-86-61831&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표이사 : 정현철&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;소재지 : 서울시 마포구 마포대로 49, 1007호 (도화동,  성우빌딩)</li>
+					<li>고객센터 : 02-3487-5100 (평일 10:00 ~ 17:00 주말,공휴일 휴무) </li>
 					<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<label id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스 사용 가이드</li>
 				</ul>
 			</div>

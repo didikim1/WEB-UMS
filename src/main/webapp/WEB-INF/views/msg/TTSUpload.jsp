@@ -3,7 +3,7 @@
 <BaseTag:layoutPopup>
 
 <style>
-	#wrap_pop_ser {overflow:hidden; width:480px; height:320px; border: 3px solid #F7941D; background:#f8f9ff; padding:30px;}
+	#wrap_pop_ser {overflow:hidden; width:480px; height:320px; border: 3px solid #2a347f; background:#f8f9ff; padding:30px;}
 	.ser_text {font-size:14px; line-height:20px;;}
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.ser_text ul {}
@@ -15,7 +15,7 @@
 	#uploadFile { position:absolute;left:0;top:0;opacity:0; }
 	#uploadConfirm { text-align:center; }
 	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px; }
-	#uploadNotice { border:2px solid #F7941D;padding:5px 10px; }
+	#uploadNotice { border:2px solid #2a347f;padding:5px 10px; }
 </style>
 
 <body>

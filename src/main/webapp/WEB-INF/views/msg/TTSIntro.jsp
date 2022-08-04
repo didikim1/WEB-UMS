@@ -2,7 +2,7 @@
 <%@ taglib prefix="BaseTag" tagdir="/WEB-INF/tags"%>
 <BaseTag:layoutPopup>
 <style>
-	#wrap_pop_ser {overflow:hidden; width:820px; height:330px; border: 3px solid #F7941D; background:#f8f9ff; padding:30px;}
+	#wrap_pop_ser {overflow:hidden; width:820px; height:330px; border: 3px solid #2a347f; background:#f8f9ff; padding:30px;}
 	.ser_text {font-size:14px; line-height:20px;;}
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.ser_text ul {}

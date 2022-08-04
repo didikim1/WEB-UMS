@@ -10,7 +10,7 @@
 	.info_com ul li input[type=text] { margin-right:20px;width:200px; }
 	.ttsTitle { width:550px !important; }
 	#btnNumber { height:38px; float:none; margin-left:10px; }
-	#btnAdd { background:#F7941D !important; }
+	#btnAdd { background:#2a347f !important; }
 	#btnExcelForm { width:100px; }
 	#tip { margin-left:10px;font-size:14px !important;font-weight:normal !important; }
 	.receiverWrap, .receiverList { display:flex; }
@@ -42,7 +42,7 @@
 	#recFileTitle { height:36px;line-height:36px;margin-left:10px; }
 	#recFileName { width:500px;height:36px;line-height:36px;margin-left:15px;font-size:14px;font-weight:500; }
 	.buttonB, .buttonC { display:inline-block; }
-	#btnGetSavedFileB, #btnGetSavedFileC { background:#F7941D !important; }
+	#btnGetSavedFileB, #btnGetSavedFileC { background:#2a347f !important; }
 	#repeat select[name=repeatType] { width:90px !important; }
 </style>
 
