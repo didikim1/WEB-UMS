@@ -13,17 +13,18 @@
 <script type="text/x-handlebars-template" id="survey1">
 <div class="surveyInner">
 	<div class="ttsWriteBox">
-		<textarea rows="5" cols="155" name="ttsMent2" maxlength="1000">[전달 내용 입력]</textarea>
+		<textarea rows="5" cols="155" name="ttsMent2" maxlength="2000">(전달 내용 직접입력)</textarea>
 	</div>
 </div>
 </script>
 <script type="text/x-handlebars-template" id="survey2">
 <div class="surveyInner">
 	<div class="ttsWriteBox">
-		<textarea rows="5" cols="155" name="ttsMent2" maxlength="1000">[전달 내용 입력]</textarea>
+		<textarea rows="5" cols="155" name="ttsMent2" maxlength="2000"">(전달 내용 직접입력)</textarea>
 	</div>
 	<div class="ttsWriteBox">
-		<textarea rows="1" cols="155" name="ttsMent3" maxlength="100">이상 안내드린 사항에 동의하시면 1번, 동의하지 않으시는 경우 2번, 그외 기타사항은 3번  (수정가능)</textarea>
+		<textarea class="text_title" rows="1" cols="155" name="ttsMent3" maxlength="100">이상 안내드린 사항에 동의하시면 1번, 동의하지 않으시는 경우 2번, 그외는 3번</textarea>
+		<span class="tip">* 원하는 선택지 문항으로 수정하십시오.</span>
 	</div>
 </div>
 </script>
@@ -728,6 +729,7 @@ $(document).ready(function(){
 	// 보내기 요청 버튼
 	$("#btnSubmit").click(function(){
 		var title = $("[name=ttsTitle]").val();
+// alert("title = ", title)
 
 		if(title.length < 1)
 		{

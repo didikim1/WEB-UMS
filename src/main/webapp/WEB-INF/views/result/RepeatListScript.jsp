@@ -52,10 +52,18 @@ function fn_Sorting(sidx)
 
 $(document).ready(function(){
 	// 전체 선택
-	$("[name=checkAll]").click(function(){
-		for(var i=0; i<$("input[name=checkbox]").length; i++)
+// 	$("[name=checkAll]").click(function(){
+// 		for(var i=0; i<$("input[name=checkbox]").length; i++)
+// 		{
+// 			$("input[name=checkbox]").eq(i).prop("checked", $(this).prop("checked"));
+// 		}
+// 	});
+	// 전체선택
+	$("thead input[type=checkbox]").click(function(){
+		var checkboxes = $("tbody input[type=checkbox]");
+		for(var i=0; i<checkboxes.length; i++)
 		{
-			$("input[name=checkbox]").eq(i).prop("checked", $(this).prop("checked"));
+			checkboxes.eq(i).prop("checked", $(this).prop("checked"));
 		}
 	});
 

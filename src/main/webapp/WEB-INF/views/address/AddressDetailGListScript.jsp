@@ -26,7 +26,7 @@ function fn_modify(seq)
 	var url='/addr/AddressDetail?seq='+seq;
 	var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
  	var popupY = window.screenTop+(((window.outerHeight)*0.5)-140);
-	var option = 'width=546, height=287, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+	var option = 'width=606, height=343, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 	window.open(url, 'AddressDetail', option);
 }
 

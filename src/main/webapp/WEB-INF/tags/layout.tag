@@ -40,8 +40,8 @@
 
 	<style>
 		#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
-/* 		#btnLogout { float:right;margin-right:-380px; } */
 		#btnLogout { height:35px; margin-left:80px; margin-top:-5px;}
+		.menuTitle { padding-top: 5px !important;}
 	</style>
 	
 	<jsp:useBean id="frameworkBeans" class="com.inbiznetcorp.acs.framework.beans.FrameworkBeans" />
@@ -56,14 +56,14 @@
 <!-- 				<h1 class="logo"><a href="#">INBIZNET</a></h1> -->
 				<ul class="gnb">
 					<li>
-						<a href="/msg/SendMessage">UMS 메세지 발송</a>
+						<a class="menuTitle" href="/msg/SendMessage">UMS 메세지 발송</a>
 						<ul>
 							<li style="margin-left:15px;"><a href="/msg/SendMessage">음성메세지 발송</a></li>
 							<li><a href="/msg/SMSSendMessage">문자메세지 발송</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="/result/ResultList">발송내역 관리</a>
+						<a class="menuTitle" href="/result/ResultList">발송내역 관리</a>
 						<ul>
 							<li style="margin-left:-275px;"><a href="/result/ResultList">음성발송내역 조회</a></li>
 							<li><a href="/result/SMSResultList">문자발송내역 조회</a></li>
@@ -73,14 +73,14 @@
 						</ul>
 					</li>
 					<li>
-						<a href="/addr/AddressPList">주소록</a>
+						<a class="menuTitle" href="/addr/AddressPList">주소록</a>
 						<ul>
 							<li style="margin-left:-80px;"><a href="/addr/AddressPList">개인 주소록</a></li>
 							<li><a href="/addr/AddressGList">그룹 주소록</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="/info/user/UserInfo">사용관리</a>
+						<a class="menuTitle" href="/info/user/UserInfo">사용관리</a>
 						<ul>
 							<li style="margin-left:-200px"><a href="/info/user/UserInfo">회원정보</a></li>
 <%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
@@ -95,7 +95,7 @@
 						</ul>
 					</li>
 					<li>
-						<a href="/received/">메세지 보관함</a>
+						<a class="menuTitle" href="/received/">메세지 보관함</a>
 						<ul>
 							<li style="margin-left:-70px"><a href="/received/">회신수신함</a></li>
 <%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>

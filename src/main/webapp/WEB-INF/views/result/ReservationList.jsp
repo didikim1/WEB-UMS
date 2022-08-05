@@ -103,10 +103,10 @@
 				<tbody>
 					<c:choose>
 						<c:when test="${fn:length(list) > 0}">
-							<c:forEach var="list" items="${list}">
+							<c:forEach var="list" items="${list}" varStatus="status">
 								<tr>
 									<td><input type="checkbox" name="checkbox" value="${list.ivrlogmapperseq}" /></td>
-									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index + 1}</td>
+									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index}</td>
 									<td>${list.createdate}</td>
 									<td>${list.nextcallDate}</td>
 									<td>

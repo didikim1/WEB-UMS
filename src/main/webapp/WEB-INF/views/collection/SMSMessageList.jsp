@@ -26,7 +26,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">음성 모음함</h2>
+			<h2 class="pageTitle">문자 모음함</h2>
 		</div>
     	<!--//서브타이틀-->
 
@@ -77,7 +77,7 @@
 						<th>순번</th>
 						<th>제목</th>
 						<th>등록일</th>
-						<th>듣기</th>
+						<th>내용보기</th>
 						<th>발송</th>
 					</tr>
 				</thead>
@@ -185,4 +185,4 @@
 </form>
 
 </BaseTag:layout>
-<%@ include file="MessageListScript.jsp" %>
+<%@ include file="SMSMessageListScript.jsp" %>

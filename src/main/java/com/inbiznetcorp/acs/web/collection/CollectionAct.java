@@ -14,9 +14,9 @@ public class CollectionAct
 	}
 	
 	@RequestMapping("/SMSList")
-	public String MessageList2()
+	public String SMSMessageList()
 	{
-		return "/collection/MessageList2";
+		return "/collection/SMSMessageList";
 	}
 
 	@RequestMapping("/SurveyList")

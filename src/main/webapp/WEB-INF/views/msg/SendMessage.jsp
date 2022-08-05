@@ -8,7 +8,7 @@
 	.tbl_type01 th, .tbl_type01 td {padding:5px;}
 	.info_com ul li a { margin-right:10px;margin-top:8px;font-size:13px;font-weight:400; }
 	.info_com ul li input[type=text] { margin-right:20px;width:200px; }
-	.ttsTitle { width:550px !important; }
+	.sendTitle { width:500px !important; }
 	#btnNumber { height:38px; float:none; margin-left:10px; }
 	#btnAdd { background:#2a347f !important; }
 	#btnExcelForm { width:100px; }
@@ -21,10 +21,10 @@
 	.phonenumber { width:300px;text-align:center; }
 	.text_title { width:600px; }
 	.text_content { width:1700px; }
-	.receiverBox { width:680px;height:200px;border:1px solid #ccc;margin-top:10px;overflow-y:scroll; }
+	.receiverBox { width:680px;height:200px;border:1px solid #ccc;margin-top:5px;overflow-y:scroll; }
 	.receiverBtnBox { margin-left:15px; }
 	.receiverBtnBox button { margin-bottom:3px; }
-	.inputRadio { width:13px !important;height:17px !important;margin-top:7px;margin-left:12px; }
+	.inputRadio { width:13px !important;height:15px !important;margin-top:6px;margin-left:12px; }
 	.ttsWriteBox { margin-top:10px;display:flex; }
 	.sendDay { width:90px !important;height:20px !important;margin:3px 0 3px 10px !important;font-size:13px; }
 	select { width:45px !important;height:20px !important;margin:3px 0 3px 10px !important; }
@@ -37,7 +37,8 @@
 	.ttsOption > li { height:26px;line-height:26px; }
 	.exampleSelect { margin-top:10px; }
 	.exampleSelect > li { display:inline-block;height:26px;line-height:26px; }
-	.examplCntText { font-size:12px !important;color:red !important;margin-left:20px; }
+	.tip { font-size:12px !important;color:red !important; margin: 7px 0 0 10px;}
+	.examplCntText { font-size:12px !important;color:red !important; margin-left:10px;}
 	.ttsMsgBox2 { display:inline-block; }
 	.ttsMsgBox2 ul { border:1px solid #ccc; }
 	#recFileTitle { height:36px;line-height:36px;margin-left:10px; }
@@ -82,8 +83,8 @@
 						<tr>
 							<th scope="row">제목</th>
 							<td>
-								<input type="text" class="ttsTitle" name="ttsTitle" maxlength="80" autocomplete="off"/>
-								<span id="tip" style="margin-top:8px;">전화발신 제목이 제공됩니다. (40자 이내)</span>
+								<input type="text" class="sendTitle" name="ttsTitle" maxlength="80" autocomplete="off"  value="음성발송메세지 제목입니다." />
+								<span class="tip">*원하는 음성발송 제목으로 수정하십시오. (40자 이내)</span>
 							</td>
 						</tr>
 						<tr>
@@ -154,7 +155,7 @@
 													</ul>
 												</div>
 												<div>
-													<span id="tip" style="font-size:12px !important;">&nbsp;&nbsp;* TTS : 문자를 음성으로 변환</span>
+													<span class="tip">* TTS 입력후 이어폰과 ARS 전화를 통해 미리듣기 가능합니다.</span>
 												</div>
 											</div>
 										</div>
@@ -183,12 +184,12 @@
 
 									<div class="ttsMsgBox">
 										<div class="ttsWriteBox">
-											<textarea class="text_title" rows="1" cols="155" name="ttsMent1" maxlength="100" style="color:#999;">안녕하십니까? OO에서 전달드리는 안내사항입니다. </textarea>
-											<span class="examplCntText">* 원하시는 시작 인사말로 수정하십시오.</span>
+											<textarea class="text_title" rows="1" cols="155" name="ttsMent1" maxlength="100">안녕하십니까? OO에서 전달드리는 안내사항입니다. </textarea>
+											<span class="tip">* 원하는 인사말 문항으로 수정하십시오.</span>
 										</div>
 										<div>
 											<ul class="exampleSelect">
-												<li><span>전달 항목 갯수 </span></li>
+												<li><span>전달 문항 갯수 </span></li>
 												<li>
 													<select name="exampleCnt">
 														<option value="0">0</option>
@@ -204,14 +205,14 @@
 													</select>
 												</li>
 												<li>
-													<span class="examplCntText">* 전달항목 '0'선택시 회신 확인없는 안내전달만 이루어집니다.</span>
+													<span class="examplCntText">* 전달문항갯수 '0'선택시 회신 확인없는 안내전달만 이루어집니다.</span>
 												</li>
 											</ul>
 										</div>
 										<div class="surveyOuter">
 											<div class="surveyInner">
 												<div class="ttsWriteBox">
-													<textarea class="text_contente" rows="5" cols="155" name="ttsMent2" maxlength="1000" style="color:#999;">[전달 내용 입력]</textarea>
+													<textarea class="text_contente" rows="5" cols="155" name="ttsMent2" maxlength="2000">(전달 내용 직접입력)</textarea>
 												</div>
 											</div>
 										</div>

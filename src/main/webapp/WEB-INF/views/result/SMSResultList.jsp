@@ -70,8 +70,8 @@
 				<colgroup>
 					<col width="7%" />
 					<col width="13%" />
-					<col width="15%" />
-					<col width="16%" />
+					<col width="10%" />
+					<col width="20%" />
 					<col width="20%" />
 <%-- 					<col width="10%" /> --%>
 <%-- 					<col width="10%" /> --%>
@@ -102,7 +102,7 @@
 						<c:when test="${fn:length(list) > 0}">
 							<c:forEach var="list" items="${list}" varStatus="status">
 								<tr>
-									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index + 1}</td>
+									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index}</td>
 									<td>${list.createdate}</td>
 									<td>
 										<label class="pointer originSeq">${list.originSeq}</label>

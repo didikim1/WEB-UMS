@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReceivedAct
 {
 	@RequestMapping(value= {"", "/"})
-	public String MessageList()
+	public String ReceivedList()
 	{
-		return "/received/MessageList";
+		return "/received/ReceivedList";
 	}
 	
 }

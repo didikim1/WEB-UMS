@@ -14,7 +14,7 @@
 	.tbl_type01 th, .tbl_type01 td { padding-left:0;padding:0;font-size:86%;text-align:center; }
 	.tbl_type01 tr {line-height:0.5;}
 	.tbl_type01 td {background-color:#fff;}
-	.btnResult { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResult { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
 	#btnCancel { width:120px;height:30px;padding:1px 6px; }
 </style>
 

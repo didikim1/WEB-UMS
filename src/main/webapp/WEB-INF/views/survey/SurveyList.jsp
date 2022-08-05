@@ -97,10 +97,10 @@
 				<tbody>
 					<c:choose>
 						<c:when test="${fn:length(list) > 0}">
-							<c:forEach var="list" items="${list}">
+							<c:forEach var="list" items="${list}" varStatus="status">
 								<tr>
 <%-- 									<td><input type="checkbox" name="checkbox" value="${list.ivrlogmapperseq}"></td> --%>
-									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index + 1}</td>
+									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index}</td>
 									<td>${list.createdate}</td>
 									<td>
 										<label class="pointer title" id="${list.ivrlogmapperseq}">${list.title}</label>
@@ -131,11 +131,11 @@
 												<c:when test="${ment eq '?' || ment eq '.'}">
 													<c:out value="-" />
 												</c:when>
-												<c:when test="${fn:length(ment) < 16}">
+												<c:when test="${fn:length(ment) < 26}">
 													<c:out value="${ment}" />
 												</c:when>
 												<c:otherwise>
-													<c:out value="${fn:substring(ment, 0, 15)}..." />
+													<c:out value="${fn:substring(ment, 0, 26)}..." />
 												</c:otherwise>
 											</c:choose>
 										</label>
