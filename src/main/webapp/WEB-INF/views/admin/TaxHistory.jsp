@@ -62,6 +62,7 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
+					<col width="7%" />
 					<col width="20%" />
 					<col width="20%" />
 					<col width="20%" />
@@ -70,6 +71,7 @@
 				</colgroup>
 				<thead>
 					<tr>
+						<th>순번</th>
 						<th>날짜</th>
 						<th>서비스종류</th>
 						<th>발신건</th>
