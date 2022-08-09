@@ -99,5 +99,11 @@ $(document).ready(function(){
 		location.href="/result/RepeatDetailListByTime?ivrlogmapperseq="+ivrlogmapperseq+"&nextcallDate="+nextcallDate;
 	});
 
+	// 확인 버튼 클릭 시
+	$("#btnCancel").click(function(){
+		var ivrlogmapperseq = $("[name=ivrlogmapperseq]").val();
+		location.href="/result/RepeatList";
+	});
+	
 });
 </script>

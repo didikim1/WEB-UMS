@@ -15,6 +15,7 @@
 	.company_list tr { line-height:0.5 !important;font-size:100% !important; }
 	.company_list td { padding:0px 5px !important;font-size:14px !important; }
 	.name label { cursor:pointer; }
+	.btnDelete { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
 	#btnExcel { margin-left:0px;margin-right:10px; }
 	thead input[type=checkbox] {width:15px !important;margin-left:8px;}
 	tbody input[type=checkbox] {width:15px !important;margin-left:13px;}
@@ -135,8 +136,10 @@
 		<!-- //table -->
 
 		<!-- button -->
-		<div class="btn_next2">
-			<button class="btn_table" id="btnDelete">일괄 삭제</button>
+		<div style="width:100%; margin-top: 10px; text-align:right;">
+			<label>
+				<button type="button" class="btnDelete" id="btnDelete">일괄 삭제</button>
+			</label>
 		</div>
 		<!-- //button -->
 

@@ -167,6 +167,14 @@
 		{
 			url = "/result/ResultList";
 		}
+		else if(url.indexOf("SMSResultDetailList") > -1)
+		{
+			url = "/result/SMSResultList";
+		}
+		else if(url.indexOf("/survey/DetailList") > -1)
+		{
+			url = "/survey/SurveyResultList";
+		}
 		else if(url.indexOf("ReservationDetailList") > -1)
 		{
 			url = "/result/ReservationList";
@@ -174,10 +182,6 @@
 		else if(url.indexOf("RepeatDetailList") > -1)
 		{
 			url = "/result/RepeatList";
-		}
-		else if(url.indexOf("/survey/DetailList") > -1)
-		{
-			url = "/survey/SurveyResultList";
 		}
 		
 // 		console.log(url);

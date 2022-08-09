@@ -14,8 +14,9 @@
 	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend, .btnSelectedResend, .btnDownload { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
-	.btnVoice { height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResend, .btnSelectedResend { width:75px; height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; } 
+	.btnDownload, .btnDelete { width:100px !important; height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
+	.btnVoice { width:75px; height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
 	.pointer { cursor:pointer; }
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:13px;}
 </style>
@@ -26,7 +27,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">발송 상세 내역 관리</h2>
+			<h2 class="pageTitle">음성발송 상세 내역</h2>
 		</div>
         <!--//서브타이틀-->
 
@@ -158,7 +159,7 @@
 			</table>
 		</div>
 		<!-- table -->
-		<div style="width:100%; margin-top: 20px; text-align:right;">
+		<div style="width:100%; margin-top: 10px; text-align:right;">
 <!-- 			<table> -->
 <%-- 				<colgroup> --%>
 <%-- 					<col width="30%" /> --%>
@@ -191,13 +192,18 @@
 					</c:otherwise>								
 				</c:choose>
 				
-				<button type="button" class="btn_table btnDownload" style="height:35px; width:90px;">다운로드</button>
+				<button type="button" class="btnDownload" id="btnDownload">다운로드</button>
 			</label>
 		</div>
 
 		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
 
 	</div>
+	<!-- button -->
+	<div class="btn_next">
+		<button class="btn_can" id="btnCancel">확인</button>
+	</div>
+	<!-- //button -->
 </div>
 
 <!-- <form name="TTSMentPopup"> -->

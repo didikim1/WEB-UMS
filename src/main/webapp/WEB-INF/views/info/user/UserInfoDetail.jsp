@@ -13,6 +13,7 @@
 	.main_table .inputMail { width:200px;height:30px; }
 	.main_table input[type="checkbox"] { width:15px;height:20px; }
 	#btnSubmit, #btnCancel { height:40px !important;margin-top:20px; }
+	.changePassword { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
 </style>
 
 <form name="formSubmit" action="/info/user/ModifyUserInfo" method="POST">
@@ -51,7 +52,7 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="3"><button type="button" class="btn_table" style="font-size:13px;" id="changePassword">비밀번호 변경</button></td>
+						<td colspan="3"><button type="button" class="changePassword" style="font-size:13px;" id="changePassword">비밀번호 변경</button></td>
 					</tr>
 					<tr class="newPW">
 						<th>새 비밀번호</th>

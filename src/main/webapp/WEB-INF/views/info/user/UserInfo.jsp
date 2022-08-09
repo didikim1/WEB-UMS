@@ -15,6 +15,7 @@
 	.bottom_table_box div.title button { padding:3px 5px; }
 	.bottom_table_box .bottom_table { margin-bottom:20px; }
 	.bottom_table_box .bottom_table td { text-align:center; }
+	.btnUserInfoDetail, .btnUsageDetail { width:100px;height:30px;padding:3px 5px !important;float:right !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
 </style>
 
 <div id="contents">
@@ -41,7 +42,7 @@
 		<div class="top_table_box">
 			<div class="title">
 				<h1>※ 개인정보</h1>
-				<button type="button" class="btn_table" id="btnUserInfoDetail">상세보기</button>
+				<button type="button" class="btn_table btnUserInfoDetail" id="btnUserInfoDetail">상세보기</button>
 			</div>
 			<div style="clear:both;"></div>
 			<div class="tbl_type01 company_list top_table" style="margin-top:10px;">
@@ -73,7 +74,7 @@
 		<div class="bottom_table_box">
 			<div class="title">
 				<h1>※ 사용내역</h1>
-				<button type="button" class="btn_table">상세보기</button>
+				<button type="button" class="btn_table btnUsageDetail" id="btnUsageDetail">상세보기</button>
 			</div>
 			<div style="clear:both;"></div>
 			<div class="tbl_type01 company_list bottom_table" style="margin-top:10px;">

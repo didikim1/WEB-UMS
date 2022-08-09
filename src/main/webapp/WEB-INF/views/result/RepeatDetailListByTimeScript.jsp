@@ -130,6 +130,13 @@ $(document).ready(function(){
 			common.confirm('예약 취소', '총 '+ivrlogseqArr.length+'건을 예약 취소 하시겠습니까?', 'A');
 		}
 	});
+	
+	// 취소 버튼 클릭 시
+	$("#btnCancel").click(function(){
+		var ivrlogmapperseq = $("[name=ivrlogmapperseq]").val();
+		location.href="/result/ResultDetailList?ivrlogmapperseq="+ivrlogmapperseq;
+	});
+
 
 });
 </script>

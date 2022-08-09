@@ -14,8 +14,7 @@
 	.searchBox #searchWord { height:30px; }
 	#btnSearch { margin-left:0px; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend {  width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
-	.btnVoice {  width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResend, .btnVoice { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
 	.pointer { cursor:pointer; }
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:13px;}
 </style>
@@ -154,6 +153,11 @@
 		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
 
 	</div>
+	<!-- button -->
+	<div class="btn_next">
+		<button class="btn_can" id="btnCancel">확인</button>
+	</div>
+	<!-- //button -->
 </div>
 
 

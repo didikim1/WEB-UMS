@@ -13,7 +13,7 @@
 	input[type=checkbox] { width:15px !important; }
 	table tbody tr td { text-align:center !important; }
 	.pointer { cursor:pointer; }
-	.btnDel { width:75px;height:25px;padding:5px 15px !important;float:none !important;margin-left:2px !important;font-size:13px !important; }
+	.btnDel { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
 	.info_com { margin-top:10px; }
 	.info_com ul li a { margin-right:10px;margin-top:8px;line-height:38px; }
 	.info_com ul li input[type=text] { margin-right:20px;width:200px;height:38px; }

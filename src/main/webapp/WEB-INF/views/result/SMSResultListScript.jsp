@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
-var ivrlogmapperseq 		= "";
-var ivrlogmapperseqArrStr 	= "";
+var ivrlogmapperseq = "";
 function confirmCallback(type)
 {
 	if(type == "A")
@@ -9,20 +8,8 @@ function confirmCallback(type)
 		var url='/result/RetryCheck?ivrlogmapperseq='+ivrlogmapperseq;
 		var popupX = window.screenLeft+(((window.outerWidth)*0.5)-273);
 	 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-250);
-		var option = 'width=546, height=493, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+		var option = 'width=546, height=497, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 		window.open(url, 'RetryCheck', option);
-	}
-	else if(type == "B")
-	{
-		$.ajax({
-			 url : "/result/RepeatCancel"
-			,data : {
-				ivrlogmapperseq : ivrlogmapperseqArrStr
-			}
-			,success : function(data){
-				location.reload();
-			}
-		});
 	}
 }
 
@@ -51,14 +38,6 @@ function fn_Sorting(sidx)
 }
 
 $(document).ready(function(){
-	// 전체 선택
-// 	$("[name=checkAll]").click(function(){
-// 		for(var i=0; i<$("input[name=checkbox]").length; i++)
-// 		{
-// 			$("input[name=checkbox]").eq(i).prop("checked", $(this).prop("checked"));
-// 		}
-// 	});
-	
 	// 서비스 소개 버튼
 	$("#btnService").click(function(){
 		var url='/msg/ServiceIntro';
@@ -81,31 +60,9 @@ $(document).ready(function(){
 		$("[name=searchForm]").submit();
 	});
 
-	// 전체선택
-	$("thead input[type=checkbox]").click(function(){
-		var checkboxes = $("tbody input[type=checkbox]");
-		for(var i=0; i<checkboxes.length; i++)
-		{
-			checkboxes.eq(i).prop("checked", $(this).prop("checked"));
-		}
-	});
-	
-	// 체크박스 클릭 시
-	$("tbody input[type=checkbox]").click(function(){
-		var checkboxes = $("tbody input[type=checkbox]");
-		for(var i=0; i<checkboxes.length; i++)
-		{
-			if(!checkboxes.eq(i).prop("checked"))
-			{
-				$("thead input[type=checkbox]").prop("checked", false);
-				return;
-			}
-		}
-	});
-		
 	// 제목 클릭
 	$(".title").click(function(){
-		location.href = "/result/RepeatDetailList?ivrlogmapperseq="+$(this).attr("id")+"&CType=true&sendTime=C";
+		location.href = "/result/SMSResultDetailList?ivrlogmapperseq="+$(this).attr("id")+"&AType=true&sendTime=A";
 	});
 
 	// 전송내용 클릭
@@ -127,7 +84,7 @@ $(document).ready(function(){
 
 	// 재발송 버튼
 	$(".btnResend").click(function(){
-		if($(this).parent("td").parent("tr").find("td").eq(9).html() != "전송완료")
+		if($(this).parent("td").parent("tr").find("td").eq(8).html() != "전송완료")
 		{
 			common.alert('재발송', '전송완료된 그룹만 재발송이 가능합니다.');
 			return false;
@@ -138,30 +95,6 @@ $(document).ready(function(){
 
 		common.confirm('재발송', '[ '+ttsTitle+' ] 에 대해서 즉시 재발송 하시겠습니까?', 'A');
 
-	});
-
-	// 삭제 버튼
-	$("#btnDelete").click(function(){
-		var ivrlogmapperseqArr = new Array();
-		var checkbox = $("[name=checkbox]");
-		for(var i=0; i<checkbox.length; i++)
-		{
-			if(checkbox.eq(i).prop("checked"))
-			{
-				ivrlogmapperseqArr.push(checkbox.eq(i).val());
-			}
-		}
-
-		ivrlogmapperseqArrStr = ivrlogmapperseqArr.toString();
-
-		if(ivrlogmapperseqArr.length == 0)
-		{
-			common.alert('반복메세지 삭제', '삭제할 반복메세지를 선택하지 않았습니다.');
-		}
-		else
-		{
-			common.confirm('반복메세지 삭제', '총 '+ivrlogmapperseqArr.length+'건의 반복메세지를 삭제 하시겠습니까?', 'B');
-		}
 	});
 
 });

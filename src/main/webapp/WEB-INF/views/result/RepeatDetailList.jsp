@@ -73,8 +73,8 @@
 		<div class="tbl_type01 company_list" style="margin-top:10px;">
 			<table>
 				<colgroup>
-					<col width="5%" />
-					<col width="9%" />
+					<col width="6%" />
+					<col width="7%" />
 					<col width="20%" />
 					<col width="10%" />
 					<col width="10%" />
@@ -138,6 +138,11 @@
 		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
 
 	</div>
+	<!-- button -->
+	<div class="btn_next">
+		<button class="btn_can" id="btnCancel">확인</button>
+	</div>
+	<!-- //button -->
 </div>
 
 <form name="TTSMentPopup">

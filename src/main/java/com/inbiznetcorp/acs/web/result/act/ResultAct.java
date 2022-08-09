@@ -144,7 +144,7 @@ public class ResultAct
 	}
 
 	/**
-	 * 발송 상세 내역 관리 페이지
+	 * 음성발송 상세 내역 관리 페이지
 	 */
 	@RequestMapping("/ResultDetailList")
 	public String ResultDetailList(Model model)
@@ -181,6 +181,46 @@ public class ResultAct
 		}
 
 		return "/result/ResultDetailList";
+	}
+
+	/**
+	 * 문자발송 상세 내역 관리 페이지
+	 */
+	@RequestMapping("/SMSResultDetailList")
+	public String SMSResultDetailList(Model model)
+	{
+		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+
+		if(paramMap.getStr("ivrlogmapperseq", "").equals(""))
+		{
+			return "redirect:/result/SMSResultList";
+		}
+
+		BasicBean result = ivrlogService.ListPagingData(paramMap);
+
+		model.addAttribute("list", 				result.getList());
+		model.addAttribute("paginationInfo", 	result.getPaginationInfo());
+		model.addAttribute("sSDate", 			paramMap.getStr("sSDate", ""));
+		model.addAttribute("sEDate", 			paramMap.getStr("sEDate", ""));
+		model.addAttribute("searchType", 		paramMap.getStr("searchType", "NAME"));
+		model.addAttribute("searchWord", 		paramMap.getStr("searchWord", ""));
+		model.addAttribute("searchType_", 		paramMap.getStr("searchType_", "NAME"));
+		model.addAttribute("searchWord_", 		paramMap.getStr("searchWord_", ""));
+		model.addAttribute("ivrlogmapperseq", 	paramMap.getStr("ivrlogmapperseq"));
+		model.addAttribute("sidx", 				paramMap.getStr("sidx", "ROW_NUM"));
+		model.addAttribute("sord", 				paramMap.getStr("sord", "DESC"));
+		model.addAttribute("sendTime", 			paramMap.getStr("sendTime", "A"));
+
+
+		paramMap.put("sidx", "ROW_NUM");
+		paramMap.put("sord", "DESC");
+		BasicBean result_ = ivrlogService.ListPagingMapperData(paramMap);
+		if(result_.getList().size() > 0)
+		{
+			model.addAttribute("list_", 			result_.getList().get(0));
+		}
+
+		return "/result/SMSResultDetailList";
 	}
 
 	/**

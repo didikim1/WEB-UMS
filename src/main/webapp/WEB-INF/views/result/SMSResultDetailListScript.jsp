@@ -150,8 +150,8 @@ $(document).ready(function(){
 
 	// 확인 버튼 클릭 시
 	$("#btnCancel").click(function(){
-		var ivrlogseq = $("[name=ivrlogseq]").val();
-		location.href="/result/ResultList";
+		var ivrlogmapperseq = $("[name=ivrlogmapperseq]").val();
+		location.href="/result/SMSResultList";
 	});
 
 });

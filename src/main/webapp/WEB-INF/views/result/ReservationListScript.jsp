@@ -72,14 +72,6 @@ $(document).ready(function(){
 // 			$("input[name=checkbox]").eq(i).prop("checked", $(this).prop("checked"));
 // 		}
 // 	});
-	// 전체선택
-	$("thead input[type=checkbox]").click(function(){
-		var checkboxes = $("tbody input[type=checkbox]");
-		for(var i=0; i<checkboxes.length; i++)
-		{
-			checkboxes.eq(i).prop("checked", $(this).prop("checked"));
-		}
-	});
 
 	// 서비스 소개 버튼
 	$("#btnService").click(function(){
@@ -103,6 +95,30 @@ $(document).ready(function(){
 		$("[name=searchForm]").submit();
 	});
 
+	// 전체선택
+	$("thead input[type=checkbox]").click(function(){
+		var checkboxes = $("tbody input[type=checkbox]");
+		for(var i=0; i<checkboxes.length; i++)
+		{
+			checkboxes.eq(i).prop("checked", $(this).prop("checked"));
+		}
+	});
+	
+	// 체크박스 클릭 시
+	$("tbody input[type=checkbox]").click(function(){
+		var checkboxes = $("tbody input[type=checkbox]");
+		for(var i=0; i<checkboxes.length; i++)
+		{
+			if(!checkboxes.eq(i).prop("checked"))
+			{
+				$("thead input[type=checkbox]").prop("checked", false);
+				return;
+			}
+		}
+		
+		$("thead input[type=checkbox]").prop("checked", true);
+	});
+	
 	// 제목 클릭
 	$(".title").click(function(){
 		location.href = "/result/ReservationDetailList?ivrlogmapperseq="+$(this).attr("id")+"&BType=true&sendTime=B";
@@ -153,7 +169,7 @@ $(document).ready(function(){
 	});
 
 	// 예약 취소 버튼
-	$("#btnRCancel").click(function(){
+	$("#btnDelete").click(function(){
 		var ivrlogmapperseqArr = new Array();
 		var checkbox = $("[name=checkbox]");
 		for(var i=0; i<checkbox.length; i++)
@@ -171,7 +187,7 @@ $(document).ready(function(){
 
 		if(ivrlogmapperseqArr.length == 0)
 		{
-			common.alert('예약 취소', '대기중인 예약메세지를 선택하지 않았습니다.');
+			common.alert('예약 취소', '삭제할 예약메세지를 선택하지 않았습니다.');
 		}
 		else
 		{

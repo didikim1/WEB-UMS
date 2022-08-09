@@ -103,6 +103,28 @@ $(document).ready(function(){
 		$("[name=searchForm]").submit();
 	});
 
+	// 전체선택
+	$("thead input[type=checkbox]").click(function(){
+		var checkboxes = $("tbody input[type=checkbox]");
+		for(var i=0; i<checkboxes.length; i++)
+		{
+			checkboxes.eq(i).prop("checked", $(this).prop("checked"));
+		}
+	});
+	
+	// 체크박스 클릭 시
+	$("tbody input[type=checkbox]").click(function(){
+		var checkboxes = $("tbody input[type=checkbox]");
+		for(var i=0; i<checkboxes.length; i++)
+		{
+			if(!checkboxes.eq(i).prop("checked"))
+			{
+				$("thead input[type=checkbox]").prop("checked", false);
+				return;
+			}
+		}
+	});
+
 	// 제목 클릭
 	$(".title").click(function(){
 		location.href = "/result/ReservationDetailList?ivrlogmapperseq="+$(this).attr("id")+"&BType=true&sendTime=B";
@@ -178,6 +200,34 @@ $(document).ready(function(){
 			common.confirm('예약 취소', '총 '+ivrlogmapperseqArr.length+'건의 대기중인 예약메세지를 취소 하시겠습니까?', 'C');
 		}
 	});
+
+	// 일괄삭제 버튼
+	$("#btnDelete").click(function(){
+		var ivrlogmapperseqArr = new Array();
+		var checkbox = $("[name=checkbox]");
+		for(var i=0; i<checkbox.length; i++)
+		{
+			if(checkbox.eq(i).prop("checked"))
+			{
+				if(checkbox.eq(i).parent("td").parent("tr").find(".statusCompletion").html().trim() == "대기")
+				{
+					ivrlogmapperseqArr.push(checkbox.eq(i).val());
+				}
+			}
+		}
+
+		ivrlogmapperseqArrStr = ivrlogmapperseqArr.toString();
+
+		if(ivrlogmapperseqArr.length == 0)
+		{
+			common.alert('음성모음함 선택 삭제', '삭제할 음성 파일을 선택하지 않았습니다.');
+		}
+		else
+		{
+			common.confirm('음성모음함 선택 삭제', '총 '+ivrlogmapperseqArr.length+'건의 음성 파일을 삭제 하시겠습니까?', 'C');
+		}
+	});
+
 
 });
 </script>

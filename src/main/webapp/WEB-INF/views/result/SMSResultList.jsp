@@ -15,8 +15,7 @@
 	#btnSearch { margin-left:0px; }
 	.pointer { cursor:pointer; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
-	.btnSend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:13px !important; }
+	.btnResend, .btnSend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
 	.tbl_type01 th, .tbl_type01 td { padding:5px 0 !important; }
 </style>
 
@@ -26,7 +25,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">문자 발송내역 조회</h2>
+			<h2 class="pageTitle">문자발송 내역 조회</h2>
 		</div>
         <!--//서브타이틀-->
 
@@ -42,7 +41,7 @@
 		<!-- //contents -->
 
 		<!-- search -->
-		<form action="/result/ResultList" name="searchForm" method="POST">
+		<form action="/result/SMSResultList" name="searchForm" method="POST">
 			<input type="hidden" name="page" value="${paginationInfo.currentPageNo}"/>
 			<input type="hidden" name="sidx" value="${sidx}" />
 			<input type="hidden" name="sord" value="${sord}" />
@@ -83,9 +82,9 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th><label class="pointer" onclick="javascript:fn_Sorting('ROW_NUM')">순번</label></th>
-						<th><label class="pointer" onclick="javascript:fn_Sorting('CREATEDATE')">요청시간</label></th>
-						<th><label class="pointer" onclick="javascript:fn_Sorting('ORIGIN_SEQ')">고유번호<br/>(원번호)</label></th>
+						<th><label class="" onclick="javascript:fn_Sorting('ROW_NUM')">순번</label></th>
+						<th><label class="" onclick="javascript:fn_Sorting('CREATEDATE')">요청시간</label></th>
+						<th><label class="" onclick="javascript:fn_Sorting('ORIGIN_SEQ')">고유번호<br/>(원번호)</label></th>
 						<th><label class="pointer" onclick="javascript:fn_Sorting('TITLE')">제목</label></th>
 						<th><label>전송내용</label></th>
 <!-- 						<th><label class="pointer" onclick="javascript:fn_Sorting('CNT1')">발신건수</label></th> -->
@@ -186,4 +185,4 @@
 </form>
 
 </BaseTag:layout>
-<%@ include file="ResultListScript.jsp" %>
+<%@ include file="SMSResultListScript.jsp" %>

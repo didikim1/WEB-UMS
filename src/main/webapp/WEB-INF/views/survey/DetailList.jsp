@@ -151,6 +151,11 @@
 		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
 
 	</div>
+	<!-- button -->
+	<div class="btn_next">
+		<button class="btn_can" id="btnCancel">확인</button>
+	</div>
+	<!-- //button -->
 </div>
 
 <!-- 설문결과 버튼 -->

@@ -16,7 +16,8 @@
 	#btnSearch { margin-left:0px; }
 	.pointer { cursor:pointer; }
 	table tbody tr td { text-align:center !important; }
-	.btnResend, .btnSend, .btnComplete { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
+	.btnSend .btnResend, .btnSelectedResend { width:75px;height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
+	.btnDownload, .btnDelete { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
 	.tbl_type01 th, .tbl_type01 td { padding:5px 0 !important; }
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:20px;}
 </style>
@@ -187,13 +188,15 @@
 		</div>
 		<!-- table -->
 
-		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
-
 		<!-- button -->
-		<div class="btn_next">
-			<button class="btn_table" id="btnRCancel">예약 취소</button>
+		<div style="width:100%; margin-top: 10px; text-align:right;">
+			<label>
+				<button type="button" class="btnDelete" id="btnDelete">예약 일괄취소</button>
+			</label>
 		</div>
 		<!-- //button -->
+
+		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
 
 	</div>
 </div>
