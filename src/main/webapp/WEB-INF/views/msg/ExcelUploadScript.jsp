@@ -45,15 +45,16 @@ $(document).ready(function(){
 				}
 				else
 				{
+					console.log(data)
 					window.opener.fn_appendPoint();
-					window.opener.setSeqgroup(data.result.paramMap.seqgroup);
+// 					window.opener.setSeqgroup(data.result.paramMap.seqgroup);
 					window.opener.setListSize(data.result.paramMap);
 					
-// 					window.opener.useTemplate(data.result.list);
+					window.opener.useTemplate(data.result);
 // 					window.opener.setParams(data.result);
-// 					window.opener.setListSize(data.result.paramMap);
+					window.opener.setListSize(data.result.paramMap);
+					window.close();
 				}
-				window.close();
 			}
 		});
 	});

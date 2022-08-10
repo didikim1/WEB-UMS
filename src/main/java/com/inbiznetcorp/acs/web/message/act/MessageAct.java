@@ -36,10 +36,10 @@ import com.inbiznetcorp.acs.framework.mymap.MyMap;
 import com.inbiznetcorp.acs.framework.result.ResultCode;
 import com.inbiznetcorp.acs.framework.result.ResultMessage;
 import com.inbiznetcorp.acs.framework.utils.FrameworkUtils;
+import com.inbiznetcorp.acs.web.address.service.AddressService;
 import com.inbiznetcorp.acs.web.excel.read.ExcelRead;
 import com.inbiznetcorp.acs.web.ivr.service.IVRService;
 import com.inbiznetcorp.acs.web.jdbc.DatabaseAuthInfoDuty;
-import com.inbiznetcorp.acs.web.message.service.AddressService;
 import com.inbiznetcorp.acs.web.message.service.ArsalarmttsService;
 import com.inbiznetcorp.acs.web.message.service.FileinfoService;
 import com.inbiznetcorp.acs.web.message.service.MessageService;
@@ -272,12 +272,12 @@ public class MessageAct
 	@RequestMapping("/UploadFile")
 	public @ResponseBody ResultMessage UploadFile(@RequestParam(value="uploadFile", required = false) MultipartFile file)
 	{
-		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-
+		MyMap 		paramMap 			= FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		MyCamelMap 	cpMap 				= null;
 		List<MyCamelMap> resultList 	= null;
 		
-		String userSeq 	= FrameworkBeans.findSessionBean().getUserSeq();
-		String grade 	= FrameworkBeans.findSessionBean().getGrade();
+		String 	userSeq	= FrameworkBeans.findSessionBean().getUserSeq();
+		String 	grade 		= FrameworkBeans.findSessionBean().getGrade();
 
 		String originalFilename = file.getOriginalFilename(); // 파일이름
 		String tempPath 		= env.getProperty("common.file.path");
@@ -293,7 +293,7 @@ public class MessageAct
 
 			ExcelRead excelRead = new ExcelRead();
 			resultList = excelRead.Proc(uploadPath);
-
+			System.out.println(resultList);
 			String strErrorMsg = resultList.get(0).getStr("RESULT", "");
 			if(!strErrorMsg.equals(""))
 			{
@@ -303,111 +303,114 @@ public class MessageAct
 		catch (IllegalStateException | IOException e)
 		{
 			FrameworkUtils.exceptionToString(e);
+			return new ResultMessage(ResultCode.RESULT_BAD_REQUEST, "bad!!!!!!", null);
 		}
-
-		if(paramMap.getStr("group").equals("N"))
-		{
-			if(paramMap.getInt("seqgroup", 0) == 0)
-			{
-				addressService.InsertTempGroup(paramMap);
-			}
-			
-			int 				seqgroup 	= paramMap.getInt("seqgroup", 0);
-			List<MyCamelMap> 	targetList 	= resultList;
-
-			// 이미 등록된 번호는 List에서 제외
-			String[] notphonenumber = paramMap.getStr("notphonenumber").split(",");
-			if(notphonenumber != null)
-			{
-				Iterator<MyCamelMap> iterator = targetList.iterator();
-				while(iterator.hasNext())
-				{
-					String phonenumber = iterator.next().getStr("phonenumber");
-					if(Arrays.asList(notphonenumber).contains(phonenumber))
-					{
-						iterator.remove();
-					}
-				}
-			}
-			
-			new Thread()
-        	{
-        		@Override
-        		public void run()
-        		{
-        			DatabaseAuthInfoDuty databaseAuthInfoDuty = new DatabaseAuthInfoDuty(targetList, seqgroup, userSeq, grade);
-        			int failUpdateCount = databaseAuthInfoDuty.excute();
-        			LOGGER.info("failUpdateCount : " + failUpdateCount);
-        		}
-        	}.start();
-			
-			BasicBean resultBean = addressService.SelectTempTarget(paramMap);
-			
-			paramMap.put("listSize", resultList.size());
-			resultBean.setParamMap(paramMap);
-			
-			return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", resultBean);
-		}
-		else
-		{
-			String message = "";
-			
-			for(MyMap result : resultList)
-			{
-				// 개인주소록
-				if(paramMap.getStr("etc").equals("P"))
-				{
-					result.put("phonenumber", 		result.getStr("phonenumber").replaceAll("-", ""));
-					result.put("SESSION_USER_SEQ", 	paramMap.getStr("SESSION_USER_SEQ"));
-					result.put("SESSION_GRADE", 	paramMap.getStr("SESSION_GRADE"));
-					
-					List<MyCamelMap> resultPData = addressService.SelectPTarget(result);
-					if(resultPData.size() == 0)
-					{
-						addressService.RegisterData(result);
-					}
-				}
-				//그룹주소록
-				else
-				{
-					if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
-					{
-						// 해당 그룹에 존재하는 전화번호인지 확인
-						result.put("seqgroupinfo", 		paramMap.getStr("seqgroupinfo"));
-						result.put("phonenumber", 		result.getStr("phonenumber").replaceAll("-", ""));
-						result.put("SESSION_USER_SEQ", 	paramMap.getStr("SESSION_USER_SEQ"));
-						result.put("SESSION_GRADE", 	paramMap.getStr("SESSION_GRADE"));
-						
-						List<MyCamelMap> resultData = addressService.SelectTarget(result);
-
-						// 존재하지 않으면 등록 후 그룹에 추가
-						if(resultData.size() < 1)
-						{
-							List<MyCamelMap> resultPData = addressService.SelectPTarget(result);
-
-							if(resultPData.size() < 1)
-							{
-								addressService.RegisterData(result);
-								if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
-								{
-									result.put("seqgroupinfo", paramMap.getStr("seqgroupinfo"));
-									addressService.RegisterAddressMapper(result);
-								}
-							}
-							else
-							{
-								if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
-								{
-									resultPData.get(0).put("seqgroupinfo", paramMap.getStr("seqgroupinfo"));
-									addressService.RegisterAddressMapper(resultPData.get(0));
-								}
-							}
-						}
-					}
-				}
-			}
-			return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", message);
-		}
+		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", resultList);
+//		if(paramMap.getStr("group").equals("N"))
+//		{
+//			if(paramMap.getInt("seqgroup", 0) == 0)
+//			{
+//				addressService.InsertTempGroup(paramMap);
+//			}
+//			
+//			int 				seqgroup 	= paramMap.getInt("seqgroup", 0);
+//			List<MyCamelMap> 	targetList 	= resultList;
+//
+//			// 이미 등록된 번호는 List에서 제외
+//			String[] notphonenumber = paramMap.getStr("notphonenumber").split(",");
+//			if(notphonenumber != null)
+//			{
+//				Iterator<MyCamelMap> iterator = targetList.iterator();
+//				while(iterator.hasNext())
+//				{
+//					String phonenumber = iterator.next().getStr("phonenumber");
+//					if(Arrays.asList(notphonenumber).contains(phonenumber))
+//					{
+//						iterator.remove();
+//					}
+//				}
+//			}
+//			//
+//			//여기서 고객사 정보 확인 !! 
+//			//
+//			new Thread()
+//        	{
+//        		@Override
+//        		public void run()
+//        		{
+//        			DatabaseAuthInfoDuty databaseAuthInfoDuty = new DatabaseAuthInfoDuty(targetList, seqgroup, userSeq, grade);
+//        			int failUpdateCount = databaseAuthInfoDuty.excute();
+//        			LOGGER.info("failUpdateCount : " + failUpdateCount);
+//        		}
+//        	}.start();
+//			
+//			BasicBean resultBean = addressService.SelectTempTarget(paramMap);
+//			
+//			paramMap.put("listSize", resultList.size());
+//			resultBean.setParamMap(paramMap);
+//			resultBean.setList(resultList);
+//			return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", resultBean);
+//		}
+//		else
+//		{
+//			String message = "";
+//			
+//			for(MyMap result : resultList)
+//			{
+//				// 개인주소록
+//				if(paramMap.getStr("etc").equals("P"))
+//				{
+//					result.put("phonenumber", 		result.getStr("phonenumber").replaceAll("-", ""));
+//					result.put("SESSION_USER_SEQ", 	paramMap.getStr("SESSION_USER_SEQ"));
+//					result.put("SESSION_GRADE", 	paramMap.getStr("SESSION_GRADE"));
+//					
+//					List<MyCamelMap> resultPData = addressService.SelectPTarget(result);
+//					if(resultPData.size() == 0)
+//					{
+//						addressService.RegisterData(result);
+//					}
+//				}
+//				//그룹주소록
+//				else
+//				{
+//					if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
+//					{
+//						// 해당 그룹에 존재하는 전화번호인지 확인
+//						result.put("seqgroupinfo", 		paramMap.getStr("seqgroupinfo"));
+//						result.put("phonenumber", 		result.getStr("phonenumber").replaceAll("-", ""));
+//						result.put("SESSION_USER_SEQ", 	paramMap.getStr("SESSION_USER_SEQ"));
+//						result.put("SESSION_GRADE", 	paramMap.getStr("SESSION_GRADE"));
+//						
+//						List<MyCamelMap> resultData = addressService.SelectTarget(result);
+//
+//						// 존재하지 않으면 등록 후 그룹에 추가
+//						if(resultData.size() < 1)
+//						{
+//							List<MyCamelMap> resultPData = addressService.SelectPTarget(result);
+//
+//							if(resultPData.size() < 1)
+//							{
+//								addressService.RegisterData(result);
+//								if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
+//								{
+//									result.put("seqgroupinfo", paramMap.getStr("seqgroupinfo"));
+//									addressService.RegisterAddressMapper(result);
+//								}
+//							}
+//							else
+//							{
+//								if(!paramMap.getStr("seqgroupinfo", "0").equals("0"))
+//								{
+//									resultPData.get(0).put("seqgroupinfo", paramMap.getStr("seqgroupinfo"));
+//									addressService.RegisterAddressMapper(resultPData.get(0));
+//								}
+//							}
+//						}
+//					}
+//				}
+//			}
+//			return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", message);
+//		}
 
 
 	}
