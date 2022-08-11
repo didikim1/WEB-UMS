@@ -94,7 +94,6 @@ function fn_TTSUpload()
 function useTemplate(datas)
 {
 	var dataArr = new Array();
-
 	datas.forEach(function(element){
 		var phoneArr = new Array();
 		for(var i=0; i<$(".phonenumber").length; i++)
@@ -115,7 +114,7 @@ function useTemplate(datas)
 
 	$("#name").val("");
 	$("#phonenumber").val("");
-
+	$("#rList > li").first().css("display","none");
 	$("#rList").append(html);
 	var listLength = $("#rList").find("ul").length;
 	$(".receiverBtnBox").find(".viewCnt").html("총 " + listLength);
@@ -403,7 +402,6 @@ $(document).ready(function(){
 	$("#btnAdd").click(function(){
 		var name 	= $("#name").val();
 		var phone 	= $("#phonenumber").val();
-
 		if(name == null || name == "")
 		{
 			alert("이름은 필수 입력사항입니다.");
@@ -423,10 +421,12 @@ $(document).ready(function(){
 			$("#phonenumber").focus();
 			return false;
 		}
+		console.log("click!!");
 
+		var temp = phone.replace(/[^0-9]/g,"");
 		for(var i=0; i<$(".receiverList").length; i++)
 		{
-			if(phone == $(".receiverList").eq(i).find(".phonenumber").find("a").text())
+			if(temp == $(".receiverList").eq(i).find(".phonenumber").find("a").text())
 			{
 				alert('이미 추가된 전화번호입니다.');
 				return false;

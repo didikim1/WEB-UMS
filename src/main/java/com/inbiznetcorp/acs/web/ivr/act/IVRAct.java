@@ -63,11 +63,11 @@ public class IVRAct
 		String 	tid 			= FrameworkUtils.generateSessionID();
 		String 	companyName   	= paramMap.getStr("SESSION_USER_NAME");
 		String 	msg 			= FrameworkUtils.unescapeHtml(paramMap.getStr("msg")).replaceAll("<br/>", ". ").trim();
-
+		System.out.println(paramMap);
 		resultTTSMake = ivrSender.RealTimeTTSMake(tid, companyName, msg);
 		
 		resultTTSMake.put("fileUrl", resultTTSMake.getStr("fileUrl").replace("/Upload/home/asterisk/Lab603/Lab603-TTSMake-Web/Project/", ""));
-
+		System.out.println(resultTTSMake.getStr("fileUrl"));
 		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", resultTTSMake);
 	}
 

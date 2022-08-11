@@ -1,4 +1,4 @@
-package com.inbiznetcorp.acs.web.message.service;
+package com.inbiznetcorp.acs.web.address.service;
 
 import java.util.List;
 
@@ -267,6 +267,10 @@ public class AddressService
 	public int SelectTempTargetCount(MyMap paramMap)
 	{
 		return addressMapper.SelectTempTargetCount(paramMap);
+	}
+
+	public List<MyCamelMap> selectTargetList(MyMap paramMap) {
+		return addressMapper.selectTargetList(paramMap);
 	}
 
 }

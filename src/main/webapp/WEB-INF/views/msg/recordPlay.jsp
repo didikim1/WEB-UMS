@@ -73,15 +73,15 @@ html { overflow:hidden; }
 <script type="text/javascript">
 $(document).ready(function(){
 	var fileUrl = "${fileUrl}";
-	if(-1 < fileUrl.indexOf("auth-test"))
-	{
-		fileUrl = "http://222.110.144.33:43404/uploadVMS/"+"${fileUrl}";
-	}
-	else
-	{
-		fileUrl = "http://localhost:8080/uploadfileVMS/" + fileUrl;
-// 		fileUrl = "http://localhost:8080/uploadfileVMS/20200908/20200908114912STWQz_4mKwprBxc.wav";
-	}
+// 	if(-1 < fileUrl.indexOf("auth-test"))
+// 	{
+// 		fileUrl = "http://222.110.144.33:43404/uploadVMS/"+"${fileUrl}";
+// 	}
+// 	else
+// 	{
+// 		fileUrl = "http://localhost:8080/uploadfileVMS/" + fileUrl;
+// // 		fileUrl = "http://localhost:8080/uploadfileVMS/20200908/20200908114912STWQz_4mKwprBxc.wav";
+// 	}
 	
 	console.log(fileUrl);
 

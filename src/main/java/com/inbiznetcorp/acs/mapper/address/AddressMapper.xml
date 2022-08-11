@@ -26,6 +26,15 @@
 		</if>
 
 	</sql>
+	
+	<sql id="selectTargetWhere">
+		<if test='listType.equals("G")'>
+			AND T2.SEQGROUPINFO IN (${targetSeqStr}) 
+		</if>
+		<if test='listType.equals("P")'>
+			AND T1.SEQ IN (${targetSeqStr})
+		</if>
+	</sql>
 
 	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
 		SELECT
@@ -340,5 +349,21 @@
 		WHERE 1=1
 			AND SEQTARGET = #{seqtarget}
 	</update>
+	
+	<select id="selectTargetList" parameterType="myMap" resultType="myCamelMap">
+		SELECT 
+			T1.*
+		FROM 
+			ADDRESSINFO T1
+			,ADDRESSMAPPER T2
+		WHERE 1=1
+			AND T1.SEQ = T2.SEQADDRESSINFO
+			<include refid="selectTargetWhere"/>
+			AND T1.ISUSE = 'Y'
+			AND T1.DELETEDATE IS NULL
+			AND T2.ISUSE = 'Y'
+			AND T2.DELETEDATE IS NULL
+		
+	</select>
 
 </mapper>

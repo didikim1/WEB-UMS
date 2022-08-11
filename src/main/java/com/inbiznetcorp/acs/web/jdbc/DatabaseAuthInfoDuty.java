@@ -21,44 +21,47 @@ public class DatabaseAuthInfoDuty
 {
 	public static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(DatabaseAuthInfoDuty.class);
 	
-    public DatabaseAuthInfoDuty(List<MyCamelMap>  parseResult, int seqgroup, String userSeq, String grade)
+    public DatabaseAuthInfoDuty(List<MyCamelMap>  parseResult, int seqgroup, String userSeq, String cpGrade)
     {
     	ServiceCommon serviceCommon = (ServiceCommon) FrameworkBeans.findBean("com.inbiznetcorp.acs.framework.common.ServiceCommon");
-    	
-    	if(serviceCommon.getProfilesActiveName().equals("prd"))
-    	{
-    		mDBURL 	= "jdbc:mysql://211.61.220.21:3306/ACS?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
-    		mDBUser = "acs";
-    		mDBPass = "Inbiz90201!@";
-    		mDBServer = "21";
-    	}
-    	else if(serviceCommon.getProfilesActiveName().equals("prd2"))
-    	{
-    		mDBURL 	= "jdbc:mysql://211.61.220.22:3306/ACS?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
-    		mDBUser = "acs";
-    		mDBPass = "Inbiz90201!@";
-    		mDBServer = "22";
-    	}
-    	else if(serviceCommon.getProfilesActiveName().equals("test"))
-    	{
-    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
-    		mDBUser = "inbiznet";
-    		mDBPass = "inbiz9020";
-    		mDBServer = "dev";
-    	}
-    	else
-    	{
-    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms_dev?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
-    		mDBUser = "inbiznet";
-    		mDBPass = "inbiz9020";
-    		mDBServer = "dev";
-    	}
+    	mDBDriver = serviceCommon.getDatabaseDriveClassName();
+    	mDBURL 	= serviceCommon.getDatabaseUrl();
+    	mDBUser = serviceCommon.getDatabaseUserName();
+    	mDBPass = serviceCommon.getDatabasePassword();
+    	mDBServer = "21";
+//    	if(serviceCommon.getProfilesActiveName().equals("prd"))
+//    	{
+//    		mDBURL 	= "jdbc:mysql://211.61.220.21:3306/ACS?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
+//    		mDBUser = "acs";
+//    		mDBPass = "Inbiz90201!@";
+//    		mDBServer = "21";
+//    	}
+//    	else if(serviceCommon.getProfilesActiveName().equals("prd2"))
+//    	{
+//    		mDBURL 	= "jdbc:mysql://211.61.220.22:3306/ACS?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
+//    		mDBUser = "acs";
+//    		mDBPass = "Inbiz90201!@";
+//    		mDBServer = "22";
+//    	}
+//    	else if(serviceCommon.getProfilesActiveName().equals("test"))
+//    	{
+//    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
+//    		mDBUser = "inbiznet";
+//    		mDBPass = "inbiz9020";
+//    		mDBServer = "dev";
+//    	}
+//    	else
+//    	{
+//    		mDBURL 	= "jdbc:mysql://dev01.ring2pay.com:4418/dreamline_vms_dev?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8";
+//    		mDBUser = "inbiznet";
+//    		mDBPass = "inbiz9020";
+//    		mDBServer = "dev";
+//    	}
     	
         mParseResult 	= parseResult;
         mSeqgroup 		= seqgroup;
         mUserSeq 		= userSeq;
-        mGrade 			= grade;
-        
+        mGrade 			= cpGrade;
     }
     
 
@@ -76,16 +79,18 @@ public class DatabaseAuthInfoDuty
             Class.forName(mDBDriver);
             conn = DriverManager.getConnection(mDBURL, mDBUser, mDBPass);
             ps   = conn.prepareStatement(mQuery);
-            
+            int index = 1;
             for (int i = 0; i < mParseResult.size(); i++)
             {
-                MyMap bean = mParseResult.get(i);
-
-                ps.setString(1, bean.getStr("name", null));
-                ps.setString(2, bean.getStr("phonenumber", null));
-                ps.setInt(3, 	mSeqgroup);
-                ps.setString(4, mUserSeq);
-                ps.setString(5, mGrade);
+            	index = 1;
+            	MyMap bean = mParseResult.get(i);
+                
+                ps.setString(index++, 	bean.getStr("name", null));
+                ps.setString(index++, 	bean.getStr("phonenumber", null));
+                ps.setString(index++,	bean.getStr("address", null));
+//                ps.setInt(index++, 		mSeqgroup);
+                ps.setString(index++, 	mUserSeq);
+                ps.setString(index++, 	mGrade);
                 
                 ps.addBatch();
                 ps.clearParameters();
@@ -136,7 +141,7 @@ public class DatabaseAuthInfoDuty
     private String 				mUserSeq 		= null;
     private String 				mGrade 			= null;
 
-    private String              mDBDriver		= "com.mysql.jdbc.Driver";
+    private String              mDBDriver		= null;
     private String              mDBURL 			= null;
     private String              mDBUser         = null;
     private String              mDBPass         = null;
@@ -147,10 +152,10 @@ public class DatabaseAuthInfoDuty
             + "("
             + " NAME"
             + ",PHONENUMBER"
-            + ",SEQGROUP"
-            + ",CREATEDATE"
+            + ",ADDRESS"
             + ",COMPANYSEQ"
             + ",COMPANYGRADE"
+            + ",CREATEDATE"
             + ")"
             + "VALUES"
             + "("
@@ -159,6 +164,6 @@ public class DatabaseAuthInfoDuty
             + ",?"
             + ",?"
             + ",?"
-            + ",now()"
+            + ",NOW()"
             + ")";
 }

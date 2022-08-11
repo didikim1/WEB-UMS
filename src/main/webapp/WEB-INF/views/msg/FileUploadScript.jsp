@@ -33,6 +33,7 @@ $(document).ready(function(){
 			,contentType : false
 	        ,processData : false
 			,success : function(data){
+				console.log(data);
 				if(data.code != 200)
 				{
 					alert(data.result);
@@ -40,10 +41,10 @@ $(document).ready(function(){
 				else
 				{
 					window.opener.useTemplate(data.result.list);
-					window.opener.setParams(data.result);
+// 					window.opener.setParams(data.result);
 					window.opener.setListSize(data.result.paramMap);
+// 					window.close();
 				}
-				window.close();
 			}
 		});
 	});

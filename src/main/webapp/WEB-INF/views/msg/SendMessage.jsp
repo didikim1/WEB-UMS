@@ -123,7 +123,7 @@
 											<li><button type="button" class="btn_service" id="btnExcelForm">엑셀양식받기</button></li>
 											<li>
 												<span id="tip" class="viewCnt" style="color:#cd2129 !important;margin-top:15px;">총 0</span>
-												<span id="tip" class="totalCnt" style="color:#cd2129 !important;margin-top:15px;margin-left:-5px;">/ 0명</span>
+												<span id="tipss" class="totalCntss" style="color:#cd2129 !important;margin-top:15px;margin-left:-5px;">명</span>
 											</li>
 										</ul>
 									</div>

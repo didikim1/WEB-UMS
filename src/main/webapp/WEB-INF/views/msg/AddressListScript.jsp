@@ -117,6 +117,7 @@ $(document).ready(function(){
 
 	// 개인/그룹 라디오 버튼
 	$(".inputRadio").click(function(){
+		/// submit to => /msg/AddressList
 		if($(this).val() == "P")
 		{
 			$("#pAddress").addClass("on");
@@ -139,9 +140,8 @@ $(document).ready(function(){
 	$("#btnSubmit").click(function(){
 		var isGroup 		= "${isGroup}";
 		var seqgroupinfo 	= "${seqgroupinfo}";
-
 		var checklist 		= new Array();
-
+	
 		if(listtype == "P")
 		{
 			// 개인 주소록
@@ -152,30 +152,50 @@ $(document).ready(function(){
 			// 그룹 주소록
 			checklist = checkedList("gList");
 		}
-
-		// 음성메세지 발송 페이지에서 열었을 때
-		if(isGroup == "N")
-		{
-			$(opener.document).find("#checkedListType").val(listtype);
-			$(opener.document).find("#checkedListSeq").val(checklist);
-			$(opener.document).find("#checkedListSeq").trigger("click"); 	// 부모창의 $("#checkedListSeq")요소의 change 이벤트를 발생시킨다.
-			window.close();
-		}
-		// 그룹 주소록 상세 페이지에서 열었을 때
-		else if(isGroup == "Y")
-		{
-			$.ajax({
-				 url : "/addr/RegisterDataGroup"
-				,data : {
-					 seqStr : checklist.toString()
-					,seqgroupinfo : seqgroupinfo
-				}
-				,success : function(){
-					window.opener.location.reload();
+		console.log(checklist);
+		console.log(checklist.toString());
+		console.log(isGroup);
+		console.log(listtype);
+		
+		$.ajax({
+			 url : "/addr/selectTarget"
+			,data : {
+				 targetSeq : checklist
+				 ,targetSeqStr : checklist.toString()
+				 ,listType : listtype
+			}
+			,success : function(data){
+				console.log(data);
+				var list = data.result;
+				if(list.length > 0){
+					window.opener.useTemplate(list);
 					window.close();
 				}
-			});
-		}
+			}
+		});
+// 		// 음성메세지 발송 페이지에서 열었을 때
+// 		if(isGroup == "N")
+// 		{
+// 			$(opener.document).find("#checkedListType").val(listtype);
+// 			$(opener.document).find("#checkedListSeq").val(checklist);
+// 			$(opener.document).find("#checkedListSeq").trigger("click"); 	// 부모창의 $("#checkedListSeq")요소의 change 이벤트를 발생시킨다.
+// 			window.close();
+// 		}
+// 		// 그룹 주소록 상세 페이지에서 열었을 때
+// 		else if(isGroup == "Y")
+// 		{
+// 			$.ajax({
+// 				 url : "/addr/RegisterDataGroup"
+// 				,data : {
+// 					 seqStr : checklist.toString()
+// 					,seqgroupinfo : seqgroupinfo
+// 				}
+// 				,success : function(){
+// 					window.opener.location.reload();
+// 					window.close();
+// 				}
+// 			});
+// 		}
 
 	});
 

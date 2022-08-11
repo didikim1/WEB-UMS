@@ -56,4 +56,6 @@ public interface AddressMapper {
 
 	int 				DeleteTempTarget			(MyMap paramMap);
 
+	List<MyCamelMap> 	selectTargetList			(MyMap paramMap);
+
 }

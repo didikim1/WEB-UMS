@@ -17,7 +17,7 @@ import com.inbiznetcorp.acs.framework.mymap.MyMap;
 import com.inbiznetcorp.acs.framework.result.ResultCode;
 import com.inbiznetcorp.acs.framework.result.ResultMessage;
 import com.inbiznetcorp.acs.framework.utils.FrameworkUtils;
-import com.inbiznetcorp.acs.web.message.service.AddressService;
+import com.inbiznetcorp.acs.web.address.service.AddressService;
 
 @Controller
 @RequestMapping("/addr")
@@ -325,6 +325,18 @@ public class AddressAct
 		}
 
 		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!");
+	}
+	
+	@RequestMapping("/selectTarget")
+	@ResponseBody
+	public ResultMessage selectTarget() {
+		String result = ResultCode.RESULT_BAD_REQUEST;
+		List<MyCamelMap> list = null;
+		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+//		System.out.println(paramMap);
+		list = addressService.selectTargetList(paramMap);
+		if(list.size() > 0) result = ResultCode.RESULT_OK;
+		return new ResultMessage(result,list);
 	}
 
 

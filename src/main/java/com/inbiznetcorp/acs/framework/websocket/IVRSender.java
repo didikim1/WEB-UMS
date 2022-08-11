@@ -52,7 +52,6 @@ public class IVRSender
 	
 	// IVR_URL을 바꾸면 SendMessageScript.jsp에서 WebSocket의 port도 맞게 변경해야한다.(배포시)
 	final static String IVR_URL = "https://albert-test.ring2pay.com";	// 211.61.220.42
-//	final static String IVR_URL = "https://211.61.220.42";
 //	final static String IVR_URL = "http://211.61.220.54";
 //	final static String IVR_URL = "http://211.61.220.53";
 	

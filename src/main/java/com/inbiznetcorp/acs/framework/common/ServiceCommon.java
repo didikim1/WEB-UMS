@@ -38,4 +38,21 @@ public class ServiceCommon
 	{
 		return env.getProperty("Common.CallThreadMaxCount");
 	}
+	
+	public String getDatabaseDriveClassName()
+	{
+		return env.getProperty("datasource.master.driver-class-name");
+	}
+	public String getDatabaseUrl()
+	{
+		return env.getProperty("datasource.master.url");
+	}
+	public String getDatabaseUserName()
+	{
+		return env.getProperty("datasource.master.user-name");
+	}
+	public String getDatabasePassword()
+	{
+		return env.getProperty("datasource.master.password");
+	}
 }
