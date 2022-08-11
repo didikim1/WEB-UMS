@@ -157,13 +157,14 @@ public class IVRAct
 		{
 			JSONParser 	parser 		= new JSONParser();
 			JSONArray 	targetArr 	= (JSONArray)parser.parse(FrameworkUtils.unescapeHtml(paramMap.getStr("targetArr")));
-			
+			LOGGER.info("SENDTYPE ::: " + paramMap.getStr("sendType"));
 			// TTS 직접 입력한 경우
 			if(paramMap.getStr("sendType").equals("A"))
 			{
 				String 		companyName 	= paramMap.getStr("SESSION_USER_NAME");
 				String 		msg 			= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent") + "<VTML_PAUSE TIME=\"500\" />").replaceAll("<br/>", ". ").trim();
 				
+				LOGGER.info("CALLTYPE ::: " + paramMap.getStr("callType"));
 				// 알림형
 				if(paramMap.getStr("callType").equals("A"))
 				{
@@ -201,14 +202,14 @@ public class IVRAct
 					MyMap 		resultTTSMake 		= null;
 					MyMap 		resultTTSPut 		= null;
 					List<MyMap> resultTTSPutList 	= new ArrayList<>();
-					
+					LOGGER.info("응답형 멘트 정보 ::: "+mentArr.toString());
 					// 콜 발송 전 TTS wav 파일 생성
 					int orderNum = 0;
 					for(int i=0; i<mentArr.size(); i++)
 					{
 						orderNum++;
 						String tid = FrameworkUtils.generateSessionID();
-						
+						LOGGER.info("ment info :: " + mentArr.get(i) + " // S");
 						// TTS wav 파일 생성
 						resultTTSMake = ivrSender.RealTimeTTSMake(tid, companyName, mentArr.get(i).toString());
 						resultTTSMake.put("ivrlogmapperseq", 	ivrlogmapperseq);
@@ -224,11 +225,12 @@ public class IVRAct
 						String 		userSessionID 	= FrameworkUtils.generateSessionID();
 						JSONObject 	target 			= (JSONObject) targetArr.get(i);
 						String 		phonenumber 	= target.get("phonenumber").toString().replaceAll("-", "");
+						String 		name			= target.get("name").toString().trim();
 						String 		sendTime 		= paramMap.getStr("sendTime"); // A:즉시, B:예약, C:주기
 
 						// INSERT IVRLOG TABLE
 						paramMap.put("phonenumber", 		phonenumber);
-						paramMap.put("name", 				target.get("name").toString());
+						paramMap.put("name", 				name);
 						paramMap.put("userSessionID", 		userSessionID);
 						paramMap.put("statusCompletion", 	"I");
 						ivrService.RegisterData(paramMap);

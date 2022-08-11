@@ -446,7 +446,7 @@ public class MessageAct
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
 //		String ment0 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", "<br/>"));
-		String ment0 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", ""));
+		String intro 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", ""));
 		String ment1 	= "";
 		String ment2 	= "";
 		String ttsMent 	= "";
@@ -466,20 +466,21 @@ public class MessageAct
 
 			if(ment2.equals("null") || ment2.equals(null) || ment2.equals(""))
 			{
-				ttsMent = FrameworkUtils.unescapeHtml(ment0+"<br/>"+ment1);
+				ttsMent = FrameworkUtils.unescapeHtml(intro+"<br/>"+ment1);
 			}
 			else
 			{
-				ttsMent = FrameworkUtils.unescapeHtml(ment0+"<br/>"+ment1+"<br/>"+ment2);
+				ttsMent = FrameworkUtils.unescapeHtml(intro+"<br/>"+ment1+"<br/>"+ment2);
 			}
 						
 			mentArr.add(ttsMent.replaceAll("<br/>", ".  "));
 		}
 		else
 		{
-			ttsMent += ment0;
+			ttsMent += intro;
 			ttsMent += "<br/>";
 			
+			String str = intro + " ";
 			for(int i=0; i<paramMap.getStrArray("ttsMent2").length; i++)
 			{
 				ttsMent += paramMap.getStrArray("ttsMent2")[i];
@@ -487,11 +488,10 @@ public class MessageAct
 				ttsMent += paramMap.getStrArray("ttsMent3")[i];
 				ttsMent += "<br/>";
 				
-				String str = "";
-				if(i == 0)
-				{
-					str += ment0;
-				}
+//				if(i == 0)
+//				{
+//					str += intro;
+//				}
 				str += paramMap.getStrArray("ttsMent2")[i];
 				str += ", ";
 				str += paramMap.getStrArray("ttsMent3")[i];
@@ -524,7 +524,7 @@ public class MessageAct
 		model.addAttribute("originTTSMent1", paramMap.getStr("ttsMent1"));
 		model.addAttribute("originTTSMent2", jArray2);
 		model.addAttribute("originTTSMent3", jArray3);
-		model.addAttribute("ment0", ment0);
+		model.addAttribute("ment0", intro);
 		model.addAttribute("ment1", ment1);
 		model.addAttribute("ment2", ment2);
 		model.addAttribute("paramMap", paramMap);

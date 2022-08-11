@@ -5,10 +5,14 @@ $(document).ready(function(){
 	var originTTSMent2 = '${originTTSMent2}';
 	var originTTSMent3 = '${originTTSMent3}';
 	
-	console.log(originTTSMent1);
+	var hInput = $("input[type=hidden]");
+	for(var i= 0 ; i < hInput.length ; i++){
+		console.log("name : " + $(hInput[i]).attr("name") + "\t/ value :"+$(hInput[i]).val());
+	}
+	
 // 	console.log(originTTSMent2);
 // 	console.log(originTTSMent3);
-
+	
 	
 // 	console.log(JSON.parse('${mentArr}'));
 	$("[name=mentArr]").val(JSON.stringify(JSON.parse('${mentArr}')));
@@ -39,16 +43,19 @@ $(document).ready(function(){
 			message = "전송 되었습니다.";
 			if(callType == "A")
 			{
+				console.log("sendType A callType A");
 				reqUrl 	= "/result/ResultList";
 			}
 			else if(callType == "B")
 			{
+				console.log("sendType A callType B");
 				reqUrl 	= "/survey/SurveyResultList";
 			}
 		}
 		// 예약
 		else if (sendTime == "B")
 		{
+			console.log("sendType B");
 			url 	= "/IVR/IVRReservation";
 			message = "예약 되었습니다.";
 			reqUrl 	= "/result/ReservationList";
@@ -56,6 +63,7 @@ $(document).ready(function(){
 		// 주기
 		else if (sendTime == "C")
 		{
+			console.log("sendType C");
 			url 	= "/IVR/IVRRepeat";
 			message = "예약 되었습니다.";
 			reqUrl 	= "/result/RepeatList";
@@ -75,7 +83,6 @@ $(document).ready(function(){
 				 url : url
 				,method : "POST"
 				,data : $("[name=formSubmit]").serialize()
-	// 			,data : $(opener.document).find("[name=formSubmit]").serialize()
 				,success : function(data){
 					if(data.code == "200")
 					{

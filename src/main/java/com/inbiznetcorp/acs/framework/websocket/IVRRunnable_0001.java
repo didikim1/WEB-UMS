@@ -70,7 +70,7 @@ public class IVRRunnable_0001 implements Runnable
 			MyMap 	resultTTSPut 		= ivrSender.TTSFileIVRServerPut(resultTTSMake);			// TTS wav 파일 IVR 서버에 전송
 			int 	seqttsputhistory 	= resultTTSPut.getInt("seqttsputhistory");
 			
-			LOGGER.info(mPhonenumber + "_LISTEN..");
+			LOGGER.info(mPhonenumber + "_LISTEN..."+seqttsputhistory);
 			
 			MyMap 	resultTTSPlay 		= ivrSender.wavPlay0001(resultTTSPut, mPhonenumber, "A", mCallerID, mTid);	// ARS 요청
 			

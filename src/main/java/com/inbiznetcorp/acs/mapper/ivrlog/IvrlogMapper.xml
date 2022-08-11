@@ -297,14 +297,14 @@
 		VALUES
 		(
 			 #{phonenumber}
-			,#{requestTime}
-			,#{callStartTime}
-			,#{callEndTime}
+			,#{callresponsedate}
+			,#{callstartdate}
+			,#{callenddate}
 			,#{callduration}
 			,#{result}
 			,#{resultMessage}
-			,#{wavDirPath}
-			,#{wavFileName}
+			,#{recFilePrefix}
+			,#{recFileName}
 			,now()
 			,#{authReqNumber}
 			,#{seqttsputhistory}
