@@ -15,7 +15,7 @@
 	#btnSearch { margin-left:0px; }
 	table tbody tr td { text-align:center !important; }
 	.btnResend, .btnSelectedResend { width:75px; height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; } 
-	.btnDownload, .btnDelete { width:100px !important; height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
+	.btnDownload, .btnDelete { width:100px !important; height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #7d9b9d; color:#fff;}
 	.btnVoice { width:75px; height:25px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important; }
 	.pointer { cursor:pointer; }
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:13px;}

@@ -10,7 +10,7 @@
 	.info_com ul li input[type=text] { margin-right:20px;width:200px; }
 	.sendTitle { width:500px !important; }
 	#btnNumber { height:38px; float:none; margin-left:10px; }
-	#btnAdd { background:#2a347f !important; }
+	#btnAdd { background:#023134 !important; }
 	#btnExcelForm { width:100px; }
 	#tip { margin-left:10px;font-size:14px !important;font-weight:normal !important; }
 	.receiverWrap, .receiverList { display:flex; }
@@ -29,11 +29,11 @@
 	.sendDay { width:90px !important;height:20px !important;margin:3px 0 3px 10px !important;font-size:13px; }
 	select { width:45px !important;height:20px !important;margin:3px 0 3px 10px !important; }
 	#ui-datepicker-div { font-size:13px;width:200px; }
-	.btnDelete { width:70px !important;height:25px !important;margin-top:3px;margin-left:70px !important;background:#757788 !important; }
+	.btnDelete { width:70px !important;height:25px !important;margin-top:3px;margin-left:70px !important;background:#7d9b9d !important; }
 	table ul li span { color:black !important; }
 	#btnTTS { margin-left:-1px !important;width:100px !important; }
 	#btnAdd { font-weight:bold; }
-	#btnSubmit, #btnCancel { height:40px !important; }
+/* 	#btnSubmit, #btnCancel { height:40px !important; } */
 	.ttsOption > li { height:26px;line-height:26px; }
 	.exampleSelect { margin-top:10px; }
 	.exampleSelect > li { display:inline-block;height:26px;line-height:26px; }
@@ -44,7 +44,7 @@
 	#recFileTitle { height:36px;line-height:36px;margin-left:10px; }
 	#recFileName { width:500px;height:36px;line-height:36px;margin-left:15px;font-size:14px;font-weight:500; }
 	.buttonB, .buttonC { display:inline-block; }
-	#btnGetSavedFileB, #btnGetSavedFileC { background:#2a347f !important; }
+	#btnGetSavedFileB, #btnGetSavedFileC { background:#023134 !important; }
 	#repeat select[name=repeatType] { width:90px !important; }
 </style>
 
@@ -346,7 +346,7 @@
 		<!-- button -->
 		<div class="btn_next">
 			<button class="btn_out" id="btnSubmit">보내기 요청</button>
-			<button class="btn_can" id="btnCancel">취소</button>
+<!-- 			<button class="btn_can" id="btnCancel">취소</button> -->
 		</div>
 		<!-- //button -->
 

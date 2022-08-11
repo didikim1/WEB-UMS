@@ -15,7 +15,7 @@
 	.bottom_table_box div.title button { padding:3px 5px; }
 	.bottom_table_box .bottom_table { margin-bottom:20px; }
 	.bottom_table_box .bottom_table td { text-align:center; }
-	.btnUserInfoDetail, .btnUsageDetail { width:100px;height:30px;padding:3px 5px !important;float:right !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
+	.btnUserInfoDetail, .btnUsageDetail { width:100px;height:30px;padding:3px 5px !important;float:right !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #7d9b9d; color:#fff;}
 </style>
 
 <div id="contents">

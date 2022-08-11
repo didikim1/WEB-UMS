@@ -6,7 +6,7 @@
 <BaseTag:layoutPopup>
 
 <style>
-	#wrap_pop_ser {overflow:hidden; width:529px; height:269px; border: 1px solid #2a347f; background:#f8f9ff; padding:30px;}
+	#wrap_pop_ser {overflow:hidden; width:529px; height:269px; border: 1px solid #023134; background:#f8f9ff; padding:30px;}
 	.ser_text { font-size:14px;line-height:20px;margin-bottom:3px; }
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.col_r {color:#cd2129;}
@@ -14,7 +14,7 @@
 	.tbl tr {line-height:0.5;}
 	.tbl th, .tbl td { font-size:100%; }
 	#btnSubmit, #btnCancel { width:115px;height:30px;padding:1px 6px; }
-	#uploadNotice { border:2px solid #2a347f;padding:5px 10px; }
+	#uploadNotice { border:2px solid #023134;padding:5px 10px; }
 </style>
 
 <body>

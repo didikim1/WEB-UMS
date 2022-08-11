@@ -6,7 +6,7 @@
 <BaseTag:layoutPopup>
 
 <style>
-	#wrap_pop_ser {overflow:hidden; width:529px; height:269px; border: 1px solid #2a347f; padding:30px;margin:0 auto;margin-top:150px; }
+	#wrap_pop_ser {overflow:hidden; width:529px; height:269px; border: 1px solid #023134; padding:30px;margin:0 auto;margin-top:150px; }
 	.ser_text { font-size:14px;line-height:20px;margin-bottom:3px; }
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.col_r {color:#cd2129;}
@@ -15,14 +15,12 @@
 	.tbl td { font-size:90%; }
 	#btnSubmit { width:115px;height:40px;padding:1px 6px; }
 	#container { width:100% }
-	#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
-	.pageTitle { color:#2a347f;text-align:center;padding:10px 0 40px; }
+	.pageTitle { color:#023134;text-align:center;padding:10px 0 40px; }
 	.pageTitle:after, .pageTitle:before { width:0px;height:0px; }
 	html, body { height:100% }
 	body { margin:0 }
 	#container { min-height:100% }
 	#wrap {padding-bottom:100px;}
-	#footer { margin-top:-100px; }
 </style>
 
 

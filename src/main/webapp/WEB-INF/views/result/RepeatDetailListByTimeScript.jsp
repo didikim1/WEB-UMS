@@ -134,7 +134,7 @@ $(document).ready(function(){
 	// 취소 버튼 클릭 시
 	$("#btnCancel").click(function(){
 		var ivrlogmapperseq = $("[name=ivrlogmapperseq]").val();
-		location.href="/result/ResultDetailList?ivrlogmapperseq="+ivrlogmapperseq;
+		location.href="/result/RepeatDetailList?ivrlogmapperseq="+ivrlogmapperseq;
 	});
 
 
