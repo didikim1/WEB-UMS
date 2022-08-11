@@ -42,7 +42,7 @@
 		<!-- //contents -->
 
 		<div style="width:100%;margin-bottom:30px;">
-			<label>${list_.createdate} &nbsp;[&nbsp;${list_.title}&nbsp;] &nbsp;총발신 ${list_.cnt1}명 &nbsp;처리완료 ${list_.cnt2}명 &nbsp;수신성공 ${list_.cnt3}명 &nbsp;회신 ${list_.cnt4}명 &nbsp;현재 ${list_.statusCompletion}</label>
+			<label>${list_.createdate} &nbsp;[&nbsp;${list_.title}&nbsp;] &nbsp;발신완료 ${list_.cnt2}회 &nbsp;총발신 ${list_.cnt1}명 &nbsp;수신성공 ${list_.cnt3}명 &nbsp;회신 ${list_.cnt4}명 &nbsp;현재 주기발송 ${list_.statusCompletion}</label>
 		</div>
 
 		<!-- search -->
