@@ -39,7 +39,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 	<style>
-		#privacy { color:#F7931D;cursor:pointer;font-size:12px; }
+		#privacy { color:#045d3f;cursor:pointer;font-size:13px;font-weight:700; }
 		#btnLogout { height:35px; margin-left:80px; margin-top:-5px;}
 		.menuTitle { padding-top: 5px !important;}
 	</style>
@@ -65,7 +65,7 @@
 					<li>
 						<a class="menuTitle" href="/result/ResultList">발송내역 관리</a>
 						<ul>
-							<li style="margin-left:-275px;"><a href="/result/ResultList">음성발송내역 조회</a></li>
+							<li style="margin-left:-290px;"><a href="/result/ResultList">음성발송내역 조회</a></li>
 							<li><a href="/result/SMSResultList">문자발송내역 조회</a></li>
 							<li><a href="/survey/SurveyResultList">설문지 조회</a></li>
 							<li><a href="/result/ReservationList">예약메세지 조회</a></li>
@@ -168,13 +168,13 @@
 		{
 			url = "/addr/AddressGList";
 		}
-		else if(url.indexOf("ResultDetailList") > -1)
-		{
-			url = "/result/ResultList";
-		}
 		else if(url.indexOf("SMSResultDetailList") > -1)
 		{
 			url = "/result/SMSResultList";
+		}
+		else if(url.indexOf("ResultDetailList") > -1)
+		{
+			url = "/result/ResultList";
 		}
 		else if(url.indexOf("/survey/DetailList") > -1)
 		{

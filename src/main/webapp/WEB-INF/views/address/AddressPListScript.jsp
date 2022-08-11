@@ -145,6 +145,7 @@ $(document).ready(function(){
 
 	// 일괄 삭제 버튼
 	$("#btnDelete").click(function(){
+		var seqArr = new Array();
 		var checkboxes 	= $("tbody input[type=checkbox]");
 
 		for(var i=0; i<checkboxes.length; i++)
@@ -155,7 +156,14 @@ $(document).ready(function(){
 			}
 		}
 		
-		common.confirm('일괄 삭제', '선택하신 목록을 일괄삭제하시겠습니까?', 'DELETE');
+		if(seqArr.length == 0)
+		{
+			common.alert('일괄 삭제', '삭제할 주소를 선택하지 않았습니다.');
+		}
+		else
+		{
+			common.confirm('일괄 삭제', '선택하신 목록을 일괄삭제하시겠습니까?', 'DELETE');
+		}
 	});
 });
 </script>

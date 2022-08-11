@@ -16,9 +16,10 @@
 	.btnDel {  width:75px;height:25px;padding:5px 15px !important;float:none !important;margin-left:2px !important;font-size:13px !important; }
 /* 	.btnDel { height:30px;padding:5px 15px !important;float:none !important;margin-left:2px !important; } */
 	.btn_service {float:left !important;}
-	#btnAdd { width:100px;height:36px;padding:3px;margin-left:679px;font-size:13px;background:#b1b1b1;font-weight:500; }
+	#btnAdd { width:100px;height:36px;padding:3px;margin-left:679px;font-size:13px;background:#7d9b9d;font-weight:500; }
 	#btnExcel { margin-left:0px;margin-right:10px; }
 /* 	#btnExcel { width:100px;height:36px;padding:3px;margin-right:10px; } */
+	.groupName { font-size:18px;font-weight:500;text-decoration: underline;}
 </style>
 
 <BaseTag:layout>
@@ -32,8 +33,8 @@
 		</div>
         <!--//서브타이틀-->
 
-        <div style="width:100%;margin-bottom:30px;">
-			<label>그룹명 : ${groupname}</label>
+        <div style="width:100%;margin:57px 0 25px 0;">
+			<label class="groupName">그룹명 : ${groupname}</label>
 		</div>
 
 		<!-- button -->
@@ -120,6 +121,11 @@
 
 		<BaseTag:Page pageing="${paginationInfo}" formName="searchForm"/>
 
+	<!-- button -->
+		<div class="btn_next">
+			<button class="btn_can" id="btnCancel">확인</button>
+		</div>
+		<!-- //button -->
 
 <!-- 			<div class="rightTable"> -->
 <!-- 				<div class="tbl"> -->

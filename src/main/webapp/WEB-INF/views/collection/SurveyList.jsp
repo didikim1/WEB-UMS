@@ -14,7 +14,7 @@
 	.searchBox #searchType { border:1px solid #ccc;height:30px;margin-right:-5px;margin-left:10px; }
 	.searchBox #searchWord { height:30px; }
 	.searchBox #btnSearch { margin-left:0px; }
-	.btnSubmit, .btnDelete { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #757788; color:#fff;}
+	.btnSubmit, .btnDelete { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #7d9b9d; color:#fff;}
 	input[type=checkbox] {width:15px !important;height:15px !important;margin-left:15px;}
 	.company_list input[type=checkbox] { width:16px; }
 	.company_list td { text-align:center; }

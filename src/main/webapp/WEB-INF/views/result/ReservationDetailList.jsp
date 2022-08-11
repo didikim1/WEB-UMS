@@ -26,7 +26,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">발송 상세 내역 관리</h2>
+			<h2 class="pageTitle">예약메세지 상세 내역</h2>
 		</div>
         <!--//서브타이틀-->
 
@@ -186,4 +186,4 @@
 </form>
 
 </BaseTag:layout>
-<%@ include file="ResultDetailListScript.jsp" %>
+<%@ include file="ReservationDetailListScript.jsp" %>

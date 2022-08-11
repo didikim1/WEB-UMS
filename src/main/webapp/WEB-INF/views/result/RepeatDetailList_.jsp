@@ -175,4 +175,4 @@
 </form>
 
 </BaseTag:layout>
-<%@ include file="ResultDetailListScript.jsp" %>
+<%@ include file="RepeatListScript.jsp" %>

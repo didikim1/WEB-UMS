@@ -104,7 +104,7 @@
 									<td>${paginationInfo.totalRecordCount - paginationInfo.recordCountPerPage * (paginationInfo.currentPageNo - 1) - status.index}</td>
 									<td>${list.createdate}</td>
 									<td>
-										<label class="pointer originSeq">${list.originSeq}</label>
+										<label class="originSeq">${list.originSeq}</label>
 									</td>
 									<td>
 										<label class="pointer title" id="${list.ivrlogmapperseq}">${list.title}</label>

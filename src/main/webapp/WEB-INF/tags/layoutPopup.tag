@@ -17,6 +17,10 @@
 		<script type="text/javascript" src="/assets/js/common.js?20200428_001"></script>
 		<script type="text/javascript" src="/assets/js/jquery.mask.js"></script>
 
+		<style>
+			#privacy { color:#045d3f;cursor:pointer;font-size:13px;font-weight:700; }
+			#footer { margin-top:-100px; }			
+		</style>
 	</head>
 	<jsp:doBody/>
 </html>

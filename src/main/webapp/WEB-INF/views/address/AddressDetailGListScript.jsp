@@ -80,5 +80,12 @@ $(document).ready(function(){
 
 		openPopup(seq, name, phonenumber, "주소록 삭제", "※ 삭제할 내용을 확인해주세요.");
 	});
+	
+	// 확인 버튼 클릭 시
+	$("#btnCancel").click(function(){
+		var seq = $("[name=seq]").val();
+		location.href="/addr/AddressGList";
+	});
+
 });
 </script>
