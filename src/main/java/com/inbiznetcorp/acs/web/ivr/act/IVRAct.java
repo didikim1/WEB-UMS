@@ -197,27 +197,32 @@ public class IVRAct
 				// 응답형
 				else
 				{
-					JSONArray mentArr = (JSONArray)parser.parse(FrameworkUtils.unescapeHtml(paramMap.getStr("mentArr")));
+					JSONArray ment2Arr = (JSONArray)parser.parse(FrameworkUtils.unescapeHtml(paramMap.getStr("originTTSMent2")));
+					JSONArray ment3Arr = (JSONArray)parser.parse(FrameworkUtils.unescapeHtml(paramMap.getStr("originTTSMent3")));
 					
 					MyMap 		resultTTSMake 		= null;
 					MyMap 		resultTTSPut 		= null;
 					List<MyMap> resultTTSPutList 	= new ArrayList<>();
-					LOGGER.info("응답형 멘트 정보 ::: "+mentArr.toString());
+					LOGGER.info("응답형 질문멘트 정보 ::: "+ment2Arr.toString());
+					LOGGER.info("응답형 답변멘트 정보 ::: "+ment2Arr.toString());
+					String message = paramMap.getStr("originTTSMent1") ;
 					// 콜 발송 전 TTS wav 파일 생성
-					int orderNum = 0;
-					for(int i=0; i<mentArr.size(); i++)
+					for(int i=0; i<ment2Arr.size(); i++)
 					{
-						orderNum++;
 						String tid = FrameworkUtils.generateSessionID();
-						LOGGER.info("ment info :: " + mentArr.get(i) + " // S");
+						if(i != 0) message = ""; 
+						message += ment2Arr.get(i)+","+ment3Arr.get(i);
+						LOGGER.info("ment info :: " + message + " // S");
 						// TTS wav 파일 생성
-						resultTTSMake = ivrSender.RealTimeTTSMake(tid, companyName, mentArr.get(i).toString());
+						resultTTSMake = ivrSender.RealTimeTTSMake(tid, companyName, message);
+//						resultTTSMake = ivrSender.RealTimeTTSMake(tid, companyName, mentArr.get(i).toString().replace(temp, ""));
 						resultTTSMake.put("ivrlogmapperseq", 	ivrlogmapperseq);
-						resultTTSMake.put("orderNum", 			orderNum);
+						resultTTSMake.put("orderNum", 			(i+1));
 						
 						// TTS wav 파일 IVR 서버에 전송
 						resultTTSPut = ivrSender.TTSFileIVRServerPut(resultTTSMake);
 						resultTTSPutList.add(resultTTSPut);
+//						temp += mentArr.get(i).toString();
 					}
 					
 					for(int i=0; i<targetArr.size(); i++)

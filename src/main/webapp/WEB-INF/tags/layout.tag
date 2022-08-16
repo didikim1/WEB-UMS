@@ -132,9 +132,9 @@
 
 		<!-- footer -->
 		<div id="footer">
-			<div class="section row">
-				<div class="col-3" style="width: 20%;float: left;">
-					<img style="margin-top: 15%" alt="" src="/assets/images/inbiznetLogo_nobg.png">
+			<div class="section row" style="width: 80%;">
+				<div class="col-3" style="width: 20%;float: left;text-align: center;">
+					<img style="margin-top:20px;margin-right: 15px;float: right;" alt="인비즈넷 로고" src="/assets/images/inbiznetLogo_nobg.png">
 				</div>
 				<div class="col-9" style='width: 80%;float: right;'>
 					<ul class="company">

@@ -18,8 +18,8 @@ public class IndexAct
 	@RequestMapping(value= {"", "/"})
 	public String index()
 	{
-		return "redirect:/msg/SendMessage";
-//		return "redirect:/Login";
+//		return "redirect:/msg/SendMessage";
+		return "redirect:/Login";
 	}
 
 	@RequestMapping("/Login")
@@ -34,10 +34,11 @@ public class IndexAct
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		
 		MyCamelMap userInfo = indexService.FindUserInfo(paramMap);
-		
+		System.out.println("userInfo >> " + userInfo );
 		if(userInfo == null)
 		{
 			MyCamelMap adminInfo = indexService.FindAdminInfo(paramMap);
+			System.out.println("adminInfo >> " + adminInfo );
 			
 			if(adminInfo == null)
 			{
