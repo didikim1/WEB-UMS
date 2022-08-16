@@ -147,7 +147,6 @@
 				</ul>
 			</div>
 		</div>
-	</div>
 	<!-- //header -->
 
 	<!-- contents -->
