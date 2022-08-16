@@ -68,7 +68,6 @@
 	</div>
 
 	<!-- footer -->
-<<<<<<< HEAD
 		<div id="footer">
 			<div class="section row" style="width: 80%;">
 				<div class="col-3"
@@ -84,14 +83,15 @@
 							정현철&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;소재지 : 서울시 마포구 마포대로 49,
 							1007호 (도화동, 성우빌딩)</li>
 						<li>고객센터 : 02-3487-5100 (평일 10:00 ~ 17:00 주말,공휴일 휴무)</li>
-						<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-							<label id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스
+						<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <label
+							id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스
 							사용 가이드
 						</li>
 					</ul>
 				</div>
-=======
-	<div id="footer">
+			</div>
+		</div>
+		<div id="footer">
 		<div class="section row">
 			<div class="col-3" style="width: 20%;float: left;">
 				<img class="logo" alt="" src="/assets/images/inbiznetLogo_nobg.png">
@@ -103,11 +103,11 @@
 					<li>고객센터 : 02-3487-5100 (평일 10:00 ~ 17:00 주말,공휴일 휴무) </li>
 					<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<label id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스 사용 가이드</li>
 				</ul>
->>>>>>> c0a0c03e2d170d05902f1d5f01a86deadb4a61d0
 			</div>
 		</div>
+	</div>
+	
 		<!-- //footer -->
-
 </body>
 
 <script type="text/javascript">
