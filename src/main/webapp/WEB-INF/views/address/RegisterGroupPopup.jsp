@@ -21,7 +21,7 @@
 	table td img:last-child { cursor:pointer;width:11px;margin:11.5px; }
 	.pointer { cursor:default; }
 	.pagingArea { margin-top:10px; }
-	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px; }
+	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px;font-size:14px; }
 </style>
 
 <body>

@@ -42,6 +42,7 @@
 		#privacy { color:#045d3f;cursor:pointer;font-size:13px;font-weight:700; }
 		#btnLogout { height:35px; margin-left:80px; margin-top:-5px;}
 		.menuTitle { padding-top: 5px !important;}
+		.logo { float: right;margin-top: 15%;margin-right: 25px; }
 	</style>
 	
 	<jsp:useBean id="frameworkBeans" class="com.inbiznetcorp.acs.framework.beans.FrameworkBeans" />
@@ -80,24 +81,9 @@
 						</ul>
 					</li>
 					<li>
-						<a class="menuTitle" href="/info/user/UserInfo">사용관리</a>
-						<ul>
-							<li style="margin-left:-200px"><a href="/info/user/UserInfo">회원정보</a></li>
-<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
-<!-- 							<li style="margin-left:-300px"><a href="/info/user/UserInfo">회원정보</a></li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() ne 'A'}"> --%>
-<!-- 							<li style="margin-left:-300px"><a href="/info/user/UserInfo">회원정보</a></li> -->
-<%-- 						</c:if> --%>
-							<li><a href="/charge">충전하기</a></li>
-							<li><a href="/info/user/ServiceHistory">서비스 사용내역</a></li>
-							<li><a href="/tax">서비스 정산확인</a></li>
-						</ul>
-					</li>
-					<li>
 						<a class="menuTitle" href="/received/">메세지 보관함</a>
 						<ul>
-							<li style="margin-left:-70px"><a href="/received/">회신수신함</a></li>
+							<li style="margin-left:-188px"><a href="/received/">회신수신함</a></li>
 <%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
 <!-- 							<li style="margin-left:-10px"><a href="/received/">회신수신함</a></li> -->
 <%-- 						</c:if> --%>
@@ -109,15 +95,30 @@
 							<li><a href="/collection/SurveyList">설문모음함</a></li>
 						</ul>
 					</li>
-					<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}">
+					<li>
+						<a class="menuTitle" href="/info/user/UserInfo">사용관리</a>
+						<ul>
+							<li style="margin-left:-160px"><a href="/info/user/UserInfo">계정정보</a></li>
+<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
+<!-- 							<li style="margin-left:-300px"><a href="/info/user/UserInfo">회원정보</a></li> -->
+<%-- 						</c:if> --%>
+<%-- 						<c:if test="${frameworkBeans.findSessionBean().getGrade() ne 'A'}"> --%>
+<!-- 							<li style="margin-left:-300px"><a href="/info/user/UserInfo">회원정보</a></li> -->
+<%-- 						</c:if> --%>
+							<li><a href="/charge">충전하기</a></li>
+							<li><a href="/info/user/ServiceHistory">서비스 사용내역</a></li>
+							<li><a href="/tax">서비스 정산확인</a></li>
+						</ul>
+					</li>
+<%-- 					<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
 					<li>
 						<a href="/cps">관리자 설정</a>
 						<ul>
-							<li style="margin-left:-65px"><a href="/cps">CPS 설정</a></li>
+							<li style="margin-left:-67px"><a href="/cps">CPS 설정</a></li>
 							<li><a href="/qos">QOS 설정</a></li>
 						</ul>
 					</li>
-					</c:if>
+<%-- 					</c:if> --%>
 					<li>
 						<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
 					</li>
@@ -132,9 +133,15 @@
 
 		<!-- footer -->
 		<div id="footer">
+<<<<<<< HEAD
 			<div class="section row" style="width: 80%;">
 				<div class="col-3" style="width: 20%;float: left;text-align: center;">
 					<img style="margin-top:20px;margin-right: 15px;float: right;" alt="인비즈넷 로고" src="/assets/images/inbiznetLogo_nobg.png">
+=======
+			<div class="section row">
+				<div class="col-3" style="width: 20%;float: left;">
+					<img class="logo" alt="" src="/assets/images/inbiznetLogo_nobg.png">
+>>>>>>> c0a0c03e2d170d05902f1d5f01a86deadb4a61d0
 				</div>
 				<div class="col-9" style='width: 80%;float: right;'>
 					<ul class="company">
@@ -151,6 +158,7 @@
 	</div>
  </body>
  <script>
+ 
  $(document).ready(function(){
 	$(".gnb li ul li").each(function(){
 		$(this).removeClass("on");
@@ -199,9 +207,18 @@
 		}
 	});
 	
-	$("#btnLogout").click(function(){
+	 $( ".tbl_type01 tbody tr" ).on( "mouseover", function() {
+         $( this ).css( "background-color", "#c8ddd5" );
+         //$( this).children("td").css( "cursor", "pointer" );
+     });
+     $( ".tbl_type01 tbody tr" ).on( "mouseleave", function() {
+         $( this ).css( "background-color", "white" );
+     });
+
+     $("#btnLogout").click(function(){
 		location.href="/Logout";
 	});
+	
 });
  </script>
 </html>

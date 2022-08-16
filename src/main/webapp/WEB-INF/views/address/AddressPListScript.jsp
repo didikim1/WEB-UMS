@@ -162,7 +162,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			common.confirm('일괄 삭제', '선택하신 목록을 일괄삭제하시겠습니까?', 'DELETE');
+			common.confirm('일괄 삭제', '선택하신 목록을 일괄삭제하시겠습니까? (총 '+seqArr.length+' 명)', 'DELETE');
 		}
 	});
 });

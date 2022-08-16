@@ -18,13 +18,17 @@
 
 	.top_table td { text-align:center; }
 	.bottomContainer { margin-top:10px;}
- 	.bottomContainer .topBox { font-size:18px; font-weight:500; text-align:center;height:30px;line-height:30px; } 
+ 	.bottomContainer .topBox { font-size:19px; font-weight:700; text-align:center;height:30px;line-height:30px;color:#023134; } 
 	.bottomContainer .bottomBox { border:1px solid #ccc; padding:0 10px; }
 	.bottomContainer .bottomBox .title { padding-left:10px;height:30px; }
 	.bottomContainer .bottomBox .title span { padding-left:15px;line-height:45px; }
-	.bottomContainer .bottomBox table input[type=radio] { width:15px; }
+	.bottomContainer .bottomBox table input[type=radio] { height:30px;margin:6px; }
+	table td input { height:30px !important;padding: 5px; }
 	.bottomContainer .bottomBox table td { line-height:40px; }
-	#btnSubmit { float:none; }
+	.bankName { width:148px !important; }
+	.account { width:263px !important; }
+	.owner { width:150px !important; }
+	#btnSubmit, #btnCancel { height:38px !important; width:140px !important;font-size:16px !important;float:none; }
 </style>
 
 <div id="contents">
@@ -72,26 +76,26 @@
 						<tr>
 							<td>음성메세지</td>
 							<td>100원/1통</td>
-							<td>5,000 원</td>
-							<td>5원/1답변</td>
+							<td>8,000 원</td>
+							<td>10원/1답변</td>
 						</tr>
 						<tr>
 							<td>단문메세지</td>
 							<td>25원/1통</td>
 							<td>2,000 원</td>
-							<td>5원/1답변</td>
+							<td>10원/1답변</td>
 						</tr>
 						<tr>
 							<td>장문메세지</td>
 							<td>45원/1통</td>
 							<td>4,000 원</td>
-							<td>5원/1답변</td>
+							<td>30원/1답변</td>
 						</tr>
 						<tr>
 							<td>설문지</td>
-							<td>500원/1통</td>
-							<td>45,000 원</td>
-							<td>50원/1답변</td>
+							<td>300원/1통</td>
+							<td>25,000 원</td>
+							<td>100원/1답변</td>
 						</tr>
 					</tbody>
 				</table>
@@ -104,13 +108,13 @@
 			</div>
 			<div class="bottomContainer">
 				<div class="topBox">
-					현재 충전 금액 : 0 원
+					충전 금액 : 100,000 원 / 잔액 : 5,000 원
 				</div>
 				<div class="bottomBox">
 					<div class="title">
-						<span>1.충전금액 선택</span>
+						<span>1. 충전금액 선택</span>
 					</div>
-					<div class="tbl_type01 company_list" style="margin-top:10px;">
+					<div class="tbl_type03 company_list" style="margin-top:10px;">
 						<table>
 							<colgroup>
 								<col width="20%" />
@@ -121,39 +125,51 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<td><input type="radio" name="" value="">1,000원</td>
-									<td><input type="radio" name="" value="">3,000원</td>
-									<td><input type="radio" name="" value="">5,000원</td>
-									<td><input type="radio" name="" value="">10,000원</td>
-									<td><input type="radio" name="" value="">30,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="5000">5,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="10000">10,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="20000">20,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="30000">30,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="40000">40,000원</td>
 								</tr>
 								<tr>
-									<td><input type="radio" name="" value="">50,000원</td>
-									<td><input type="radio" name="" value="">100,000원</td>
-									<td><input type="radio" name="" value="">500,000원</td>
-									<td><input type="radio" name="" value="">1,000,000원</td>
-									<td><input type="radio" name="" value="">5,000,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="50000">50,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="100000">100,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="500000">500,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="1000000">1,000,000원</td>
+									<td><input type="radio" class="inputRadio" name="amount" value="5000000">5,000,000원</td>
 								</tr>
 								<tr>
-									<td><input type="radio" name="" value="">직접입력</td>
-									<td colspan="4"><input type="text" name="" value="" style="height:30px;" autocomplete="off" maxlength="20"></td>
+									<td><input type="radio" class="inputRadio" name="amount" value="0">직접입력</td>
+									<td colspan="4"><input type="text" name="amount2" value="" autocomplete="off" maxlength="20"></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="title">
-						<span>2.충전방법 선택</span><br/>
+						<span>2. 충전방법 선택</span><br/>
 					</div>
-					<div class="tbl_type01 company_list" style="margin-top:10px;width:50%;">
+					<div class="tbl_type03 company_list" style="margin-top:10px;">
 						<table>
 							<colgroup>
-								<col width="50%" />
-								<col width="50%" />
+								<col width="10%" />
+								<col width="15%" />
+								<col width="10%" />
+								<col width="25%" />
+								<col width="10%" />
+								<col width="15%" />
 							</colgroup>
 							<tbody>
 								<tr>
-									<td><input type="radio" name="" value="">계좌이체</td>
-									<td><input type="radio" name="" value="">가상계좌</td>
+									<td colspan="3"><input type="radio" class="inputRadio" name="chargeType" value="1">계좌이체</td>
+									<td colspan="3"><input type="radio" class="inputRadio" name="chargeType" value="2">가상계좌</td>
+								</tr>
+								<tr class="bankInfo">
+									<th>은행명</th>
+									<td><input class="bankName" name="bankName"/></td>
+									<th>계좌번호</th>
+									<td><input type="number" class="account" name="account"/></td>
+									<th>예금주</th>
+									<td><input class="owner" name="owner"/></td>
 								</tr>
 							</tbody>
 						</table>
@@ -171,4 +187,5 @@
 	</div>
 </div>
 
+<%@ include file="ChargeScript.jsp" %>
 </BaseTag:layout>

@@ -56,7 +56,7 @@
 
 			<!-- 개인주소록 -->
 			<div class="tabsCont on" id="pAddress">
-				<div class="tbl">
+				<div class="tbl_type01 company_list">
 					<table>
 						<caption>리스트</caption>
 						<colgroup>

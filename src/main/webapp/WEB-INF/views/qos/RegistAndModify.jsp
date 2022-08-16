@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="BaseTag" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <BaseTag:layoutPopup>
 
 <style>
-	#wrap_pop_ser {overflow:hidden; width:484px; height:2540px; border: 1px solid #023134; background:#f8f9ff; padding:30px;}
+	#wrap_pop_ser {overflow:hidden; width:484px; height:274px; border: 1px solid #023134; background:#f8f9ff; padding:30px;}
 	.ser_text {font-size:14px; line-height:20px;}
 	.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 	.ser_text ul {}
 
 	.tbl th, .tbl td { padding:10px 5px; }
-	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px; }
 </style>
 
 
@@ -52,10 +54,18 @@
 
 		<!-- Button-->
 		<div class="btn_next">
-			<button type="button" class="btn_i" id="btnSubmit">등록</button>
+			<c:choose>
+				<c:when test="${isRegist eq 'Y'}">
+					<button type="button" class="btn_i btnSubmit" id="btnSubmit">등록</button>
+				</c:when>
+				<c:otherwise>
+					<button type="button" class="btn_i btnModify" id="btnModify">변경</button>
+				</c:otherwise>
+			</c:choose>
 			<button type="button" class="btn_d" id="btnCancel">취소</button>
 		</div>
 		<!-- //Button-->
+		
 
 	</div>
 </body>

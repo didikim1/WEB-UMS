@@ -7,7 +7,7 @@
 <BaseTag:layout>
 
 <style>
-	.tbl_type01 th, .tbl_type01 td {padding:5px;}
+	.tbl_type03 th, .tbl_type03 td {padding:5px;}
 	.main_table button { padding:3px 5px;float:left; }
 	.main_table .inputPhone { width:125px; height:30px;}
 	.main_table .inputMail { width:200px;height:30px; }
@@ -22,7 +22,7 @@
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">회원정보</h2>
+			<h2 class="pageTitle">회원 상세정보</h2>
 		</div>
     	<!--//서브타이틀-->
 
@@ -37,7 +37,7 @@
 		</div>
 		<!-- //contents -->
 		
-		<div class="tbl_type01 company_list main_table" style="margin-top:10px;">
+		<div class="tbl_type03 company_list main_table" style="margin-top:10px;">
 			<table>
 				<colgroup>
 					<col width="20%" />
@@ -145,6 +145,18 @@
 							<br/>
 							<input type="checkbox" name="eventAgree" <c:if test='${userInfo.eventAgree eq "Y"}'>checked</c:if> value="Y" />
 							<label>이벤트, 정기 뉴스레터 수신 동의</label>
+						</td>
+					</tr>
+					<tr>
+						<th>사용자 유형</th>
+						<td style="border-right:none !important;">
+							<label>UMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "1"}'>checked</c:if> value="1" />
+						</td>
+						<td style="border-right:none !important;">
+							<label>VMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "2"}'>checked</c:if> value="2" />
+						</td>
+						<td>
+							<label>SMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "3"}'>checked</c:if> value="3" />
 						</td>
 					</tr>
 				</tbody>
