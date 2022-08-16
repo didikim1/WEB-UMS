@@ -45,7 +45,7 @@
 				<button type="button" class="btn_table btnUserInfoDetail" id="btnUserInfoDetail">상세보기</button>
 			</div>
 			<div style="clear:both;"></div>
-			<div class="tbl_type01 company_list top_table" style="margin-top:10px;">
+			<div class="tbl_type03 company_list top_table" style="margin-top:10px;">
 				<table>
 					<colgroup>
 						<col width="30%" />
@@ -77,7 +77,7 @@
 				<button type="button" class="btn_table btnUsageDetail" id="btnUsageDetail">상세보기</button>
 			</div>
 			<div style="clear:both;"></div>
-			<div class="tbl_type01 company_list bottom_table" style="margin-top:10px;">
+			<div class="tbl_type03 company_list bottom_table" style="margin-top:10px;">
 				<table>
 					<colgroup>
 						<col width="20%" />

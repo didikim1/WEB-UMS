@@ -195,28 +195,25 @@ $(document).ready(function(){
 
 	// 일괄삭제 버튼
 	$("#btnDelete").click(function(){
-		var ivrlogmapperseqArr = new Array();
+		var surveylogmapperseqArr = new Array();
 		var checkbox = $("[name=checkbox]");
 		for(var i=0; i<checkbox.length; i++)
 		{
 			if(checkbox.eq(i).prop("checked"))
 			{
-				if(checkbox.eq(i).parent("td").parent("tr").find(".statusCompletion").html().trim() == "대기")
-				{
-					ivrlogmapperseqArr.push(checkbox.eq(i).val());
-				}
+				surveylogmapperseqArr.push(checkbox.eq(i).val());
 			}
 		}
 
-		ivrlogmapperseqArrStr = ivrlogmapperseqArr.toString();
+		surveylogmapperseqArrStr = surveylogmapperseqArr.toString();
 
-		if(ivrlogmapperseqArr.length == 0)
+		if(surveylogmapperseqArr.length == 0)
 		{
 			common.alert('설문지 파일 선택 삭제', '삭제할 설문지 파일을 선택하지 않았습니다.');
 		}
 		else
 		{
-			common.confirm('설문지 파일 선택 삭제', '총 '+ivrlogmapperseqArr.length+'건의 설문지 파일을 삭제 하시겠습니까?', 'C');
+			common.confirm('설문지 파일 선택 삭제', '총 '+surveylogmapperseqArr.length+'건의 설문지 파일을 삭제 하시겠습니까?', 'C');
 		}
 	});
 

@@ -28,7 +28,7 @@
 		var myForm = document.formConfirm;
 		var popupX = window.screenLeft+(((window.outerWidth)*0.5)-300);
 	 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-77);
-		var option = 'width=546, height=157, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+		var option = 'width=546, height=174, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 		window.open('', "Confirm", option);
 
 		myForm.action 				= "/Common/Confirm";
@@ -49,7 +49,7 @@
 		 var myForm = document.formAlert;
 		 var popupX = window.screenLeft+(((window.outerWidth)*0.5)-273);
 		 var popupY = window.screenTop+(((window.outerHeight)*0.5)-77);
-		 var option = 'width=546, height=157, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+		 var option = 'width=546, height=174, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 		 window.open('', "Alert", option);
 
 		 myForm.action 				= "/Common/Alert";

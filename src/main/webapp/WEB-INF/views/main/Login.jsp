@@ -21,6 +21,8 @@
 	body { margin:0 }
 	#container { min-height:100% }
 	#wrap {padding-bottom:100px;}
+	.logo { float: right;margin-top: 15%;margin-right: 25px; }
+	#btnSubmit, #btnCancel { height:38px !important; width:140px !important;font-size:16px !important; }
 </style>
 
 
@@ -67,13 +69,18 @@
 
 	<!-- footer -->
 	<div id="footer">
-		<div class="section">
-			<ul class="company">
-				<li>Copyrightⓒ2012 INBIZNET CO.LTD All Right Reserved.</li>
-				<li>인비즈넷(주)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사업자등록번호 : 129-86-61831&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표이사 : 정현철&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;소재지 : 서울시 마포구 마포대로 49, 1007호 (도화동,  성우빌딩)</li>
-				<li>고객센터 : 02-3487-5100 (평일 10:00 ~ 17:00 주말,공휴일 휴무) </li>
-				<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<label id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스 사용 가이드</li>
-			</ul>
+		<div class="section row">
+			<div class="col-3" style="width: 20%;float: left;">
+				<img class="logo" alt="" src="/assets/images/inbiznetLogo_nobg.png">
+			</div>
+			<div class="col-9" style='width: 80%;float: right;'>
+				<ul class="company">
+					<li>Copyrightⓒ2012 INBIZNET CO.LTD All Right Reserved.</li>
+					<li>인비즈넷(주)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사업자등록번호 : 129-86-61831&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표이사 : 정현철&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;소재지 : 서울시 마포구 마포대로 49, 1007호 (도화동,  성우빌딩)</li>
+					<li>고객센터 : 02-3487-5100 (평일 10:00 ~ 17:00 주말,공휴일 휴무) </li>
+					<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<label id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스 사용 가이드</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<!-- //footer -->
@@ -91,7 +98,7 @@ $(document).ready(function(){
 	var message = "${message}";
 	if(message != "" && message != null)
 	{
-		common.alert("로그인 실패", message);
+		common.alert("로그인 실패", " 로그인 정보를 확인해주세요. (" + message + ")");
 	}
 	
 	// 엔터키 입력 시 로그인 버큰 클릭

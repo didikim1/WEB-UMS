@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
-	.tbl_type01 th, .tbl_type01 td {padding:5px;}
+	.tbl_type03 th, .tbl_type03 td {padding:5px;}
 	.info_com ul li a { margin-right:10px;margin-top:8px;font-size:13px;font-weight:400; }
 	.info_com ul li input[type=text] { margin-right:20px;width:200px; }
 	.sendTitle { width:500px !important; }
@@ -33,7 +33,7 @@
 	table ul li span { color:black !important; }
 	#btnTTS { margin-left:-1px !important;width:100px !important; }
 	#btnAdd { font-weight:bold; }
-/* 	#btnSubmit, #btnCancel { height:40px !important; } */
+	#btnSubmit, #btnCancel { height:38px !important; width:140px !important;font-size:16px !important; }
 	.ttsOption > li { height:26px;line-height:26px; }
 	.exampleSelect { margin-top:10px; }
 	.exampleSelect > li { display:inline-block;height:26px;line-height:26px; }
@@ -73,7 +73,7 @@
 			<input type="hidden" name="callType" />
 			<input type="hidden" name="nextcallDate" />
 			<!-- table -->
-			<div class="tbl_type01 company_list" style="margin-top:10px;">
+			<div class="tbl_type03 company_list" style="margin-top:10px;">
 				<table>
 					<colgroup>
 						<col width="15%" />

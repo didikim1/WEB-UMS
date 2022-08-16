@@ -13,7 +13,7 @@
 
 	.tbl tr {line-height:0.5;}
 	.tbl th, .tbl td { font-size:86%; }
-	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px; }
+	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px;font-size:14px; }
 </style>
 
 <body>

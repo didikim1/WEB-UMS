@@ -195,28 +195,25 @@ $(document).ready(function(){
 
 	// 일괄삭제 버튼
 	$("#btnDelete").click(function(){
-		var ivrlogmapperseqArr = new Array();
+		var smslogmapperseqArr = new Array();
 		var checkbox = $("[name=checkbox]");
 		for(var i=0; i<checkbox.length; i++)
 		{
 			if(checkbox.eq(i).prop("checked"))
 			{
-				if(checkbox.eq(i).parent("td").parent("tr").find(".statusCompletion").html().trim() == "대기")
-				{
-					ivrlogmapperseqArr.push(checkbox.eq(i).val());
-				}
+				smslogmapperseqArr.push(checkbox.eq(i).val());
 			}
 		}
 
-		ivrlogmapperseqArrStr = ivrlogmapperseqArr.toString();
+		smslogmapperseqArrStr = smslogmapperseqArr.toString();
 
-		if(ivrlogmapperseqArr.length == 0)
+		if(smslogmapperseqArr.length == 0)
 		{
 			common.alert('문자모음함 선택 삭제', '삭제할 문자파일을 선택하지 않았습니다.');
 		}
 		else
 		{
-			common.confirm('문자모음함 선택 삭제', '총 '+ivrlogmapperseqArr.length+'건의 문자 파일을 삭제 하시겠습니까?', 'C');
+			common.confirm('문자모음함 선택 삭제', '총 '+smslogmapperseqArr.length+'건의 문자 파일을 삭제 하시겠습니까?', 'C');
 		}
 	});
 

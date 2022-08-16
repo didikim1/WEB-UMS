@@ -17,12 +17,12 @@
 		<script type="text/javascript" src="../../assets/js/style.js"></script>
 
 		<style>
-			#wrap_pop_ser {overflow:hidden; width:484px; height:94px; border: 1px solid #023134; background:#f8f9ff; padding:30px;}
+			#wrap_pop_ser {overflow:hidden; width:484px; height:110px; border: 1px solid #023134; background:#f8f9ff; padding:30px;}
 			.ser_text {font-size:14px; line-height:20px;;}
 			.ser_text a {font-size:18px; font-weight:bold; margin-bottom:10px; display:inline-block; }
 			.ser_text ul {}
 			.col_r {color:#cd2129;}
-			#btnSubmit, #btnCancel { font-size:16px;padding:5px 30px; }
+			#btnSubmit, #btnCancel { font-size:14px;padding:5px 30px; }
 		</style>
 	</head>
 

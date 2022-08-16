@@ -19,7 +19,7 @@
 	#btnAdd { width:100px;height:36px;padding:3px;margin-left:679px;font-size:13px;background:#7d9b9d;font-weight:500; }
 	#btnExcel { margin-left:0px;margin-right:10px; }
 /* 	#btnExcel { width:100px;height:36px;padding:3px;margin-right:10px; } */
-	.groupName { font-size:18px;font-weight:500;text-decoration: underline;}
+	.groupName { font-size:18px;font-weight:500;border-bottom: 5px solid #89b5b4;}
 </style>
 
 <BaseTag:layout>
