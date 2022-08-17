@@ -22,9 +22,9 @@ body.on {overflow:hidden;}
 
 /* layout */
 #wrap {overflow:hidden;min-width:1024px;}
-#header {position:relative;z-index:10;margin-top:10px;}
+#header {position:relative;z-index:10;margin-top:25px;}
 #header:after {display:block;width:100%;border-bottom:1px solid #e8e8e8;content:"";}
-#header .section {padding:60px 0 0;height:60px;position:relative;}
+#header .section {padding:60px 0 0;height:60px;position:relative;margin-right: 600px;}
 #header .logo a {display:block;width:176px;height:29px;text-indent:-999em;background:url(../images/logo_top.png) no-repeat 0 0;}
 #header .gnb {height:30px;letter-spacing:-5px;position:absolute;right:-20px;top:23px;}
 #header .gnb li {display:inline-block;font-size:17px;color:#89b5b4; }
@@ -169,6 +169,8 @@ textarea {padding:5px;font-family:inherit;font-size:inherit;box-sizing:border-bo
 
 
 select { border:1px solid #d5d5d5 !important;}
+.joinPhone { border:1px solid #d5d5d5 !important; float: left; height: 30px; width: 50px;}
+.emailSelect{ border:1px solid #d5d5d5 !important;  width: 125px; margin-left: 5px;}
 /*
 	main
 ----------------------------------------------------------*/
@@ -250,8 +252,6 @@ select { border:1px solid #d5d5d5 !important;}
 
 
 
-
-/**援�0504**/
 .txt_red {font-size:14px; color:#cd2129; display:inline-block; padding-top:13px;}
 
 
@@ -303,8 +303,12 @@ select { border:1px solid #d5d5d5 !important;}
 
 .btn_com {width:80px; height:38px;font-size:13px;font-weight:500;background:#7d9b9d;color:#fff; float:left; margin-left:4px;}
 
-.btn_adress {display:inline-block; width:100px; height:36px;font-size:13px;font-weight:500;background:#7d9b9d;color:#fff; float:left; margin-left:4px;}
+.btn_adress {display:inline-block; width:100px; height:30px;font-size:14px;font-weight:500; color:#555555; margin-left:4px;float: right; font-weight: bold;}
 .btn_adress2 {display:inline-block; width:100px; height:36px;font-size:13px;font-weight:500;background:#023134;color:#fff; float:left; margin-left:4px;}
+.btn_adress3 {display:inline-block; width:100px; height:30px;font-size:14px;font-weight:500; color:#555555; margin-left:4px; }
+
+.btn_join {display:inline-block; width:100px; height:30px;font-size:14px;font-weight:500;color:#555555; margin-left:4px;float: right;font-weight: bold; cursor: pointer;}
+
 
 
 
@@ -440,7 +444,7 @@ select { border:1px solid #d5d5d5 !important;}
 
 
 /*
-�앹뾽
+占쎌빘毓�
 ---------------------------------------------------------------------------*/
 
 

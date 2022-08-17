@@ -85,7 +85,7 @@
 						<li>고객센터 : 02-3487-5100 (평일 10:00 ~ 17:00 주말,공휴일 휴무)</li>
 						<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <label
 							id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스
-							사용 가이드
+							사용 가이드class="menuTitle"
 						</li>
 					</ul>
 				</div>

@@ -28,6 +28,7 @@ public class AddressAct
 	@Resource(name="com.inbiznetcorp.acs.web.message.service.AddressService")
 	AddressService addressService;
 
+	
 	/**
 	 * 개인 주소록 페이지
 	 */

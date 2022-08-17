@@ -56,12 +56,12 @@
 	font-weight: 700;
 }
 
-#btnLogout {
+ #btnLogout {
 	height: 35px;
 	margin-left: 80px;
 	margin-top: -5px;
 }
-
+ 
 .menuTitle {
 	padding-top: 5px !important;
 }
@@ -71,6 +71,7 @@
 	margin-top: 15%;
 	margin-right: 25px;
 }
+
 </style>
 
 <jsp:useBean id="frameworkBeans"
@@ -80,6 +81,8 @@
 <body>
 	<div id="wrap">
 
+		<button type="button" class=" btn_adress" >로그아웃</button>
+		<button type="button" class=" btn_join" onclick="btnjoin()" >회원가입</button>
 		<!-- header -->
 		<div id="header">
 			<div class="section">
@@ -135,15 +138,13 @@
 							<li><a href="/tax">서비스 정산확인</a></li>
 						</ul></li>
 					<%-- 					<c:if test="${frameworkBeans.findSessionBean().getGrade() eq 'A'}"> --%>
-					<li><a href="/cps">관리자 설정</a>
+					<li><a class="menuTitle" href="/cps">관리자 설정</a>
 						<ul>
 							<li style="margin-left: -67px"><a href="/cps">CPS 설정</a></li>
 							<li><a href="/qos">QOS 설정</a></li>
 						</ul></li>
 					<%-- 					</c:if> --%>
-					<li>
-						<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
-					</li>
+
 				</ul>
 			</div>
 		</div>
@@ -177,6 +178,7 @@
 				</ul>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	<!-- //footer -->
@@ -231,6 +233,9 @@
 		});
 
 	});
+		function btnjoin(){
+			location.href="/main/Join.do";
+		}
 </script>
 </html>
 
