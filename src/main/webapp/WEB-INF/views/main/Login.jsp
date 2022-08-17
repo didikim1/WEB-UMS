@@ -61,6 +61,7 @@
 				<!-- button -->
 				<div class="btn_next">
 					<button type="button" class="btn_i" id="btnSubmit">로그인</button>
+					<button type="button" class="btn_j" id="btnCancel" onclick="btnjoin()" >회원가입</button>
 				</div>
 				<!-- //button -->
 			</div>
@@ -96,6 +97,11 @@
 </body>
 
 <script type="text/javascript">
+
+function btnjoin(){
+	location.href="/main/Join.do";
+}
+
 $(document).ready(function(){
 // 	var innerHeight = window.innerHeight;
 // 	var footerHeight = $("#footer").height();

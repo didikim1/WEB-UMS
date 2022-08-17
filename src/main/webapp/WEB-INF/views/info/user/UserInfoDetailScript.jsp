@@ -97,10 +97,20 @@ $(document).ready(function(){
 	
 	// 새비밀번호 입력란 숨김
 	$(".newPW").hide();
+	$(".policy").hide();
 	
-	// 비밀번호 변경 버튼
+	// 비밀번호 변경 버튼 toggle
 	$("#changePassword").click(function(){
-		$(".newPW").show();
+		if ($(".newPW").is(":visible")) {
+			$(".newPW").hide();
+			$(".policy").hide();
+			$("[name=password1]").val("");
+			$("[name=password2]").val("");
+		} else {
+			$(".newPW").show();
+			$(".policy").show();
+			$("[name=password1]").focus();
+		}
 	});
 	
 	// 이메일 주소 select 변경 시

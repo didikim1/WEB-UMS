@@ -7,15 +7,23 @@
 <BaseTag:layout>
 
 <style>
-	.main_table th, .tbl_type03 td {padding:5px;}
-	.main_table li { line-height:38px;margin-right:20px;display: inline-block; }
+	.main_table th, .tbl_type03 td {padding:5px; }
+	.main_table li { line-height:38px;display: inline-block; }
 	.main_table button { padding:3px 5px;float:left; }
-	.main_table .inputPhone { width:125px; height:30px;}
-	.main_table .inputMail { width:200px;height:30px; }
-	.main_table input[type="checkbox"] { width:15px;height:20px; }
-	input[type="radio"] {margin-right:10px ; }
+	.main_table label { margin-left:5px;margin-right:20px; }
+
+ 	.main_table input, .main_table select { height: 38px !important;font-size:14px !important;margin-left:5px; }
+	.main_table input[name="userName"] { width:430px; }
+	.main_table .inputPhone { width:125px;; }
+	.main_table .inputMail { width:200px; }
+	.main_table select[name="tel1"], .main_table select[name="phone1"] { width:100px; }
+	.main_table select[name="email3"] { width:200px; }
+	
+	.main_table input[type="checkbox"] { width:15px;height:20px !important;margin-right:3px; }
+	.main_table input[type="radio"] {margin:4px 3px 0 5px; }
 /* 	#btnSubmit, #btnCancel { height:40px !important;margin-top:20px; } */
 	.changePassword { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #7d9b9d; color:#fff;}
+	.policy { color:red !important;margin:10px 0 0 40px; }
 </style>
 
 <form name="formSubmit" action="/info/user/ModifyUserInfo" method="POST">
@@ -50,11 +58,14 @@
 				<tbody>
 					<tr>
 						<th>이름</th>
-						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
+						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="40"  autocomplete="off" /></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="3"><button type="button" class="changePassword" style="font-size:13px;" id="changePassword">비밀번호 변경</button></td>
+						<td colspan="3">
+							<button type="button" class="changePassword" style="font-size:13px;" id="changePassword">비밀번호 변경</button>
+							<span class="policy">* 비밀번호는 대소문자, 특수기호를 포함하여 8자리 이상으로 구성해주시기 바랍니다.</span>
+						</td>
 					</tr>
 					<tr class="newPW">
 						<th>새 비밀번호</th>
@@ -65,6 +76,8 @@
 					<tr>
 						<th>유선전화번호</th>
 						<td colspan="3">
+						<ul>
+							<li>
 							<select name="tel1">
 								<option>02</option>
 								<option>031</option>
@@ -90,15 +103,21 @@
 								<option>018</option>
 								<option>019</option>
 							</select>
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							</li>
+							<li>
+							<input type="text" name="" value=" - " disabled style="border:none;width:22px;"/>
 							<input type="text" class="inputPhone" name="tel2" />
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							<input type="text" name="" value=" - " disabled style="border:none;width:22px;"/>
 							<input type="text" class="inputPhone" name="tel3" />
+							</li>
+						</ul>
 						</td>
 					</tr>
 					<tr>
 						<th>휴대전화번호</th>
 						<td colspan="3">
+						<ul>
+							<li>
 							<select name="phone1">
 								<option>010</option>
 								<option>011</option>
@@ -107,10 +126,14 @@
 								<option>018</option>
 								<option>019</option>
 							</select>
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							</li>
+							<li>
+							<input type="text" name="" value=" - " disabled style="border:none;width:22px;"/>
 							<input type="text" class="inputPhone" name="phone2" />
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							<input type="text" name="" value=" - " disabled style="border:none;width:22px;"/>
 							<input type="text" class="inputPhone" name="phone3" />
+							</li>
+						</ul>
 						</td>
 					</tr>
 					<tr>
@@ -119,7 +142,7 @@
 							<input type="text" class="inputMail" name="email1" />
 							<input type="text" name="" value=" @ " disabled style="border:none;width:30px;"/>
 							<input type="text" class="inputMail" name="email2" />
-							<select name="email3" style="height:30px;">
+							<select name="email3">
 								<option>직접입력</option>
 								<option>naver.com</option>
 								<option>nate.com</option>
@@ -143,8 +166,7 @@
 								<option>hanafos.com</option>
 								<option>kornet.net</option>
 							</select>
-							<br/>
-							<br/>
+							<br/><br/>
 							<input type="checkbox" name="eventAgree" <c:if test='${userInfo.eventAgree eq "Y"}'>checked</c:if> value="Y" />
 							<label>이벤트, 정기 뉴스레터 수신 동의</label>
 						</td>
