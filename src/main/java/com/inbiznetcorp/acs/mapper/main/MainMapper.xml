@@ -18,7 +18,7 @@
 	<update id="RegisterData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true" >
 		INSERT INTO CTN_NRLMBER
 			(
-				 CP_ID					<!-- 권한고유ID -->
+				 CP_ID						<!-- 권한고유ID -->
 				,CP_NAME					<!-- 담당업무고유ID -->
 				,PASSWORD					<!-- 비밀번호 -->
 				,MBER_NAME					<!-- 이름 -->
