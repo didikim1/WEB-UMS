@@ -81,8 +81,10 @@
 <body>
 	<div id="wrap">
 
-		<button type="button" class=" btn_adress" >로그아웃</button>
-		<button type="button" class=" btn_join" onclick="btnjoin()" >회원가입</button>
+			<button type="button" class=" btn_adress" >로그아웃</button>
+<%-- 		 	<c:if test = "${chargeId eq 1 || chargeId eq 8}">--%>
+			<button type="button" class=" btn_join" onclick="btnjoin()" >회원가입</button>
+<%-- 			</c:if> --%>
 		<!-- header -->
 		<div id="header">
 			<div class="section">

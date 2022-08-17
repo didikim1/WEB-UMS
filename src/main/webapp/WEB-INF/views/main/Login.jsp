@@ -61,6 +61,7 @@
 				<!-- button -->
 				<div class="btn_next">
 					<button type="button" class="btn_i" id="btnSubmit">로그인</button>
+					<button type="button" class=" btn_i" onclick="btnjoin()" >회원가입</button>
 				</div>
 				<!-- //button -->
 			</div>
@@ -121,7 +122,12 @@ $(document).ready(function(){
 	$("#btnSubmit").click(function(){
 		$("[name=formLogin]").submit();
 	});
+	
 });
+
+function btnjoin(){
+	location.href="/main/Join.do";
+}
 </script>
 
 </BaseTag:layoutPopup>
