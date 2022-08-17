@@ -30,13 +30,13 @@ public class SmsSenderAct {
 		
 		int failCnt =  mService.directSend(paramMap);
 		
-		if(failCnt == -1) {
-			msg = "전송대상자 없음;;";
-		}else if(failCnt == -99) {
-			msg = "전송실패... :<";
-		}else if(failCnt > 0) {
-			msg = "전체 중 " + failCnt + "만큼 실패...";
-		}
+//		if(failCnt == -1) {
+//			msg = "전송대상자 없음;;";
+//		}else if(failCnt == -99) {
+//			msg = "전송실패... :<";
+//		}else if(failCnt > 0) {
+//			msg = "전체 중 " + failCnt + "만큼 실패...";
+//		}
 		return new ResultMessage(code, msg, paramMap);
 	}
 	

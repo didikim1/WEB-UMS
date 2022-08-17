@@ -462,6 +462,8 @@ public class SmsMessageAct
 //		System.out.println("[4]" + mentArr.toJSONString());
 		if(subject.length() > 0) {
 			ment = "[" + subject + "]<br>" + text ;
+		}else {
+			ment = text;
 		}
 		model.addAttribute("mentArr", ment);
 		model.addAttribute("ttsMent", ttsMent);
