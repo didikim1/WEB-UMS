@@ -7,11 +7,13 @@
 <BaseTag:layout>
 
 <style>
-	.tbl_type03 th, .tbl_type03 td {padding:5px;}
+	.main_table th, .tbl_type03 td {padding:5px;}
+	.main_table li { line-height:38px;margin-right:20px;display: inline-block; }
 	.main_table button { padding:3px 5px;float:left; }
 	.main_table .inputPhone { width:125px; height:30px;}
 	.main_table .inputMail { width:200px;height:30px; }
 	.main_table input[type="checkbox"] { width:15px;height:20px; }
+	input[type="radio"] {margin-right:10px ; }
 /* 	#btnSubmit, #btnCancel { height:40px !important;margin-top:20px; } */
 	.changePassword { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #7d9b9d; color:#fff;}
 </style>
@@ -149,14 +151,18 @@
 					</tr>
 					<tr>
 						<th>사용자 유형</th>
-						<td style="border-right:none !important;">
-							<label>UMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "1"}'>checked</c:if> value="1" />
-						</td>
-						<td style="border-right:none !important;">
-							<label>VMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "2"}'>checked</c:if> value="2" />
-						</td>
-						<td>
-							<label>SMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "3"}'>checked</c:if> value="3" />
+						<td colspan="3">
+							<ul>
+								<li>
+									<label>UMS 통합 서비스 사용<input type="radio" name="userType" <c:if test='${userInfo.userType eq "1"}'>checked</c:if> value="1" checked/></label>
+								</li>
+								<li>
+									<label>음성메세지 서비스만 사용<input type="radio" name="userType" <c:if test='${userInfo.userType eq "2"}'>checked</c:if> value="2"/></label>
+								</li>
+								<li>
+									<label>문자메세지 서비스만 사용<input type="radio" name="userType" <c:if test='${userInfo.userType eq "3"}'>checked</c:if> value="3"/></label>
+								</li>
+							</ul>
 						</td>
 					</tr>
 				</tbody>

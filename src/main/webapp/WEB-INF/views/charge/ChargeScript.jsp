@@ -41,17 +41,25 @@ $(document).ready(function(){
 	// 계좌이체 입력란 숨김
 	$(".bankInfo").hide();
 	
+	// 결제금액 직접 입력 버튼
+	var amountradio = $("[name=amount]");
+	$("[name=amount]").click(function(){
+		if(amountradio.eq(10).prop("checked")) 
+		{
+			$("[name=amount2]").focus();
+		}
+	});
+	
 	// 계좌이체 변경 버튼
 	$("[name=chargeType]").click(function(){
 		if ($("input[type=radio][name=chargeType]:checked").val() == "1") {
 			$(".bankInfo").show();
+			$("[name=bankName]").focus();			
 		} else {
 			$(".bankInfo").hide();
 		}
 	});
 	
-
-	// 충전결재 버튼
 	$("#btnSubmit").click(function(){
 		var amount = $("input[type=radio][name=amount]:checked").val();
 		var chargeType = $("input[type=radio][name=chargeType]:checked").val();
