@@ -8,8 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -39,23 +37,25 @@ import com.inbiznetcorp.acs.framework.utils.FrameworkUtils;
 import com.inbiznetcorp.acs.web.address.service.AddressService;
 import com.inbiznetcorp.acs.web.excel.read.ExcelRead;
 import com.inbiznetcorp.acs.web.ivr.service.IVRService;
-import com.inbiznetcorp.acs.web.jdbc.DatabaseAuthInfoDuty;
 import com.inbiznetcorp.acs.web.message.service.ArsalarmttsService;
 import com.inbiznetcorp.acs.web.message.service.FileinfoService;
-import com.inbiznetcorp.acs.web.message.service.MessageService;
+import com.inbiznetcorp.acs.web.message.service.SmsMessageService;
 
 @Controller
-@RequestMapping("/msg")
-public class MessageAct
+@RequestMapping("/msg/sms")
+public class SmsMessageAct
 {
+	
+	private final static String prefix = "/msg/sms";
+	
 	@Autowired private Environment env;
 
 	@Autowired private ServletContext context;
 
-	public static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MessageAct.class);
+	public static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(SmsMessageAct.class);
 
-	@Resource(name="com.inbiznetcorp.acs.web.message.service.MessageService")
-	MessageService messageService;
+	@Resource(name="com.inbiznetcorp.acs.web.message.service.SmsMessageService")
+	SmsMessageService mService;
 
 	@Resource(name="com.inbiznetcorp.acs.web.message.service.AddressService")
 	AddressService addressService;
@@ -69,41 +69,41 @@ public class MessageAct
 	@Resource(name="com.inbiznetcorp.acs.web.ivr.service.IVRService")
 	IVRService mIVRService;
 
-	/**
-	 * 음성메세지 작성 페이지
-	 */
-	@RequestMapping("/SendMessage")
-	public String SendMessage(Model model)
-	{
-		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-		
-		paramMap.put("sequser", paramMap.getStr("SESSION_USER_SEQ"));
-		
-		String 		grade 		= paramMap.getStr("SESSION_GRADE"); 	// A:관리자, B:사용자
-		MyCamelMap 	userInfo 	= (grade.equals("A")) ? messageService.FindAdminInfo(paramMap) : messageService.FindUserInfo(paramMap);
-		
-		model.addAttribute("userInfo", userInfo);
-
-		return "/msg/SendMessage";
-	}
-
-	/**
-	 * 문자메세지 작성 페이지
-	 */
-//	@RequestMapping("/SMSSendMessage")
-//	public String SMSSendMessage(Model model)
+//	/**
+//	 * 음성메세지 작성 페이지
+//	 */
+//	@RequestMapping("/SendMessage")
+//	public String SendMessage(Model model)
 //	{
 //		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 //		
 //		paramMap.put("sequser", paramMap.getStr("SESSION_USER_SEQ"));
 //		
 //		String 		grade 		= paramMap.getStr("SESSION_GRADE"); 	// A:관리자, B:사용자
-//		MyCamelMap 	userInfo 	= (grade.equals("A")) ? messageService.FindAdminInfo(paramMap) : messageService.FindUserInfo(paramMap);
+//		MyCamelMap 	userInfo 	= (grade.equals("A")) ? mService.FindAdminInfo(paramMap) : mService.FindUserInfo(paramMap);
 //		
 //		model.addAttribute("userInfo", userInfo);
 //
-//		return "/msg/SMSSendMessage";
+//		return "/msg/SendMessage";
 //	}
+
+	/**
+	 * 문자메세지 작성 페이지
+	 */
+	@RequestMapping({"/SMSSendMessage"})
+	public String SMSSendMessage(Model model)
+	{
+		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		
+		paramMap.put("sequser", paramMap.getStr("SESSION_USER_SEQ"));
+		
+		String 		grade 		= paramMap.getStr("SESSION_GRADE"); 	// A:관리자, B:사용자
+		MyCamelMap 	userInfo 	= (grade.equals("A")) ? mService.FindAdminInfo(paramMap) : mService.FindUserInfo(paramMap);
+		
+		model.addAttribute("userInfo", userInfo);
+
+		return prefix+"/SMSSendMessage";
+	}
 
 	/**
 	 * 서비스소개 팝업 페이지
@@ -186,7 +186,7 @@ public class MessageAct
 		int seqgroup = paramMap.getInt("seqgroup", 0);
 		if(seqgroup == 0)
 		{
-			messageService.InsertTempGroup(paramMap);
+			mService.InsertTempGroup(paramMap);
 			seqgroup = paramMap.getInt("seqgroup");
 		}
 		
@@ -197,7 +197,7 @@ public class MessageAct
 			result.put("phonenumber", number.replaceAll("-", ""));
 
 			result.put("seqgroup", seqgroup);
-			messageService.InsertTempTarget(result);
+			mService.InsertTempTarget(result);
 		}
     	
 		paramMap.put("seqgroup", seqgroup);
@@ -445,10 +445,9 @@ public class MessageAct
 	{
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-//		String ment0 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", "<br/>"));
-		String intro 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent1").replaceAll("\r\n", ""));
-		String ment1 	= "";
-		String ment2 	= "";
+		String subject 	= FrameworkUtils.unescapeHtml(paramMap.getStr("subject","").replaceAll("\r\n", "<br/>"));
+		String text 	= FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent2").replaceAll("\r\n", "<br/>"));
+		String ment		= "";
 		String ttsMent 	= "";
 		
 		JSONArray mentArr = new JSONArray();
@@ -456,82 +455,26 @@ public class MessageAct
 		JSONArray jArray2 = new JSONArray();
 		JSONArray jArray3 = new JSONArray();
 		
-		// 멘트 팝업창에서 미리보기
-		if(paramMap.getStrArray("ttsMent2").length == 0)
-		{
-//			ment1 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent2").replaceAll("\r\n", "<br/>"));
-//			ment2 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent3").replaceAll("\r\n", "<br/>"));
-			ment1 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent2").replaceAll("\r\n", ""));
-			ment2 = FrameworkUtils.unescapeHtml(paramMap.getStr("ttsMent3").replaceAll("\r\n", ""));
-
-			if(ment2.equals("null") || ment2.equals(null) || ment2.equals(""))
-			{
-				ttsMent = FrameworkUtils.unescapeHtml(intro+"<br/>"+ment1);
-			}
-			else
-			{
-				ttsMent = FrameworkUtils.unescapeHtml(intro+"<br/>"+ment1+"<br/>"+ment2);
-			}
-						
-			mentArr.add(ttsMent.replaceAll("<br/>", ".  "));
-		}
-		else
-		{
-			ttsMent += intro;
-			ttsMent += "<br/>";
-			
-			String str = intro + " ";
-			for(int i=0; i<paramMap.getStrArray("ttsMent2").length; i++)
-			{
-				ttsMent += paramMap.getStrArray("ttsMent2")[i];
-				ttsMent += "<br/>";
-				ttsMent += paramMap.getStrArray("ttsMent3")[i];
-				ttsMent += "<br/>";
-				
-//				if(i == 0)
-//				{
-//					str += intro;
-//				}
-				str += paramMap.getStrArray("ttsMent2")[i];
-				str += ", ";
-				str += paramMap.getStrArray("ttsMent3")[i];
-				
-				mentArr.add(str);
-			}
-			
-			ttsMent = FrameworkUtils.unescapeHtml(ttsMent);
-		}
-		
-		// 각 단계별 멘트
-		if(paramMap.getStrArray("ttsMent2").length == 0)
-		{
-			jArray2.add(paramMap.getStr("ttsMent2"));
-			jArray3.add(paramMap.getStr("ttsMent3"));
-		}
-		else
-		{
-			for(String str2 : paramMap.getStrArray("ttsMent2")) { jArray2.add(str2); }
-			for(String str3 : paramMap.getStrArray("ttsMent3")) { jArray3.add(str3); }
-		}
 		
 //		System.out.println("[1]" + paramMap.getStr("ttsMent1"));
 //		System.out.println("[2]" + paramMap.getStr("ttsMent2"));
 //		System.out.println("[3]" + paramMap.getStr("ttsMent3"));
 //		System.out.println("[4]" + mentArr.toJSONString());
-
-		model.addAttribute("mentArr", mentArr.toJSONString());
+		if(subject.length() > 0) {
+			ment = "[" + subject + "]<br>" + text ;
+		}
+		model.addAttribute("mentArr", ment);
 		model.addAttribute("ttsMent", ttsMent);
 		model.addAttribute("originTTSMent1", paramMap.getStr("ttsMent1"));
 		model.addAttribute("originTTSMent2", jArray2);
 		model.addAttribute("originTTSMent3", jArray3);
-		model.addAttribute("ment0", intro);
-		model.addAttribute("ment1", ment1);
-		model.addAttribute("ment2", ment2);
+		model.addAttribute("ment0", subject);
+		model.addAttribute("ment1", text);
 		model.addAttribute("paramMap", paramMap);
 		
-		System.out.println(mentArr.toJSONString());
+		System.out.println(subject);
 
-		return "/msg/MessageCheck";
+		return prefix+"/SmsMessageCheck";
 	}
 
 	/**
@@ -703,9 +646,9 @@ public class MessageAct
 	{
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 
-		messageService.InsertTempGroup(paramMap);
+		mService.InsertTempGroup(paramMap);
 		System.out.println("paramMap : " + paramMap);
-		messageService.InsertTempTarget(paramMap);
+		mService.InsertTempTarget(paramMap);
 		
 		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!", paramMap);
 	}
@@ -715,7 +658,7 @@ public class MessageAct
 	{
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		
-		messageService.InsertTempTarget(paramMap);
+		mService.InsertTempTarget(paramMap);
 		
 		return new ResultMessage(ResultCode.RESULT_OK, "ok!!!!!!");
 	}

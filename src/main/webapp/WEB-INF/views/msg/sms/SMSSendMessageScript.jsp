@@ -30,25 +30,25 @@
 </script>
 
 <script type="text/javascript">
-// 모음함 불러오기 버튼
-function fn_TTSList()
-{
-	var url='/msg/TTSList';
-	var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
- 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-310);
-	var option = 'width=546, height=623, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
-	window.open(url, 'TTSList', option);
-}
+// // 모음함 불러오기 버튼
+// function fn_TTSList()
+// {
+// 	var url='/msg/TTSList';
+// 	var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
+//  	var popupY = window.screenTop+(((window.outerHeight)*0.5)-310);
+// 	var option = 'width=546, height=623, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+// 	window.open(url, 'TTSList', option);
+// }
 
-// 음성파일 첨부 불러오기
-function fn_TTSUpload()
-{
-	var url='/msg/TTSUpload';
-	var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
- 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-190);
-	var option = 'width=546, height=387, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
-	window.open(url, 'TTSUpload', option);
-}
+// // 음성파일 첨부 불러오기
+// function fn_TTSUpload()
+// {
+// 	var url='/msg/TTSUpload';
+// 	var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
+//  	var popupY = window.screenTop+(((window.outerHeight)*0.5)-190);
+// 	var option = 'width=546, height=387, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+// 	window.open(url, 'TTSUpload', option);
+// }
 
 // template으로 list 추가
 // function useTemplate(datas)
@@ -503,43 +503,55 @@ $(document).ready(function(){
 
 	// 메세지 내용 라디오버튼
 	$("[name=sendType]").change(function(){
-		if($(this).val() == "A")
-		{
-			$(".buttonA").show();
-			$(".buttonB").hide();
-			$(".buttonC").hide();
+		console.log()
+	 	if($(this).val() != "A") {
+	 		$("#subjectBox").css("display","block");
+	 		$("[name=subject]").attr("disabled",false);
+	 		$("#MAX_LENGTH").val(500);
+	 		$("#text_max_len").text("/500");
+	 	}else{
+	 		$("#subjectBox").css("display","none");
+	 		$("[name=subject]").attr("disabled",true);
+	 		$("#MAX_LENGTH").val(200);
+	 		$("#text_max_len").text("/200");
+	 	}
+// 		if($(this).val() == "A")
+// 		{
+// 			$(".buttonA").show();
+// 			$(".buttonB").hide();
+// 			$(".buttonC").hide();
 // 			$(".ttsMsgBox").removeClass("displayNone");
-			$(".ttsMsgBox").show();
-			$(".ttsMsgBox2").hide();
-			$("[name=ttsMent1]").val(TTSMentTemplate1);
-			$("[name=ttsMent2]").val(TTSMentTemplate2);
-			$("[name=ttsMent3]").val(TTSMentTemplate3);
-			$("input[name=fileSeq]").val("");
-		}
-		else if($(this).val() == "B")
-		{
-			$(".buttonA").hide();
-			$(".buttonB").show();
-			$(".buttonC").hide();
+// 			$(".ttsMsgBox").show();
+// 			$(".ttsMsgBox2").hide();
+// 			$("[name=ttsMent1]").val(TTSMentTemplate1);
+// 			$("[name=ttsMent2]").val(TTSMentTemplate2);
+// 			$("[name=ttsMent3]").val(TTSMentTemplate3);
+// 			$("input[name=fileSeq]").val("");
+// 		}
+// 		else if($(this).val() == "B")
+// 		{
+// 			$(".buttonA").hide();
+// 			$(".buttonB").show();
+// 			$(".buttonC").hide();
 // 			$(".ttsMsgBox").addClass("displayNone");
-			$(".ttsMsgBox").hide();
-			$(".ttsMsgBox2").show();
-			$("textarea").val("");
-			$("input[name=fileSeq]").val("");
-			clearWavFile();
-		}
-		else if($(this).val() == "C")
-		{
-			$(".buttonA").hide();
-			$(".buttonB").hide();
-			$(".buttonC").show();
+// 			$(".ttsMsgBox").hide();
+// 			$(".ttsMsgBox2").show();
+// 			$("textarea").val("");
+// 			$("input[name=fileSeq]").val("");
+// 			clearWavFile();
+// 		}
+// 		else if($(this).val() == "C")
+// 		{
+// 			$(".buttonA").hide();
+// 			$(".buttonB").hide();
+// 			$(".buttonC").show();
 // 			$(".ttsMsgBox").addClass("displayNone");
-			$(".ttsMsgBox").hide();
-			$(".ttsMsgBox2").show();
-			$("textarea").val("");
-			$("input[name=fileSeq]").val("");
-			clearWavFile();
-		}
+// 			$(".ttsMsgBox").hide();
+// 			$(".ttsMsgBox2").show();
+// 			$("textarea").val("");
+// 			$("input[name=fileSeq]").val("");
+// 			clearWavFile();
+// 		}
 
 	});
 
@@ -639,7 +651,7 @@ $(document).ready(function(){
 	// 보내기 요청 버튼
 	$("#btnSubmit").click(function(){
 		var title = $("[name=ttsTitle]").val();
-// alert("title = ", title)
+		// alert("title = ", title)
 
 		if(title.length < 1)
 		{
@@ -722,7 +734,7 @@ $(document).ready(function(){
 		var option = 'width=546, height=557, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 		window.open("", 'MessageCheck', option);
 
-		myForm.action 			= "/msg/MessageCheck";
+		myForm.action 			= "/msg/sms/MessageCheck";
 		myForm.method 			= "post";
 		myForm.target 			= "MessageCheck";
 		myForm.targetArr.value 	= JSON.stringify(targetArr);
@@ -788,6 +800,26 @@ $(document).ready(function(){
 	    }
 	});
 	
+	$("textarea[name=ttsMent2]").keyup(function(){
+		var length = $(this).val().length;
+		var maxLen = $("#MAX_LENGTH").val();
+		$("#text_len").text(length);
+		var alert_ment = "최대글자는 "+maxLen+"을 넘길수 없습니다.";
+		var add_ment = "LMS로 전환하시려면 확인을 눌러주세요.";
+		
+		if(length > maxLen){
+			if(maxLen < 500) alert_ment += "\n" + add_ment;
+			var isUpgrade = confirm(alert_ment);
+			console.log(isUpgrade);
+			if(isUpgrade){
+				$("#sendTypeB").trigger("click");
+			}else{
+				$(this).val($(this).val().substring(0,maxLen));
+			}
+			$("#text_len").text($(this).val().length);
+			
+		}
+	});
 
 });
 </script>

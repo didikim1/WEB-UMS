@@ -90,7 +90,7 @@
 						<ul>
 							<li style="margin-left: 15px;"><a href="/msg/SendMessage">음성메세지
 									발송</a></li>
-							<li><a href="/msg/SMSSendMessage">문자메세지 발송</a></li>
+							<li><a href="/msg/sms/SMSSendMessage">문자메세지 발송</a></li>
 						</ul></li>
 					<li><a class="menuTitle" href="/result/ResultList">발송내역 관리</a>
 						<ul>

@@ -138,15 +138,15 @@
 										<div class="ttsTypeWrap">
 											<div class="ttsTypeBox">
 												<div>
-													<ul class="ttsOption">
+													<ul class="ttsOption" id="textType">
 														<li>
-															<label><input type="radio" class="inputRadio" name="sendType" value="A" checked /><span>직접입력</span></label>
+															<label><input type="radio" class="inputRadio" id="sendTypeA" name="sendType" value="A" checked /><span>SMS</span></label>
 														</li>
 														<li>
-															<label><input type="radio" class="inputRadio" name="sendType" value="B" /><span>모음함</span></label>
+															<label><input type="radio" class="inputRadio" id="sendTypeB" name="sendType" value="B" /><span>LMS</span></label>
 														</li>
 														<li>
-															<label><input type="radio" class="inputRadio" name="sendType" value="C" /><span>파일 첨부</span></label>
+															<label><input type="radio" class="inputRadio" id="sendTypeC" name="sendType" value="C" /><span>MMS</span></label>
 															<input type="hidden" name="fileSeq" />
 														</li>
 													</ul>
@@ -171,41 +171,22 @@
 									</div>
 
 									<div class="ttsMsgBox">
-										<div class="ttsWriteBox">
-											<textarea class="text_title" rows="1" cols="155" name="ttsMent1" maxlength="100">OO에서보내는 안내문자입니다. </textarea>
-											<span class="tip">* 원하는 인사말 문항으로 수정하십시오.</span>
-										</div>
-										<div>
-											<ul class="exampleSelect">
-												<li><span>전달 문항 갯수 </span></li>
-												<li>
-													<select name="exampleCnt">
-														<option value="0">0</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-														<option value="6">6</option>
-														<option value="7">7</option>
-														<option value="8">8</option>
-														<option value="9">9</option>
-													</select>
-												</li>
-												<li>
-													<span class="examplCntText">* 전달문항갯수 '0'선택시 회신 확인없는 안내전달만 이루어집니다.</span>
-												</li>
-											</ul>
+										<div class="ttsWriteBox" id="subjectBox" style="display: none;">
+											<textarea disabled="disabled" class="text_title" rows="1" cols="155" name="subject" maxlength="100">OO에서보내는 안내문자입니다. </textarea>
+											<span class="tip">* 문자메세지 상단 멘트를 정해주세요.</span>
 										</div>
 										<div class="surveyOuter">
 											<div class="surveyInner">
 												<div class="ttsWriteBox">
 													<textarea class="text_contente" rows="5" cols="155" name="ttsMent2" maxlength="2000">(전달 내용 직접입력)</textarea>
 												</div>
+												<div>
+													<span id="text_len">0</span><span id="text_max_len">/200</span>
+													<input type="hidden" id="MAX_LENGTH" value="200">
+												</div>
 											</div>
 										</div>
 									</div>
-
 									<div class="ttsMsgBox2">
 										<ul>
 											<li>

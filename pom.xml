@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.inbiznetcorp.acs</groupId>
 	<artifactId>web-dreamline-vms</artifactId>
-	<version>20220816-002-jij92</version>
+	<version>20220817-001-jij92</version>
 	<packaging>war</packaging>
 	<name>web-dreamline-vms</name>
 	<description>ASC project for Spring Boot</description>

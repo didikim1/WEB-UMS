@@ -32,7 +32,12 @@ public class IndexAct
 	public String LoginSubmit(RedirectAttributes rttr)
 	{
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-		
+		String id 		= paramMap.getStr("userId","");
+		String passwd 	= paramMap.getStr("userPw","");
+		if(id.equals("") || passwd.equals("")) {
+			rttr.addFlashAttribute("message", "회원 정보를 입력해주세요.");
+			return "redirect:/Login";
+		}
 		MyCamelMap userInfo = indexService.FindUserInfo(paramMap);
 		System.out.println("userInfo >> " + userInfo );
 		if(userInfo == null)
