@@ -28,6 +28,9 @@
 	/* 비밀번호 안내문구  */
 	.pwdInfo {font-size: 12px;}
 	
+	/* 필수항목 안내문구 */
+	.joinInfo{color: red;}
+	
 	input{font-size: 14px;}
 	
 </style>
@@ -52,7 +55,7 @@
 			</ul>
 		</div>
 		<!-- //contents -->
-		
+		<span class="joinInfo">* 표기는 필수 입력 항목입니다.</span>
 		<div class="tbl_type03 main_table" style="margin-top:10px;">
 			<table>
 				<colgroup>
@@ -63,20 +66,20 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>ID</th>
+						<th>*ID</th>
 						<td colspan="3"><input type="text" name="userId" value="${userInfo.userId}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
-						<th>이름</th>
+						<th>*이름</th>
 						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
-						<th>비밀번호</th>
+						<th>*비밀번호</th>
 						<td colspan="3"><input type="password" name = "password1" value="${userInfo.pwd}" maxlength="40"  style="height:30px;" autocomplete="off" />
-						<span class="pwdInfo">*비밀번호는 문자+숫자+특수문자 조합으로 8자이상 16자이하로 입력해 주세요</span>
+						<span class="pwdInfo">*비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다</span>
 					</tr>
 					<tr>
-						<th>비밀번호 확인</th>
+						<th>*비밀번호 확인</th>
 						<td colspan="3"><input type="password" name = "password2" value="${userInfo.pwdCheck}" maxlength="40"  style="height:30px;" autocomplete="off" />
 						
 					</tr>
@@ -115,7 +118,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>휴대전화번호</th>
+						<th>*휴대전화번호</th>
 						<td colspan="3">
 							<select name="phone1" class="joinPhone">
 								<option>010</option>
@@ -132,7 +135,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>주소</th>
+						<th>*주소</th>
 							<td colspan="3">
 								<input type="text" id="sample6_postcode" name="postcode" placeholder="우편번호" class="postcode">
 								<input type="button" onclick="sample6_execDaumPostcode()"  value="우편번호 찾기" class="execDaumPostcode"><br>
@@ -142,7 +145,7 @@
 							</td>
 					</tr>
 					<tr>
-						<th>이메일 주소</th>
+						<th>*이메일 주소</th>
 						<td colspan="3">
 							<input type="text" class="inputMail" name="email1" />
 							<input type="text" name="" value=" @ " disabled style="border:none;width:30px;"/>
