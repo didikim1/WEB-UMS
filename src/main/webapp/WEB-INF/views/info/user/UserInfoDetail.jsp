@@ -64,14 +64,14 @@
 						<th>비밀번호</th>
 						<td colspan="3">
 							<button type="button" class="changePassword" style="font-size:13px;" id="changePassword">비밀번호 변경</button>
-							<span class="policy">* 비밀번호는 대소문자, 특수기호를 포함하여 8자리 이상으로 구성해주시기 바랍니다.</span>
+							<span class="policy">* 비밀번호는 대소문자, 숫자, 특수기호를 포함하여 8자리 이상으로 구성해주시기 바랍니다.</span>
 						</td>
 					</tr>
 					<tr class="newPW">
 						<th>새 비밀번호</th>
-						<td><input type="password" name="password1" /></td>
+						<td><input type="password" id="password1" name="password1" /></td>
 						<th>비밀번호 확인</th>
-						<td><input type="password" name="password2" /></td>
+						<td><input type="password" id="password2" name="password2"/></td>
 					</tr>
 					<tr>
 						<th>유선전화번호</th>

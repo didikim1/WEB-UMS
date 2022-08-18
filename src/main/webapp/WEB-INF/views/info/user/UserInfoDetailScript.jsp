@@ -72,14 +72,31 @@ function setEmail(email)
 	$("[name=email2]").val(email2);
 }
 
-// 새비밀번호 일치여부 확인
-function passwordCheck()
+// 비밀번호 생성규칙 일치여부 확인
+function passwordCheck1()
+{
+	var password1 = $("#password1").val();
+	var policy = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";	
+	
+	
+	if(!policy.test(password1) ) { 
+		common.alert('비밀번호 변경', '비밀번호 설정 규칙이 준수되지 않았습니다. (영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.)');
+		return false; }
+	else { 
+		return true; }
+}
+
+//새비밀번호 일치여부 확인
+function passwordCheck2()
 {
 	var password1 = $("#password1").val();
 	var password2 = $("#password2").val();
 	
-	if(password1 != password2) { return false; }
-	else{ return true; }
+	if(password1 != password2) { 
+		common.alert('비밀번호 변경', '비밀번호 확인값과 일치하지 않습니다.');
+		return false; }
+	else { 
+		return true; }
 }
 
 $(document).ready(function(){
@@ -120,14 +137,25 @@ $(document).ready(function(){
 	
 	// 수정 버튼 클릭 시
 	$("#btnSubmit").click(function(){
-		// 새비밀번호 일치여부 확인
-		if(!passwordCheck())
+
+		// 비밀번호 생성규칙 일치여부 확인
+		if(!passwordCheck1())
 		{
-			alert("비밀번호가 일치하지 않습니다.");
-			return;
-		}
+			common.alert('비밀번호 변경', '비밀번호 설정 규칙이 준수되지 않았습니다. (영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.)');
+// 			$("[name=password1]").val("");
+			$("[name=password1]").focus();
+		} else 
+
+		// 새비밀번호 일치여부 확인
+		if(!passwordCheck2())
+		{
+			common.alert('비밀번호 변경', '비밀번호 확인값과 일치하지 않습니다.');
+			$("[name=password2]").val("");
+			$("[name=password2]").focus();
+		} else {
 		
 		$("[name=formSubmit]").submit();
+		}
 	});
 	
 	// 취소 버튼 클릭 시
