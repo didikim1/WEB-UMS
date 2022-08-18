@@ -86,7 +86,6 @@ function passwordCheck()
 }
 
 
-
 $(document).ready(function(){
 	// 이메일 주소 select 변경 시
 	$("[name=email3]").change(function(){
@@ -96,6 +95,8 @@ $(document).ready(function(){
 	
 	
 $("#btnSubmit").click(function(){
+	
+	var pwsRegExp		= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.
 	
 	var userId 			= $("[name=userId]").val();
 	var userName 		= $("[name=userName]").val();
@@ -131,15 +132,21 @@ $("#btnSubmit").click(function(){
 			$("[name=password1]").focus();
 			return false;
 		}
-		else if(password1.length < 1)
+		else if(!pwsRegExp.test(password1))
 		{
-			alert("비밀번호를 입력해주세요.");
+			alert("비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.");
 			$("[name=password1]").focus();
 			return false;
 		}
 		else if(password2.length < 1)
 		{
 			alert("비밀번호 확인란을 입력해주세요.");
+			$("[name=password2]").focus();
+			return false;
+		}
+		else if(password2 != password1)
+		{
+			alert("비밀번호가 일치하지 않습니다.");
 			$("[name=password2]").focus();
 			return false;
 		}

@@ -16,36 +16,6 @@
 
 	<!-- 추가 -->
 	<update id="RegisterData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true" >
-		INSERT INTO CTN_NRLMBER
-			(
-				 CP_ID						<!-- 권한고유ID -->
-				,CP_NAME					<!-- 담당업무고유ID -->
-				,PASSWORD					<!-- 비밀번호 -->
-				,MBER_NAME					<!-- 이름 -->
-				,MBER_RATING				<!-- 담당책임(정/부)-->
-				,MBER_STTUS					<!-- 상태 -->
-				,MOBLPHON_NO				<!-- 휴대폰번호 -->
-				,EMAIL_ADDRESS				<!-- Email 주소 -->
-				,CREATEDATE					<!-- 가입일 -->
-				,UPDATEDATE					<!-- 정보변경일-->
-				,LAST_UPDUSR_PNTTM			<!-- 최종등록일 -->
-			)
-			 VALUES
-			(
-			  	 #{roleId}				<!-- 부서고유ID -->
-			  	,#{chargeId}			<!-- 담당업무고유ID -->
-				,#{uniqId}				<!-- 고유ID -->
-				,password(#{password})	<!-- 비밀번호 -->
-				,#{mberName}			<!-- 이름 -->
-				,#{mberRating}			<!-- 담당책임(정/부)-->
-				,#{mberSttus}			<!-- 상태 -->
-				,#{moblphonNo}			<!-- 휴대폰번호 -->
-				,#{emailAddress}		<!-- Email 주소 -->
-				,#{frstRegisterId}		<!-- 최초등록ID -->
-				,now()					<!-- 최초등록일 -->
-				,now()					<!-- 최종등록일 -->
-			)
-
 	</update>
 	<select id="FindUserInfo" parameterType="myMap" resultType="myCamelMap">
 	</select>
