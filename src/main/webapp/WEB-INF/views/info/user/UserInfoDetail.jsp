@@ -172,7 +172,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>사용자 유형</th>
+						<th>사용 서비스 유형</th>
 						<td colspan="3">
 							<ul>
 								<li>

@@ -80,7 +80,7 @@ function passwordCheck1()
 	
 	
 	if(!policy.test(password1) ) { 
-		common.alert('비밀번호 변경', '비밀번호 설정 규칙이 준수되지 않았습니다. (영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.)');
+		common.alert('비밀번호 변경', '비밀번호 설정 규칙이 준수되지 않았습니다. (대소문자+숫자+특수기호 8자리 이상으로 구성하여야 합니다.)');
 		return false; }
 	else { 
 		return true; }
@@ -137,25 +137,27 @@ $(document).ready(function(){
 	
 	// 수정 버튼 클릭 시
 	$("#btnSubmit").click(function(){
+		var pwsRegExp		= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.
+		var password1 = $("#password1").val();
+		var password2 = $("#password2").val();
 
 		// 비밀번호 생성규칙 일치여부 확인
-		if(!passwordCheck1())
+		if(!pwsRegExp.test(password1))
 		{
-			common.alert('비밀번호 변경', '비밀번호 설정 규칙이 준수되지 않았습니다. (영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.)');
-// 			$("[name=password1]").val("");
+			common.alert('비밀번호 변경', '비밀번호 설정 규칙이 준수되지 않았습니다. (대소문자+숫자+특수기호 8자리 이상으로 구성하여야 합니다.)');
 			$("[name=password1]").focus();
-		} else 
-
-		// 새비밀번호 일치여부 확인
-		if(!passwordCheck2())
+			return false;
+		}
+		else if(password2 != password1)
 		{
 			common.alert('비밀번호 변경', '비밀번호 확인값과 일치하지 않습니다.');
 			$("[name=password2]").val("");
 			$("[name=password2]").focus();
-		} else {
+			return false;
+		}
 		
 		$("[name=formSubmit]").submit();
-		}
+		
 	});
 	
 	// 취소 버튼 클릭 시

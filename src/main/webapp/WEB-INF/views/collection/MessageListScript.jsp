@@ -246,6 +246,5 @@ $(document).ready(function(){
 		window.open(url, 'FileSearch', option);
 	});
 	
-
 });
 </script>

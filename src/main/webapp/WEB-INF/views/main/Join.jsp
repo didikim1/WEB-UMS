@@ -8,12 +8,22 @@
 
 <style>
 	.tbl_type03 th, .tbl_type03 td {padding:5px;}
+	.main_table li { line-height:38px;display: inline-block; }
 	.main_table button { padding:3px 5px;float:left; }
-	.main_table .inputPhone { width:125px; height:30px;}
-	.main_table .inputMail { width:200px;height:30px; }
-	.main_table input[type="checkbox"] { width:15px;height:20px; }
+	.main_table label { margin:3px 5px 0 20px; }
+
+ 	.main_table input, .main_table select { height: 38px !important;font-size:14px !important;margin-left:5px; }
+	.main_table input[name="userName"] { width:430px; }
+	.main_table .inputPhone { width:125px;; }
+	.main_table .inputMail { width:200px; }
+	.main_table select[name="tel1"], .main_table select[name="phone1"] { width:100px; }
+	.main_table select[name="email3"] { width:200px; }
+	.main_table input[type="checkbox"] { width:15px;height:20px !important;margin-right:3px; }
+	.main_table input[type="radio"] { margin:-2px 7px 0 5px; }
 /* 	#btnSubmit, #btnCancel { height:40px !important;margin-top:20px; } */
 	.changePassword { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #7d9b9d; color:#fff;}
+	.policy { color:red !important;margin:10px 0 0 5px; }
+	.btn_address { float:none !important; }
 	
 	/* 회원가입 시 주소창  */
 	.postcode  {width : 150px; font-size: 14px;}
@@ -23,10 +33,10 @@
 	.extraAddress {width : 300px; margin-top: 5px; margin-left: 3px;font-size: 14px;}
 	
 	/*전화번호 select*/
-	.joinPhone {height: 30px;width: 65px;}
+	.joinPhone { height: 30px;width: 65px; }
 	
 	/* 비밀번호 안내문구  */
-	.pwdInfo {font-size: 12px;}
+	.pwdInfo { font-size: 12px;color:red; }
 	
 	/* 필수항목 안내문구 */
 	.joinInfo{color: red;}
@@ -66,20 +76,20 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>*ID</th>
+						<th>* ID</th>
 						<td colspan="3"><input type="text" name="userId" value="${userInfo.userId}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
-						<th>*이름</th>
+						<th>* 이름</th>
 						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
-						<th>*비밀번호</th>
+						<th>* 비밀번호</th>
 						<td colspan="3"><input type="password" name = "password1" value="${userInfo.pwd}" maxlength="40"  style="height:30px;" autocomplete="off" />
-						<span class="pwdInfo">*비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다</span>
+							<span class="policy">*  비밀번호는 대소문자, 숫자, 특수기호를 포함하여 8자리 이상으로 구성해주시기 바랍니다.</span>
 					</tr>
 					<tr>
-						<th>*비밀번호 확인</th>
+						<th>* 비밀번호 확인</th>
 						<td colspan="3"><input type="password" name = "password2" value="${userInfo.pwdCheck}" maxlength="40"  style="height:30px;" autocomplete="off" />
 						
 					</tr>
@@ -118,7 +128,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>*휴대전화번호</th>
+						<th>* 휴대전화번호</th>
 						<td colspan="3">
 							<select name="phone1" class="joinPhone">
 								<option>010</option>
@@ -135,17 +145,17 @@
 						</td>
 					</tr>
 					<tr>
-						<th>*주소</th>
+						<th>* 주소</th>
 							<td colspan="3">
 								<input type="text" id="sample6_postcode" name="postcode" placeholder="우편번호" class="postcode">
-								<input type="button" onclick="sample6_execDaumPostcode()"  value="우편번호 찾기" class="execDaumPostcode"><br>
+								<input type="button" class="btn_service btn_address" onclick="sample6_execDaumPostcode()"  value="우편번호 찾기" class="execDaumPostcode"><br>
 								<input type="text" id="sample6_address"name="address" placeholder="주소" class="address"><br>
 								<input type="text" id="sample6_detailAddress"name="detailAddress" placeholder="상세주소" class="detailAddress">
 								<input type="text" id="sample6_extraAddress" name="extraAddress"placeholder="참고항목" class="extraAddress">
 							</td>
 					</tr>
 					<tr>
-						<th>*이메일 주소</th>
+						<th>* 이메일 주소</th>
 						<td colspan="3">
 							<input type="text" class="inputMail" name="email1" />
 							<input type="text" name="" value=" @ " disabled style="border:none;width:30px;"/>
@@ -179,29 +189,21 @@
 						</td>
 					</tr>
 					<tr>
-						<th>예정 이용 항목</th>
+						<th>사용 서비스 유형 선택</th>
 						<td colspan="3">
-							<ul class="ttsOption">
-							<li>
-								<label><input type="radio" class="inputRadio" name="sendType" value="A" checked /><span>음성/문자 메세지</span></label>
-								<label><input type="radio" class="inputRadio" name="sendType" value="B" /><span>음성메세지</span></label>
-								<label><input type="radio" class="inputRadio" name="sendType" value="C" /><span>문자메세지</span></label>
-							</li>
-						</ul>
+							<ul>
+								<li>
+									<label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "1"}'>checked</c:if> value="1" checked/>UMS 통합 서비스 사용</label>
+								</li>
+								<li>
+									<label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "2"}'>checked</c:if> value="2"/>음성메세지 서비스만 사용</label>
+								</li>
+								<li>
+									<label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "3"}'>checked</c:if> value="3"/>문자메세지 서비스만 사용</label>
+								</li>
+							</ul>
 						</td>
 					</tr>
-<%-- 					<tr>
-						<th>사용자 유형</th>
-						<td style="border-right:none !important;">
-							<label>UMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "1"}'>checked</c:if> value="1" />
-						</td>
-						<td style="border-right:none !important;">
-							<label>VMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "2"}'>checked</c:if> value="2" />
-						</td>
-						<td>
-							<label>SMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "3"}'>checked</c:if> value="3" />
-						</td>
-					</tr> --%>
 				</tbody>
 			</table>
 		</div>

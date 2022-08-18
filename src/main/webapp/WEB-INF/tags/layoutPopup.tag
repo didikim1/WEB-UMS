@@ -23,5 +23,18 @@
 		</style>
 	</head>
 	<jsp:doBody/>
+<script>
+$(document).ready(function() {
+	
+		$(".tbl_type01 tbody tr").on("mouseover", function() {
+			$(this).css("background-color", "#c8ddd5");
+			//$( this).children("td").css( "cursor", "pointer" );
+		});
+		$(".tbl_type01 tbody tr").on("mouseleave", function() {
+			$(this).css("background-color", "white");
+		});
+});
+</script>
+	
 </html>
 
