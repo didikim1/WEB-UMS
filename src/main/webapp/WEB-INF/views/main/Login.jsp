@@ -97,11 +97,6 @@
 </body>
 
 <script type="text/javascript">
-
-function btnjoin(){
-	location.href="/main/Join.do";
-}
-
 $(document).ready(function(){
 // 	var innerHeight = window.innerHeight;
 // 	var footerHeight = $("#footer").height();
@@ -127,7 +122,12 @@ $(document).ready(function(){
 	$("#btnSubmit").click(function(){
 		$("[name=formLogin]").submit();
 	});
+	
 });
+
+function btnjoin(){
+	location.href="/main/Join.do";
+}
 </script>
 
 </BaseTag:layoutPopup>
