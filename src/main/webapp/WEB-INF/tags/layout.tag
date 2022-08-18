@@ -81,15 +81,14 @@
 <body>
 	<div id="wrap">
 
-		<button type="button" class=" btn_adress" >로그아웃</button>
-		<button type="button" class=" btn_join" onclick="btnjoin()" >회원가입</button>
+<!-- 		<button type="button" class=" btn_join" onclick="btnjoin()" >회원가입</button> -->
 		<!-- header -->
 		<div id="header">
+			<button type="button" class="btn_adress" id="btnLogout" style="float: right;" >로그아웃</button>
 			<div class="section">
 				<!-- 				<h1 class="logo"><a href="#">INBIZNET</a></h1> -->
-				<ul class="gnb">
-					<li><a class="menuTitle" href="/msg/SendMessage">UMS 메세지
-							발송</a>
+				<ul class="gnb" style="right: 100px;">
+					<li><a class="menuTitle" href="/msg/SendMessage">UMS 메세지 발송</a>
 						<ul>
 							<li style="margin-left: 15px;"><a href="/msg/SendMessage">음성메세지
 									발송</a></li>

@@ -14,15 +14,31 @@
 	.main_table input[type="checkbox"] { width:15px;height:20px; }
 /* 	#btnSubmit, #btnCancel { height:40px !important;margin-top:20px; } */
 	.changePassword { width:100px;height:30px;padding:3px 5px !important;float:none !important;margin-left:0px !important;font-size:12px !important;text-align:center; background: #7d9b9d; color:#fff;}
+	
+	/* 회원가입 시 주소창  */
+	.postcode  {width : 150px; font-size: 14px;}
+	.execDaumPostcode {width : 100px; border: 1px solid #c0c0c0; font-size: 14px;}
+	.address {width : 450px; margin-top: 5px; float: none;font-size: 14px;}
+	.detailAddress {width : 300px; margin-top: 5px;font-size: 14px;}
+	.extraAddress {width : 300px; margin-top: 5px; margin-left: 3px;font-size: 14px;}
+	
+	/*전화번호 select*/
+	.joinPhone {height: 30px;width: 65px;}
+	
+	/* 비밀번호 안내문구  */
+	.pwdInfo {font-size: 12px;}
+	
+	input{font-size: 14px;}
+	
 </style>
 
-<form name="formSubmit" action="/info/user/ModifyUserInfo" method="POST">
+<form name="formSubmit" action="" method="POST">
 <div id="contents">
 	<div class="section">
 
 		<!--서브타이틀-->
 		<div class="pageTop">
-			<h2 class="pageTitle">회원 가입</h2>
+			<h2 class="pageTitle">회원가입</h2>
 		</div>
     	<!--//서브타이틀-->
 
@@ -37,7 +53,7 @@
 		</div>
 		<!-- //contents -->
 		
-		<div class="tbl_type03 company_list main_table" style="margin-top:10px;">
+		<div class="tbl_type03 main_table" style="margin-top:10px;">
 			<table>
 				<colgroup>
 					<col width="20%" />
@@ -47,16 +63,22 @@
 				</colgroup>
 				<tbody>
 					<tr>
+						<th>ID</th>
+						<td colspan="3"><input type="text" name="userId" value="${userInfo.userId}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
+					</tr>
+					<tr>
 						<th>이름</th>
 						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="3"><input type="text" name = "pwd" value="${userInfo.pwd}" maxlength="40"  style="height:30px;" autocomplete="off" />
+						<td colspan="3"><input type="password" name = "password1" value="${userInfo.pwd}" maxlength="40"  style="height:30px;" autocomplete="off" />
+						<span class="pwdInfo">*비밀번호는 문자+숫자+특수문자 조합으로 8자이상 16자이하로 입력해 주세요</span>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
-						<td colspan="3"><input type="text" name = "pwd" value="${userInfo.pwdCheck}" maxlength="40"  style="height:30px;" autocomplete="off" />
+						<td colspan="3"><input type="password" name = "password2" value="${userInfo.pwdCheck}" maxlength="40"  style="height:30px;" autocomplete="off" />
+						
 					</tr>
 					<tr>
 						<th>유선전화번호</th>
@@ -111,10 +133,12 @@
 					</tr>
 					<tr>
 						<th>주소</th>
-							<td>
-								<input type="text" class="inputAdd" name="inputAdd" />
-								<input type="text" class="inputAdd2" name="inputAdd2" />
-								<input type="text" class="inputAdd3" name="inputAdd3" />
+							<td colspan="3">
+								<input type="text" id="sample6_postcode" name="postcode" placeholder="우편번호" class="postcode">
+								<input type="button" onclick="sample6_execDaumPostcode()"  value="우편번호 찾기" class="execDaumPostcode"><br>
+								<input type="text" id="sample6_address"name="address" placeholder="주소" class="address"><br>
+								<input type="text" id="sample6_detailAddress"name="detailAddress" placeholder="상세주소" class="detailAddress">
+								<input type="text" id="sample6_extraAddress" name="extraAddress"placeholder="참고항목" class="extraAddress">
 							</td>
 					</tr>
 					<tr>
@@ -147,13 +171,23 @@
 								<option>hanafos.com</option>
 								<option>kornet.net</option>
 							</select>
-							<br/>
-							<br/>
-							<input type="checkbox" name="eventAgree" <c:if test='${userInfo.eventAgree eq "Y"}'>checked</c:if> value="Y" />
-							<label>이벤트, 정기 뉴스레터 수신 동의</label>
+<%-- 							<input type="checkbox" name="eventAgree" <c:if test='${userInfo.eventAgree eq "Y"}'>checked</c:if> value="Y" />
+							<label>이벤트, 정기 뉴스레터 수신 동의</label> --%>
 						</td>
 					</tr>
 					<tr>
+						<th>예정 이용 항목</th>
+						<td colspan="3">
+							<ul class="ttsOption">
+							<li>
+								<label><input type="radio" class="inputRadio" name="sendType" value="A" checked /><span>음성/문자 메세지</span></label>
+								<label><input type="radio" class="inputRadio" name="sendType" value="B" /><span>음성메세지</span></label>
+								<label><input type="radio" class="inputRadio" name="sendType" value="C" /><span>문자메세지</span></label>
+							</li>
+						</ul>
+						</td>
+					</tr>
+<%-- 					<tr>
 						<th>사용자 유형</th>
 						<td style="border-right:none !important;">
 							<label>UMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "1"}'>checked</c:if> value="1" />
@@ -164,14 +198,14 @@
 						<td>
 							<label>SMS</label><input type="radio" name="userType" <c:if test='${userInfo.userType eq "3"}'>checked</c:if> value="3" />
 						</td>
-					</tr>
+					</tr> --%>
 				</tbody>
 			</table>
 		</div>
 		
 		<!-- button -->
 		<div class="btn_next">
-			<button class="btn_out" id="btnSubmit">수정</button>
+			<button class="btn_out" id="btnSubmit">가입하기</button>
 			<button class="btn_can" id="btnCancel">취소</button>
 		</div>
 		<!-- //button -->
@@ -182,6 +216,7 @@
 <input type="hidden" name="sequser" value="${paramMap.sequser}" />
 
 </form>
+
 
 <%@ include file="JoinScript.jsp" %>
 </BaseTag:layout>
