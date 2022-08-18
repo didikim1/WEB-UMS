@@ -13,18 +13,20 @@
 	.col_r {color:#cd2129;}
 
 	.btnAddressList { width:100%;margin-bottom:10px;display:inline-block; }
-	#btnAddressList { padding:5px 10px; }
+	#btnAddressList { padding:5px 10px;background:#7d9b9d !important; }
 	.searchBox { text-align:end;margin-bottom:5px; }
+	.searchBox label { font-size:18px; margin-right:30px;float:left; }
+	.searchBox span { font-size:18px; }
 	input[name=searchType] { margin-top:-2px; }
-	#searchWord { width:150px;margin-bottom:3px;margin-left:256px;font-size:medium;height:30px; }
-	#btnSearch { margin-left:0px; }
-	.tbl th { padding:0 5px; }
-	.tbl tr { line-height:2.5;font-size:100%; }
-	.tbl td { padding:0px 5px;font-size:14px; }
+	#searchWord { width:220px;margin-bottom:3px;float:right;font-size:medium;height:30px; }
+	#btnSearch { margin-left:2px;float:right; }
+	.tbl_type01 th { padding:0 5px; }
+	.tbl_type01 tr { line-height:2.5;font-size:100%; }
+	.tbl_type01 td { padding:0px 5px;font-size:14px;text-align:center !important; }
 	.btn_next { text-align:end; }
 	#btnSubmit, #btnCancel { width:80px;height:30px;padding:1px 6px; }
 	.pagingArea { margin-top:10px; }
-	input[type=checkbox] {width:15px;}
+	input[type=checkbox] {width:15px;margin-left: 10px; }
 </style>
 
 <body>
@@ -49,8 +51,8 @@
 			<div class="searchBox">
 				<label><input type="radio" class="inputRadio" name="searchType" value="P" <c:if test="${searchType eq 'P'}">checked</c:if> /><span>개인</span></label>
 				<label style="margin-right:-6px;"><input type="radio" class="inputRadio" name="searchType" value="G" <c:if test="${searchType eq 'G'}">checked</c:if> /><span>그룹</span></label>
-				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
 				<button type="button" class="btn1" id="btnSearch">이름 검색</button>
+				<input type="text" id="searchWord" name="searchWord" value="${searchWord}" autocomplete="off"/>
 			</div>
 			<!-- //search -->
 
@@ -60,7 +62,7 @@
 					<table>
 						<caption>리스트</caption>
 						<colgroup>
-							<col width="5%" />
+							<col width="7%" />
 							<col width="40%" />
 							<col width="" />
 						</colgroup>
@@ -110,11 +112,11 @@
 
 			<!-- 그룹주소록 -->
 			<div class="tabsCont" id="gAddress">
-				<div class="tbl">
+				<div class="tbl_type01 company_list">
 					<table>
 						<caption>리스트</caption>
 						<colgroup>
-							<col width="5%" />
+							<col width="7%" />
 							<col width="60%" />
 							<col width="" />
 						</colgroup>
@@ -132,7 +134,7 @@
 										<tr>
 											<td><input type="checkbox" value="${gList.groupseq}" /></td>
 											<td>${gList.groupname}</td>
-											<td>${gList.cnt}</td>
+											<td>${gList.cnt} 명</td>
 										</tr>
 									</c:forEach>
 								</c:when>
