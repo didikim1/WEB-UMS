@@ -34,7 +34,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor
 
         FrameworkBeans.setHttpServletBean(_httpServletRequest, _httpServletResponse);
 
-        String[] noSessionUrls = new String[] {"", "/", "/Login", "/LoginSubmit", "/ExecutorStop", "/ExecutorStopSubmit", "/Common/Alert"};
+        String[] noSessionUrls = new String[] {"", "/", "/Login", "/LoginSubmit", "/ExecutorStop",
+        		"/ExecutorStopSubmit", "/Common/Alert", "/smsSender/fin", "/error"};
 
         userName = FrameworkBeans.findSessionBean().getUserName();
 

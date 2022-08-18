@@ -55,4 +55,12 @@ public class ServiceCommon
 	{
 		return env.getProperty("datasource.master.password");
 	}
+	public String getAsyncURL()
+	{
+		return env.getProperty("gemtekAgent.async.url");
+	}
+	public String getReturnURL()
+	{
+		return env.getProperty("gemtekAgent.return.url");
+	}
 }

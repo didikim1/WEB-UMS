@@ -10,7 +10,7 @@
 	.info_com ul li input[type=text] { margin-right:20px;width:200px; }
 	.sendTitle { width:500px !important; }
 	#btnNumber { height:38px; float:none; margin-left:10px; }
-	#btnAdd { background:#023134 !important; }
+	#btnAdd { background:#7d9b9d; }
 	#btnExcelForm { width:100px; }
 	#tip { margin-left:10px;font-size:14px !important;font-weight:normal !important; }
 	.receiverWrap, .receiverList { display:flex; }
