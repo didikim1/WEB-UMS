@@ -16,7 +16,7 @@ function checkedList(listID)
 			checkedSeqArr.push(checkboxList.eq(i).val());
 		}
 	}
-
+	
 	return checkedSeqArr;
 }
 
@@ -157,45 +157,47 @@ $(document).ready(function(){
 		console.log(isGroup);
 		console.log(listtype);
 		
-		$.ajax({
-			 url : "/addr/selectTarget"
-			,data : {
-				 targetSeq : checklist
-				 ,targetSeqStr : checklist.toString()
-				 ,listType : listtype
-			}
-			,success : function(data){
-				console.log(data);
-				var list = data.result;
-				if(list.length > 0){
-					window.opener.useTemplate(list);
-					window.close();
+		// 음성메세지 발송 페이지에서 열었을 때
+		if(isGroup == "N")
+		{
+			$.ajax({
+				 url : "/addr/selectTarget"
+				,data : {
+					 targetSeq : checklist
+					 ,targetSeqStr : checklist.toString()
+					 ,listType : listtype
 				}
-			}
-		});
-// 		// 음성메세지 발송 페이지에서 열었을 때
-// 		if(isGroup == "N")
-// 		{
+				,success : function(data){
+					console.log(data);
+					var list = data.result;
+					if(list.length == 0){
+						alert('검색된 주소가 업습니다.');
+					}else if(list.length > 0){
+						window.opener.useTemplate(list);
+						window.close();
+					}
+				}
+			});
 // 			$(opener.document).find("#checkedListType").val(listtype);
 // 			$(opener.document).find("#checkedListSeq").val(checklist);
 // 			$(opener.document).find("#checkedListSeq").trigger("click"); 	// 부모창의 $("#checkedListSeq")요소의 change 이벤트를 발생시킨다.
 // 			window.close();
-// 		}
-// 		// 그룹 주소록 상세 페이지에서 열었을 때
-// 		else if(isGroup == "Y")
-// 		{
-// 			$.ajax({
-// 				 url : "/addr/RegisterDataGroup"
-// 				,data : {
-// 					 seqStr : checklist.toString()
-// 					,seqgroupinfo : seqgroupinfo
-// 				}
-// 				,success : function(){
-// 					window.opener.location.reload();
-// 					window.close();
-// 				}
-// 			});
-// 		}
+		}
+		// 그룹 주소록 상세 페이지에서 열었을 때
+		else if(isGroup == "Y")
+		{
+			$.ajax({
+				 url : "/addr/RegisterDataGroup"
+				,data : {
+					 seqStr : checklist.toString()
+					,seqgroupinfo : seqgroupinfo
+				}
+				,success : function(){
+					window.opener.location.reload();
+					window.close();
+				}
+			});
+		}
 
 	});
 
