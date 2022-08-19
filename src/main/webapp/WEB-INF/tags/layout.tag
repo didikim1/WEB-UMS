@@ -58,8 +58,9 @@
 
  #btnLogout {
 	height: 35px;
-	margin-left: 80px;
-	margin-top: -5px;
+	margin-right: 150px;
+	margin-top: 20px;
+	float :right;
 }
  
 .menuTitle {
@@ -84,7 +85,7 @@
 <!-- 		<button type="button" class=" btn_join" onclick="btnjoin()" >회원가입</button> -->
 		<!-- header -->
 		<div id="header">
-			<button type="button" class="btn_adress" id="btnLogout" style="float: right;" >로그아웃</button>
+			<button type="button" class="btn_adress" id="btnLogout">로그아웃</button>
 			<div class="section">
 				<!-- 				<h1 class="logo"><a href="#">INBIZNET</a></h1> -->
 				<ul class="gnb" style="right: 100px;">
@@ -224,6 +225,13 @@
 			//$( this).children("td").css( "cursor", "pointer" );
 		});
 		$(".tbl_type01 tbody tr").on("mouseleave", function() {
+			$(this).css("background-color", "white");
+		});
+
+		$(".receiverBox ul li").on("mouseover", function() {
+			$(this).css("background-color", "#c8ddd5");
+		});
+		$(".receiverBox ul li").on("mouseleave", function() {
 			$(this).css("background-color", "white");
 		});
 

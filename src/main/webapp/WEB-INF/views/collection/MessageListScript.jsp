@@ -235,14 +235,14 @@ $(document).ready(function(){
 		}
 	});
 
-	// 엑셀업로드 버튼
+	// 새로등록 버튼
 	$("#btnSubmit").click(function(){
 		initWebSocket();
 		
 		var url='/collection/FileSearch';
 		var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
 	 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-190);
-		var option = 'width=546, height=287, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+		var option = 'width=546, height=237, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 		window.open(url, 'FileSearch', option);
 	});
 	

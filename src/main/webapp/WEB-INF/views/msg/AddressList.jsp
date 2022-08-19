@@ -64,7 +64,7 @@
 						<colgroup>
 							<col width="7%" />
 							<col width="40%" />
-							<col width="" />
+							<col width="53" />
 						</colgroup>
 						<thead>
 							<tr>
@@ -118,11 +118,11 @@
 						<colgroup>
 							<col width="7%" />
 							<col width="60%" />
-							<col width="" />
+							<col width="33" />
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col"></th>
+								<th scope="col"><input type="checkbox" value="" id="checkGAll" /></th>
 								<th scope="col">그룹이름</th>
 								<th scope="col">그룹원 수</th>
 							</tr>

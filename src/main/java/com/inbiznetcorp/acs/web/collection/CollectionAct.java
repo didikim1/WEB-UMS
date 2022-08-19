@@ -25,9 +25,9 @@ public class CollectionAct
 		return "/collection/SurveyList";
 	}
 
-	@RequestMapping("/fileSearch")
-	public String fileSearch()
+	@RequestMapping("/FileSearch")
+	public String FileSearch()
 	{
-		return "/collection/fileSearch";
+		return "/collection/FileSearch";
 	}
 }

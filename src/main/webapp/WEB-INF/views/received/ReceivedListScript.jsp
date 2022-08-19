@@ -217,5 +217,28 @@ $(document).ready(function(){
 		}
 	});
 
+	// 일괄삭제 버튼
+	$("#btnSubmit").click(function(){
+		var recievelogmapperseqArr = new Array();
+		var checkbox = $("[name=checkbox]");
+		for(var i=0; i<checkbox.length; i++)
+		{
+			if(checkbox.eq(i).prop("checked"))
+			{
+				recievelogmapperseqArr.push(checkbox.eq(i).val());
+			}
+		}
+
+		recievelogmapperseqArrStr = recievelogmapperseqArr.toString();
+
+		if(recievelogmapperseqArr.length == 0)
+		{
+			common.alert('수신함 보관 파일 선택 저장', '저장할 수신함파일을 선택하지 않았습니다.');
+		}
+		else
+		{
+			common.confirm('수신함 보관 파일 선택 저장', '총 '+recievelogmapperseqArr.length+'건의 수신함 파일을 저장 하시겠습니까?', 'C');
+		}
+	});
 });
 </script>

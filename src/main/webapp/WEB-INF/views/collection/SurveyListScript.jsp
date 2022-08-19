@@ -64,6 +64,16 @@ function fn_Sorting(sidx)
 	$("[name=searchForm]").submit();
 }
 
+//websocket 초기화
+function initWebSocket()
+{
+	ws = new WebSocket('wss://' + window.location.hostname + ':48008/ws');
+	ws.onmessage = function(data) {
+		fn_UploadComplete();
+		ws.close();
+	}
+}
+
 $(document).ready(function(){
 	// 전체 선택
 // 	$("[name=checkAll]").click(function(){
@@ -217,14 +227,14 @@ $(document).ready(function(){
 		}
 	});
 
-	// 엑셀업로드 버튼
+	// 새로등록 버튼
 	$("#btnSubmit").click(function(){
 		initWebSocket();
 		
 		var url='/collection/FileSearch';
 		var popupX = window.screenLeft+(((document.body.clientWidth)*0.5)-273);
 	 	var popupY = window.screenTop+(((window.outerHeight)*0.5)-190);
-		var option = 'width=546, height=287, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
+		var option = 'width=546, height=237, left='+popupX+', top='+popupY+', resizable=no, scrollbars=no, status=no;';
 		window.open(url, 'FileSearch', option);
 	});
 	

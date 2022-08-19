@@ -100,12 +100,19 @@ $(document).ready(function(){
 		}
 	}
 
-	// 전체 선택
+	// 전체 개인 선택
 	$("#checkAll").click(function(){
-		console.log($("#pAddress input[type=checkbox]").length);
 		for(var i=0; i<$("#pAddress input[type=checkbox]").length; i++)
 		{
 			$("#pAddress input[type=checkbox]").eq(i).prop("checked", $(this).prop("checked"));
+		}
+	});
+
+	// 전체 그룹 선택
+	$("#checkGAll").click(function(){
+		for(var i=0; i<$("#gAddress input[type=checkbox]").length; i++)
+		{
+			$("#gAddress input[type=checkbox]").eq(i).prop("checked", $(this).prop("checked"));
 		}
 	});
 
@@ -152,11 +159,8 @@ $(document).ready(function(){
 			// 그룹 주소록
 			checklist = checkedList("gList");
 		}
-		console.log(checklist);
-		console.log(checklist.toString());
-		console.log(isGroup);
-		console.log(listtype);
 		
+		alert(checklist.length)
 		// 음성메세지 발송 페이지에서 열었을 때
 		if(isGroup == "N")
 		{
@@ -168,8 +172,9 @@ $(document).ready(function(){
 					 ,listType : listtype
 				}
 				,success : function(data){
-					console.log(data);
 					var list = data.result;
+					
+					alert(list.length)
 					if(list.length == 0){
 						alert('검색된 주소가 업습니다.');
 					}else if(list.length > 0){

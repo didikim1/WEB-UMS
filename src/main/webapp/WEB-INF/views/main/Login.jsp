@@ -24,6 +24,7 @@
 	.logo { float: right;margin-top: 15%;margin-right: 25px; }
 	#btnSubmit, #btnCancel { height:38px !important; width:140px !important;font-size:16px !important; }
 	.btn_i { margin-left:100px; }
+	.btn_service { width:100px;text-align:center; }
 </style>
 
 

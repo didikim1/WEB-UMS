@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<BaseTag:layout>
+<BaseTag:layoutPopup>
 
 <style>
 	.tbl_type03 th, .tbl_type03 td {padding:5px;}
@@ -39,13 +39,15 @@
 	.pwdInfo { font-size: 12px;color:red; }
 	
 	/* 필수항목 안내문구 */
-	.joinInfo{color: red;}
+	.joinInfo { color: red; }
 	
-	input{font-size: 14px;}
+	input { font-size: 14px; }
+	#footer { margin-top:-35px; }
 	
 </style>
 
-<form name="formSubmit" action="" method="POST">
+<body>
+<form name="formSubmit" action="/" method="POST">
 <div id="contents">
 	<div class="section">
 
@@ -221,7 +223,33 @@
 <input type="hidden" name="sequser" value="${paramMap.sequser}" />
 
 </form>
-
+	<!-- footer -->
+		<div id="footer">
+			<div class="section row" style="width: 80%;">
+				<div class="col-3"
+					style="width: 20%; float: left; text-align: center;">
+					<img style="margin-top: 20px; margin-right: 15px; float: right;"
+						alt="인비즈넷 로고" src="/assets/images/inbiznetLogo_nobg.png">
+				</div>
+				<div class="col-9" style='width: 80%; float: right;'>
+					<ul class="company">
+						<li>Copyrightⓒ2012 INBIZNET CO.LTD All Right Reserved.</li>
+						<li>인비즈넷(주)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사업자등록번호 :
+							129-86-61831&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;대표이사 :
+							정현철&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;소재지 : 서울시 마포구 마포대로 49,
+							1007호 (도화동, 성우빌딩)</li>
+						<li>고객센터 : 02-3487-5100 (평일 10:00 ~ 17:00 주말,공휴일 휴무)</li>
+						<li>서비스 이용약관&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <label
+							id="privacy">개인정보처리방침</label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;서비스
+							사용 가이드class="menuTitle"
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	
+		<!-- //footer -->
+</body>
 
 <%@ include file="JoinScript.jsp" %>
-</BaseTag:layout>
+</BaseTag:layoutPopup>

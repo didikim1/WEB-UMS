@@ -52,7 +52,7 @@ body.on {overflow:hidden;}
 /* #footer .section {padding:12px 0 0 184px;width:1200px;height:90px;overflow:hidden;background:url(/assets/images/inbiznetLogo_nobg.png) no-repeat 0 44%;} */
 #footer .section {padding:12px 0 0 184px;width:1200px;height:90px;overflow:hidden;}
 #footer .company  {border-left:1px solid #fff;}
-#footer .company li {font-size:12px; padding-left:25px;}
+#footer .company li {font-size:12px; font-weight:100; padding-left:25px;}
 
 /* #footer {background:#023134;font-size:12px;color:#a6a6a6;} */
 /* #footer .company li {display:inline-block;} */

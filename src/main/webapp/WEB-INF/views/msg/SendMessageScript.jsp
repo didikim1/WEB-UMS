@@ -91,6 +91,24 @@ function fn_TTSUpload()
 // 	var listLength = $("#rList").find("ul").length;
 // 	$(".receiverBtnBox").find(".viewCnt").html("총 "+listLength);
 // }
+
+// 중복 주소 확인   중복:true, 신규:false
+function checkOverlap(name, phone)
+{
+	var temp = phone.replace(/[^0-9]/g,"");
+	for(var i=0; i<$(".receiverList").length; i++)
+	{
+		if(temp == $(".receiverList").eq(i).find(".phonenumber").find("a").text())
+		{
+			if(temp == $(".receiverList").eq(i).find(".phonenumber").find("a").text())
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 function useTemplate(datas)
 {
 	var dataArr = new Array();
@@ -102,10 +120,11 @@ function useTemplate(datas)
 		}
 
 		if(phoneArr.indexOf(element.phonenumber) < 0)
+// 		if (!checkOverlap(element.name, element.phonenumber))
 		{
 			dataArr.push(element);
-		}
-	});
+		} 
+ 	});
 
 	var source 		= $("#listTemplate").html();
 	var template 	= Handlebars.compile(source);
@@ -427,6 +446,7 @@ $(document).ready(function(){
 		for(var i=0; i<$(".receiverList").length; i++)
 		{
 			if(temp == $(".receiverList").eq(i).find(".phonenumber").find("a").text())
+// 			if (!checkOverlap(name, phone))
 			{
 				alert('이미 추가된 전화번호입니다.');
 				return false;
