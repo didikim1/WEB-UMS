@@ -52,5 +52,11 @@ public interface MainMapper
 	* @return
 	*/
 	public int DeleteData(MyMap paramMap);
+	
+
+	int ModifyAdminInfo(MyMap paramMap);
+
+	int ModifyUserInfo(MyMap paramMap);
+	
 
 }

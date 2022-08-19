@@ -27,9 +27,11 @@ public class MainAct
 {
 	public static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MainAct.class);
 	
-	@Resource(name="com.inbiznetcorp.acs.web.main.MainService")
-	MainService mService;
+	final String pagePrefix = "main";
 	
+	@Resource(name="com.inbiznetcorp.acs.web.main.service.MainService")
+	MainService mainService;
+
 	@Resource(name="com.inbiznetcorp.acs.web.message.service.AddressService")
 	AddressService addressService;
 
@@ -41,63 +43,20 @@ public class MainAct
 	{
 		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
 		
-		return "/main/Join";
-	}
-	/**
-	 * id체크
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = { "/uniqIdChk.do" })
-	public @ResponseBody ResultMessage uniqIdChk(Model model)
-	{
-	            MyMap              paramMap                        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-	            MyCamelMap         resultMap                       = new MyCamelMap();
-
-	            String             resultCode                      = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
-	            int                resultRegisterDataCount         = 0;
-
-	            resultMap = mService.SelectOneData(paramMap);
-
-	            if( resultMap == null ){
-	                resultCode = ResultCode.RESULT_NOT_FOUND;
-	            } else {
-	                resultCode = ResultCode.RESULT_BAD_REQUEST;
-	            }
-
-	            return new ResultMessage(resultCode, null);
+		return pagePrefix + "/Join";
 	}
 	
 	/**
-	 * 계정정보 변경
-	 * @param model
-	 * @return
+	 * 회원가입
 	 */
-	@RequestMapping(value = { "/ProcRegisterData.do" })
-	public @ResponseBody ResultMessage ProcRegisterData(Model model)
+	@RequestMapping("/RegisterUser")
+	public String RegisterUser()
 	{
-	    MyMap              paramMap                        = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
-	    MyCamelMap         resultMap                       = new MyCamelMap();
-
-	    String             resultCode                      = ResultCode.RESULT_INTERNAL_SERVER_ERROR;
-	    int                resultRegisterDataCount         = 0;
-
-
-        if(paramMap.getInt("seq", 0) > 0 )
-        {
-                resultCode      = ResultCode.RESULT_OK;
-                resultRegisterDataCount = mService.ModifyData(paramMap);
-        }
-        else
-        {
-        	resultRegisterDataCount = mService.RegisterData( paramMap );
-        	if( resultRegisterDataCount > 0 )
-        	{
-        		resultCode = ResultCode.RESULT_OK;
-        	}
-        }
-
-	    return new ResultMessage(resultCode, null);
+		MyMap paramMap = FrameworkBeans.findHttpServletBean().findClientRequestParameter();
+		
+		mainService.RegisterData(paramMap);
+		
+		return "redirect:/Login";
 	}
 
 }

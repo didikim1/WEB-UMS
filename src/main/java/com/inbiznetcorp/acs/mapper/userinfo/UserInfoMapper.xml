@@ -14,6 +14,30 @@
 		</if>
 	</sql>
 
+		<!-- 추가 -->
+	<update id="RegisterData" parameterType="myMap">
+			INSERT INTO USER_INFO
+			(
+			USER_ID
+			,USER_PW
+			,USER_NAME
+			,TEL
+			,PHONENUMBER
+			,EMAIL
+			,CREATEDATE
+			)
+			 VALUES
+			(
+			  	 #{userId}				<!-- ID -->
+				,password(#{userPw})	<!-- PW -->
+				,#{userName}			<!-- 회원이름 -->
+				,#{tel}					<!-- 유선전화번호 -->
+				,#{phoneNumber}			<!-- 휴대폰번호-->
+				,#{email}				<!-- 이메일 -->
+				,now()					<!-- 등록일 -->
+			)
+	</update>
+
 	<select id="FindUserInfo" parameterType="myMap" resultType="myCamelMap">
 		SELECT
 			 SEQUSER

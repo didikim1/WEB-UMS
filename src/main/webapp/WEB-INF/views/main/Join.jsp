@@ -47,7 +47,7 @@
 </style>
 
 <body>
-<form name="formSubmit" action="/" method="POST">
+<form name="formSubmit" action="/main/RegisterUser" method="POST">
 <div id="contents">
 	<div class="section">
 
@@ -79,26 +79,26 @@
 				<tbody>
 					<tr>
 						<th>* ID</th>
-						<td colspan="3"><input type="text" name="userId" value="${userInfo.userId}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
+						<td colspan="3"><input type="text" id="userId" name="userId" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
 						<th>* 이름</th>
-						<td colspan="3"><input type="text" name="userName" value="${userInfo.userName}" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
+						<td colspan="3"><input type="text" id="userName" name="userName" maxlength="40"  style="height:30px;" autocomplete="off" /></td>
 					</tr>
 					<tr>
 						<th>* 비밀번호</th>
-						<td colspan="3"><input type="password" name = "password1" value="${userInfo.pwd}" maxlength="40"  style="height:30px;" autocomplete="off" />
+						<td colspan="3"><input type="password" id ="password1" name ="password1" maxlength="40"  style="height:30px;" autocomplete="off" />
 							<span class="policy">*  비밀번호는 대소문자, 숫자, 특수기호를 포함하여 8자리 이상으로 구성해주시기 바랍니다.</span>
 					</tr>
 					<tr>
 						<th>* 비밀번호 확인</th>
-						<td colspan="3"><input type="password" name = "password2" value="${userInfo.pwdCheck}" maxlength="40"  style="height:30px;" autocomplete="off" />
+						<td colspan="3"><input type="password"  id= "password2" name="password2" maxlength="40"  style="height:30px;" autocomplete="off" />
 						
 					</tr>
 					<tr>
 						<th>유선전화번호</th>
 						<td colspan="3">
-							<select name="tel1" class="joinPhone">
+							<select name="tel1" id = "tel1" class="joinPhone">
 								<option>02</option>
 								<option>031</option>
 								<option>032</option>
@@ -150,7 +150,7 @@
 						<th>* 주소</th>
 							<td colspan="3">
 								<input type="text" id="sample6_postcode" name="postcode" placeholder="우편번호" class="postcode">
-								<input type="button" class="btn_service btn_address" onclick="sample6_execDaumPostcode()"  value="우편번호 찾기" class="execDaumPostcode"><br>
+								<input type="button" class="btn_service btn_address" onclick="sample6_execDaumPostcode()"  value="우편번호 찾기"><br>
 								<input type="text" id="sample6_address"name="address" placeholder="주소" class="address"><br>
 								<input type="text" id="sample6_detailAddress"name="detailAddress" placeholder="상세주소" class="detailAddress">
 								<input type="text" id="sample6_extraAddress" name="extraAddress"placeholder="참고항목" class="extraAddress">
@@ -213,7 +213,7 @@
 		<!-- button -->
 		<div class="btn_next">
 			<button class="btn_out" id="btnSubmit">가입하기</button>
-			<button class="btn_can" id="btnCancel">취소</button>
+			<!-- <button class="btn_can" id="btnCancel">취소</button> -->
 		</div>
 		<!-- //button -->
 		

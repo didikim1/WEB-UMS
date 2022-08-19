@@ -4,26 +4,117 @@
 <mapper namespace="com.inbiznetcorp.acs.mapper.main.MainMapper">
 
 	<sql id="addWhere">
-		AND ISUSE = 'Y'
-		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(userId)">
+<!-- 		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(userid)">
 			AND USER_ID = #{userId}
 		</if>
-		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(sequser)">
-			AND SEQUSER = #{sequser}
+		
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(username)">
+			AND USER_NAME = #{username}
 		</if>
+		
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(phoneNumber)">
+			AND PHONE_NUMBER = #{phoneNumber}
+		</if>
+		
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(mngrGrade)">
+			AND MNGR_GRAGE = #{mngrGrade}
+		</if>
+		
+		<if test="@com.inbiznetcorp.acs.framework.config.mybatis.Utily@isNotEmpty(mngrType)">
+			AND MNGR_TYPE = #{mngrType}
+		</if> -->
 	</sql>
-
+	
+		<!-- 페이징 갯수 -->
+	<select id="SelectOnePagingCount" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(0)
+		FROM
+			MANAGER T1
+		WHERE 1=1
+		<include refid="addWhere"/>
+	</select>
+	
+		<!-- 상세 -->
+	<select id="ListPagingData" parameterType="myMap" resultType="myCamelMap">
+		SELECT 
+				 USER_ID												as userId 		<!-- ID -->
+				,USER_PW												as userPw 		<!-- PW-->
+				,USER_NAME												as userName		<!-- 회원이름-->
+				,TEL													as tel			<!-- 유선전화번호-->
+				,PHONE_NUMBER											as phoneNumber 	<!-- 휴대폰번호 -->
+				,EMAIL													as email 		<!-- 이메일-->
+				,MNGR_GRAGE												as mngrGrade 	<!-- 등급 -->
+				,MNGR_TYPE												as mngrType		<!-- 사용서비스타입 -->
+				,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') 	  	    as createdate 	<!-- 최종등록일 -->
+		FROM
+			 MANAGER T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
+	
+	
+		<!-- 상세 -->
+	<select id="SelectOneData" parameterType="myMap" resultType="myCamelMap">
+		SELECT 
+				 USER_ID												as userId 		<!-- ID -->
+				,USER_PW												as userPw 		<!-- PW-->
+				,USER_NAME												as userName		<!-- 회원이름-->
+				,TEL													as tel			<!-- 유선전화번호-->
+				,PHONE_NUMBER											as phoneNumber 	<!-- 휴대폰번호 -->
+				,EMAIL													as email 		<!-- 이메일-->
+				,MNGR_GRAGE												as mngrGrade 	<!-- 등급 -->
+				,MNGR_TYPE												as mngrType		<!-- 사용서비스타입 -->
+				,DATE_FORMAT(CREATEDATE, '%Y-%m-%d %H:%i:%s') 	  	    as createdate 	<!-- 최종등록일 -->
+		FROM
+			 MANAGER T1
+		WHERE 1=1
+			<include refid="addWhere"/>
+	</select>
 
 	<!-- 추가 -->
-	<update id="RegisterData" parameterType="myMap" keyProperty="seq" useGeneratedKeys="true" >
+	<update id="RegisterData" parameterType="myMap">
+			INSERT INTO MANAGER
+			(
+				 USER_ID					<!-- ID -->
+				,USER_PW					<!-- PW-->
+				,USER_NAME					<!-- 회원이름-->
+				,TEL						<!-- 유선전화번호-->
+				,PHONE_NUMBER				<!-- 휴대폰번호 -->
+				,ADDRESS					<!-- 주소 -->
+				,EMAIL						<!-- 이메일-->
+				,MNGR_GRAGE					<!-- 등급 -->
+				,MNGR_TYPE					<!-- 사용서비스타입 -->
+				,CREATEDATE					<!-- 등록일-->
+			)
+			 VALUES
+			(
+			  	 #{userId}				<!-- ID -->
+				,password(#{userPw})	<!-- PW -->
+				,#{userName}			<!-- 회원이름 -->
+				,#{tel}					<!-- 유선전화번호 -->
+				,#{phoneNumber}			<!-- 휴대폰번호-->
+				,#{address}				<!-- 주소-->
+				,#{email}				<!-- 이메일 -->
+				,#{mngrGrade}			<!-- 등급 -->
+				,#{mngrType}			<!-- 사용서비스타입-->
+				,now()					<!-- 등록일 -->
+			)
 	</update>
-	<select id="FindUserInfo" parameterType="myMap" resultType="myCamelMap">
+	
+		<select id="SearchDupl" parameterType="myMap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			MANAGER
+		WHERE 1=1
+			AND PHONE_NUMBER = #{phonenumber}
 	</select>
 	
-	<select id="FindAdminInfo" parameterType="myMap" resultType="myCamelMap">
-	</select>
+	<update id="ModifyData" parameterType="myMap">
+	</update>
 	
-	<update id="ModifyAdminInfo" parameterType="myMap">
+	<update id="DeleteData" parameterType="myMap">
 	</update>
 
 </mapper>
