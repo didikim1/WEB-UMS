@@ -19,7 +19,8 @@ public class IndexAct
 	public String index()
 	{
 //		return "redirect:/msg/SendMessage";
-		return "redirect:/Login";
+//		return "redirect:/Login";
+		return "/Login";
 	}
 
 	@RequestMapping("/Login")

@@ -16,7 +16,7 @@
 
 		<!-- 추가 -->
 	<update id="RegisterData" parameterType="myMap">
-			INSERT INTO USER_INFO
+			INSERT INTO MANAGER
 			(
 			USER_ID
 			,USER_PW

@@ -123,9 +123,9 @@
 								<option>018</option>
 								<option>019</option>
 							</select>
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							<input type="text" name="tel2" value=" - " disabled style="border:none;width:20px;"/>
 							<input type="text" class="inputPhone" name="tel2" />
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							<input type="text" name="tel3" value=" - " disabled style="border:none;width:20px;"/>
 							<input type="text" class="inputPhone" name="tel3" />
 						</td>
 					</tr>
@@ -140,9 +140,9 @@
 								<option>018</option>
 								<option>019</option>
 							</select>
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							<input type="text" name="phone2" value=" - " disabled style="border:none;width:20px;"/>
 							<input type="text" class="inputPhone" name="phone2" />
-							<input type="text" name="" value=" - " disabled style="border:none;width:20px;"/>
+							<input type="text" name="phone3" value=" - " disabled style="border:none;width:20px;"/>
 							<input type="text" class="inputPhone" name="phone3" />
 						</td>
 					</tr>
@@ -220,7 +220,7 @@
 	</div>
 </div>
 
-<input type="hidden" name="sequser" value="${paramMap.sequser}" />
+<input type="hidden" name="seq" value="${paramMap.seq}" />
 
 </form>
 	<!-- footer -->

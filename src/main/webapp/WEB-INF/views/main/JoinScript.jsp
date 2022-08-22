@@ -52,56 +52,6 @@ function sample6_execDaumPostcode() {
 }
 
 
-//휴대전화번호에 하이픈 추가
-function formatPhonenumber(phonenumber)
-{
-    return phonenumber.toString().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-");
-}
-
-// 유선전화번호 값 세팅
-function setTel(tel)
-{
-	var telArr 	= formatPhonenumber(tel).split("-");
-	var tel1 	= telArr[0];
-	var tel2 	= telArr[1];
-	var tel3 	= telArr[2];
-	
-	var options = $("[name=tel1]").find("option");
-	
-	for(var i=0; i<options.length; i++)
-	{
-		if(options.eq(i).val() == tel1)
-		{
-			options.eq(i).prop("selected", "selected");
-			$("[name=tel2]").val(tel2);
-			$("[name=tel3]").val(tel3);
-			break;
-		}
-	}
-}
-
-// 휴대전화번호 값 세팅
-function setPhonenumber(phonenumber)
-{
-	var phonenumberArr 	= formatPhonenumber(phonenumber).split("-");
-	var phone1 			= phonenumberArr[0];
-	var phone2 			= phonenumberArr[1];
-	var phone3 			= phonenumberArr[2];
-	
-	var options = $("[name=phone1]").find("option");
-	
-	for(var i=0; i<options.length; i++)
-	{
-		if(options.eq(i).val() == phone1)
-		{
-			options.eq(i).prop("selected", "selected");
-			$("[name=phone2]").val(phone2);
-			$("[name=phone3]").val(phone3);
-			break;
-		}
-	}
-}
-
 // 이메일주소 값 세팅
 function setEmail(email)
 {
@@ -152,67 +102,113 @@ function passwordCheck2()
 }
 
 $(document).ready(function(){
-	// 유선전화번호 값 세팅
-	var tel = "${userInfo.tel}";
-	setTel(tel);
-	
-	// 휴대전화번호 값 세팅
-	var phonenumber = "${userInfo.phonenumber}";
-	setPhonenumber(phonenumber);
-	
-	// 이메일주소 값 세팅
-	var email = "${userInfo.email}";
-	setEmail(email);
-	
-	// 새비밀번호 입력란 숨김
-	$(".newPW").hide();
-	$(".policy").hide();
-	
-	// 비밀번호 변경 버튼 toggle
-	$("#changePassword").click(function(){
-		if ($(".newPW").is(":visible")) {
-			$(".newPW").hide();
-			$(".policy").hide();
-			$("[name=password1]").val("");
-			$("[name=password2]").val("");
-		} else {
-			$(".newPW").show();
-			$(".policy").show();
-			$("[name=password1]").focus();
-		}
-	});
-	
 	// 이메일 주소 select 변경 시
 	$("[name=email3]").change(function(){
 		$("[name=email2]").val($("[name=email3]").val());
 	});
 	
-	// 수정 버튼 클릭 시
+	// 가입 버튼 클릭 시
 	$("#btnSubmit").click(function(){
 		var pwsRegExp	= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; 										//	비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.
 		
-		var userId 		= $("#userId").val();
-		var userName 	= $("#userName").val();
-		var password1 	= $("#password1").val();
-		var password2 	= $("#password2").val();
-		var phone1 		= $("[name=phone1]").val();
-		var phone2 		= $("[name=phone2]").val();
-		var phone3 		= $("[name=phone3]").val();
-		var email1 		= $("[name=email1]").val();
-		var email2 		= $("[name=email2]").val(); 
+		var userId 			= $("#userId").val();
+		var userName 		= $("#userName").val();
+		var password1 		= $("#password1").val();
+		var password2 		= $("#password2").val();
+		var phone1 			= $("#phone1").val();
+		var phone2 			= $("#phone2").val();
+		var phone3 			= $("#phone3").val();
+		var postcode 		= $("#postcode").val();
+		var address 		= $("#address").val();
+		var detailAddress 	= $("#detailAddress").val();
+		var email1 			= $("#email1").val();
+		var email2 			= $("#email2").val();
+		var email3 			= $("#email3").val();
+		
 
- 		// 비밀번호 생성규칙 일치여부 확인
-		if(!pwsRegExp.test(password1))
+
+		if(userId == null || userId == "")
 		{
-			common.alert('비밀번호 변경', '비밀번호 설정 규칙이 준수되지 않았습니다. (대소문자+숫자+특수기호 8자리 이상으로 구성하여야 합니다.)');
+			alert("ID를 입력해주세요.");
+			$("[name=userId]").focus();
+			return false;
+		}
+		else if(userName.length < 1)
+		{
+			alert("이름을 입력해주세요.");
+			$("[name=userName]").focus();
+			return false;
+		}
+		else if(password1.length < 1)
+		{
+			alert("비밀번호를 입력해주세요.");
 			$("[name=password1]").focus();
 			return false;
-		} 
+		}
+		else if(!pwsRegExp.test(password1))
+		{
+			alert("비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.");
+			$("[name=password1]").focus();
+			return false;
+		}
+		else if(password2.length < 1)
+		{
+			alert("비밀번호 확인란을 입력해주세요.");
+			$("[name=password2]").focus();
+			return false;
+		}
 		else if(password2 != password1)
 		{
-			common.alert('비밀번호 변경', '비밀번호 확인값과 일치하지 않습니다.');
-			$("[name=password2]").val("");
+			alert("비밀번호가 일치하지 않습니다.");
 			$("[name=password2]").focus();
+			return false;
+		}
+		else if(phone1.length < 1)
+		{
+			alert("휴대전화번호를 입력해주세요.");
+			$("[name=phone1]").focus();
+			return false;
+		}
+		else if(phone2.length < 1)
+		{
+			alert("휴대전화번호를 입력해주세요.");
+			$("[name=phone2]").focus();
+			return false;
+		}
+		else if(phone3.length < 1)
+		{
+			alert("휴대전화번호를 입력해주세요.");
+			$("[name=phone3]").focus();
+			return false;
+		}
+		else if(postcode.length < 1)
+		{
+			alert("우편변호를 입력해주세요.");
+			$("[name=postcode]").focus();
+			return false;
+		}
+		else if(address.length < 1)
+		{
+			alert("주소를 입력해주세요.");
+			$("[name=address]").focus();
+			return false;
+		}
+		else if(detailAddress.length < 1)
+		{
+			alert("상세주소를 입력해주세요.");
+			$("[name=detailAddress]").focus();
+			return false;
+		}
+		else if(email1.length < 1)
+		{
+			alert("이메일 입력해주세요.");
+			$("[name=email1]").focus();
+			return false;
+		}
+		else if(email2.length < 1)
+		{
+			alert("이메일을 입력해주세요.");
+			$("[name=email2]").focus();
 			return false;
 		}
 		
@@ -221,10 +217,10 @@ $(document).ready(function(){
 	});
 	
 	// 취소 버튼 클릭 시
-	$("#btnCancel").click(function(){
+/* 	$("#btnCancel").click(function(){
 		var sequser = $("[name=sequser]").val();
 		location.href="/info/user/UserInfo?sequser="+sequser;
-	});
+	}); */
 	
 });
 </script>

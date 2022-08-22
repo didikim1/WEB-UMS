@@ -85,11 +85,7 @@ public class MainService
     public int ModifyData(MyMap paramMap)
     {
 
-    	if(mMapper.ModifyData(paramMap) > 0 )
-        {
-    		paramMap.put("procSttus", "U");
-        }
-        return 0;
+    	return mMapper.ModifyData(paramMap);
     }
     
 
@@ -110,16 +106,20 @@ public class MainService
 		
 		return grade.equals("A") ? mUserInfoMapper.FindAdminInfo(paramMap) : mUserInfoMapper.FindUserInfo(paramMap);
 	}
-
+    /**
+    * 추가
+    * @param paramMap
+    * @return
+    */
 	public int RegisterData(MyMap paramMap)
 	{
-//		String grade 		= paramMap.getStr("SESSION_GRADE"); 	// A:관리자, B:사용자
+	//	String grade 		= paramMap.getStr("SESSION_GRADE"); 	// A:관리자, B:사용자
 		String userPw 		= paramMap.getStr("password1", "");
 		String userName 	= paramMap.getStr("userName");
 		String tel 			= paramMap.getStr("tel1") + paramMap.getStr("tel2") + paramMap.getStr("tel3");
 		String phoneNumber 	= paramMap.getStr("phone1") + paramMap.getStr("phone2") + paramMap.getStr("phone3");
 		String email 		= paramMap.getStr("email1") + "@" + paramMap.getStr("email2");
-//		String address 		= paramMap.getStr("postcode") + paramMap.getStr("address") + paramMap.getStr("detailAddress") + paramMap.getStr("extraAddress");
+		String address 		= paramMap.getStr("postcode") + paramMap.getStr("address") + paramMap.getStr("detailAddress") + paramMap.getStr("extraAddress");
 		
 		if(!userPw.equals("")) { paramMap.put("userPw", userPw); }
 		
@@ -127,7 +127,7 @@ public class MainService
 		paramMap.put("tel", 		tel);
 		paramMap.put("phoneNumber", phoneNumber);
 		paramMap.put("email", 		email);
-//		paramMap.put("address", 	address);
+		paramMap.put("address", 	address);
 		
 		return mMapper.RegisterData(paramMap);
 	}

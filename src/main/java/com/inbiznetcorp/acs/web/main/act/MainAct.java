@@ -56,7 +56,16 @@ public class MainAct
 		
 		mainService.RegisterData(paramMap);
 		
-		return "redirect:/Login";
+		System.out.println("param : " + paramMap);
+		System.out.println("param : " + paramMap);
+		System.out.println("param : " + paramMap);
+		System.out.println("param : " + paramMap);
+		System.out.println("param : " + paramMap);
+		System.out.println("param : " + paramMap);
+		System.out.println("param : " + paramMap);
+		System.out.println("param : " + paramMap);
+		
+		return pagePrefix + "/RegisterUser";
 	}
 
 }

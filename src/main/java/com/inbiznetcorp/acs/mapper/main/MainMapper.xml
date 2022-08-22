@@ -73,7 +73,7 @@
 	</select>
 
 	<!-- 추가 -->
-	<update id="RegisterData" parameterType="myMap">
+	<update id="RegisterData" parameterType="myMap" >
 			INSERT INTO MANAGER
 			(
 				 USER_ID					<!-- ID -->
@@ -101,15 +101,6 @@
 				,now()					<!-- 등록일 -->
 			)
 	</update>
-	
-		<select id="SearchDupl" parameterType="myMap" resultType="int">
-		SELECT
-			COUNT(*)
-		FROM
-			MANAGER
-		WHERE 1=1
-			AND PHONE_NUMBER = #{phonenumber}
-	</select>
 	
 	<update id="ModifyData" parameterType="myMap">
 	</update>
